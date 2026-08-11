@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/said_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="24dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="SAID Prototype Login"
+        android:textColor="@color/said_navy_text"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="32dp" />
+
+    <!-- Temporary button to simulate AHT Login -->
+    <Button
+        android:id="@+id/btnLoginAht"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/said_primary"
+        android:text="Login as AHT (Kagiso)"
+        android:textColor="@color/said_white"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Temporary button to simulate Pet Owner Login -->
+    <Button
+        android:id="@+id/btnLoginOwner"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/said_accent"
+        android:text="Login as Owner (Nomvula)"
+        android:textColor="@color/said_white" />
+
+</LinearLayout>

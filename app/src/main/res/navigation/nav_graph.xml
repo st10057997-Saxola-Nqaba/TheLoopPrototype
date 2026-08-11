@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <!-- 1. Login Screen (Entry point) -->
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.theloopprototype.ui.auth.LoginFragment"
+        android:label="Login"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_login_to_aht_home"
+            app:destination="@id/ahtHomeFragment" />
+        <action
+            android:id="@+id/action_login_to_owner_home"
+            app:destination="@id/ownerHomeFragment" />
+    </fragment>
+
+    <!-- 2. AHT Home (Scheduled Requests) -->
+    <fragment
+        android:id="@+id/ahtHomeFragment"
+        android:name="com.example.theloopprototype.ui.aht.AhtHomeFragment"
+        android:label="Scheduled Requests"
+        tools:layout="@layout/fragment_aht_home" />
+
+    <!-- 3. Pet Owner Home (My Pets) -->
+    <fragment
+        android:id="@+id/ownerHomeFragment"
+        android:name="com.example.theloopprototype.ui.owner.OwnerHomeFragment"
+        android:label="My Pets"
+        tools:layout="@layout/fragment_owner_home" />
+
+</navigation>
