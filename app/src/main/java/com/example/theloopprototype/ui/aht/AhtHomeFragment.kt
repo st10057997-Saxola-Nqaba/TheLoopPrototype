@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -29,7 +30,19 @@ class AhtHomeFragment : Fragment(R.layout.fragment_aht_home) {
             val scheduledLists = DummyData.scheduledRequestLists?.toMutableList() ?: mutableListOf()
             val areas = DummyData.areas ?: emptyList()
 
-            val adapter = ScheduledRequestAdapter(scheduledLists, areas)
+            // Initialize the adapter with the click listener lambda
+            val adapter = ScheduledRequestAdapter(scheduledLists, areas) { clickedSchedule ->
+
+                // Pass the target list ID via a Bundle to the NavController
+                val bundle = Bundle().apply {
+                    putString("targetListId", clickedSchedule.id)
+                }
+
+                // Navigate using Jetpack Navigation (replace R.id.action_ahtHomeFragment_to_viewScheduledRequestFragment
+                // with your actual nav_graph action ID if it differs)
+                findNavController().navigate(R.id.action_ahtHomeFragment_to_viewScheduledRequestFragment, bundle)
+            }
+
             recyclerView.adapter = adapter
 
             val touchHelperCallback = object : ItemTouchHelper.SimpleCallback(

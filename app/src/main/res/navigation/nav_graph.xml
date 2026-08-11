@@ -24,7 +24,14 @@
         android:id="@+id/ahtHomeFragment"
         android:name="com.example.theloopprototype.ui.aht.AhtHomeFragment"
         android:label="Scheduled Requests"
-        tools:layout="@layout/fragment_aht_home" />
+        tools:layout="@layout/fragment_aht_home">
+
+        <!-- Added action to navigate to the details screen -->
+        <action
+            android:id="@+id/action_ahtHomeFragment_to_viewScheduledRequestFragment"
+            app:destination="@id/viewScheduledRequestFragment" />
+
+    </fragment>
 
     <!-- 3. Pet Owner Home (My Pets) -->
     <fragment
@@ -32,5 +39,12 @@
         android:name="com.example.theloopprototype.ui.owner.OwnerHomeFragment"
         android:label="My Pets"
         tools:layout="@layout/fragment_owner_home" />
+
+    <!-- 4. View Scheduled Request Details -->
+    <fragment
+        android:id="@+id/viewScheduledRequestFragment"
+        android:name="com.example.theloopprototype.ui.aht.ViewScheduledRequestFragment"
+        android:label="View Scheduled Request"
+        tools:layout="@layout/fragment_view_scheduled_request" />
 
 </navigation>
