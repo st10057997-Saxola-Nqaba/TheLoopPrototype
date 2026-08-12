@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/said_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Owner &amp; Pet Data"
+            android:textColor="@color/said_navy_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etUpdatePhone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Cellphone Number"
+            android:inputType="phone"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etUpdateAddress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Physical Address"
+            android:inputType="textPostalAddress"
+            android:layout_marginBottom="24dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/create_user_background"
+            android:layout_marginBottom="16dp"/>
+
+        <EditText
+            android:id="@+id/etUpdateWeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Weight (kg)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="12dp"/>
+
+        <EditText
+            android:id="@+id/etUpdateHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Pet Height (cm)"
+            android:inputType="numberDecimal"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnSaveChanges"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Save Changes"
+            android:backgroundTint="@color/said_primary"/>
+
+    </LinearLayout>
+</ScrollView>

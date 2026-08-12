@@ -5,11 +5,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
-import com.example.theloopprototype.data.*
+import com.example.theloopprototype.data.DummyUsers
 
 class OwnerSearchFragment : Fragment(R.layout.fragment_owner_search) {
 
@@ -18,31 +18,37 @@ class OwnerSearchFragment : Fragment(R.layout.fragment_owner_search) {
 
         val etSearchQuery = view.findViewById<EditText>(R.id.etSearchQuery)
         val btnSearch = view.findViewById<Button>(R.id.btnSearch)
-        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewSearchResults)
-
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         btnSearch.setOnClickListener {
-            val query = etSearchQuery.text.toString().trim().lowercase()
-
+            val query = etSearchQuery.text.toString().trim()
             if (query.isBlank()) {
-                Toast.makeText(requireContext(), "Please enter a cellphone number or address", Toast.LENGTH_SHORT).show()
+                Toast.makeText(requireContext(), "Please enter a search term", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
 
-            // Search users by cellphone number or address from Dummy data
-            val matchingUsers = DummyUsers.users.filter { user ->
-                val phoneMatch = user.cellphoneNumber.lowercase().contains(query)
-                // Add address filtering if your user model supports it, e.g.:
-                // val addressMatch = user.address?.lowercase()?.contains(query) == true
-                phoneMatch // || addressMatch
+            // Search existing users by cellphone number or address
+            val existingUser = DummyUsers.users.find {
+                it.cellphoneNumber.contains(query, ignoreCase = true) ||
+                        (it.physicalAddress?.contains(query, ignoreCase = true) == true)
             }
 
-            if (matchingUsers.isEmpty()) {
-                Toast.makeText(requireContext(), "No owners found matching query", Toast.LENGTH_SHORT).show()
+            if (existingUser != null) {
+                val bundle = Bundle().apply {
+                    putString("ownerId", existingUser.id)
+                }
+                findNavController().navigate(R.id.action_ownerSearchFragment_to_ownerDetailFragment, bundle)
             } else {
-                // TODO: Bind matching users to an adapter to display results in the RecyclerView
-                Toast.makeText(requireContext(), "Found ${matchingUsers.size} owner(s)", Toast.LENGTH_SHORT).show()
+                AlertDialog.Builder(requireContext())
+                    .setTitle("Owner Not Found")
+                    .setMessage("No user profile matches this search. Would you like to create a new profile?")
+                    .setPositiveButton("Yes") { _, _ ->
+                        val bundle = Bundle().apply {
+                            putString("initialPhone", query)
+                        }
+                        findNavController().navigate(R.id.action_ownerSearchFragment_to_createUserPetFragment, bundle)
+                    }
+                    .setNegativeButton("No", null)
+                    .show()
             }
         }
     }

@@ -29,7 +29,6 @@
             android:id="@+id/action_ahtHomeFragment_to_viewScheduledRequestFragment"
             app:destination="@id/viewScheduledRequestFragment" />
 
-        <!-- Added action to navigate to Owner & Pet Search -->
         <action
             android:id="@+id/action_ahtHomeFragment_to_ownerSearchFragment"
             app:destination="@id/ownerSearchFragment" />
@@ -49,7 +48,6 @@
         android:label="View Scheduled Request"
         tools:layout="@layout/fragment_view_scheduled_request">
 
-        <!-- Added action to navigate to Create Visit Entry -->
         <action
             android:id="@+id/action_viewScheduledRequestFragment_to_createVisitEntryFragment"
             app:destination="@id/createVisitEntryFragment" />
@@ -68,6 +66,55 @@
         android:id="@+id/ownerSearchFragment"
         android:name="com.example.theloopprototype.ui.aht.OwnerSearchFragment"
         android:label="Owner and Pet Search"
-        tools:layout="@layout/fragment_owner_search" />
+        tools:layout="@layout/fragment_owner_search">
+
+        <action
+            android:id="@+id/action_ownerSearchFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
+
+        <action
+            android:id="@+id/action_ownerSearchFragment_to_createUserPetFragment"
+            app:destination="@id/createUserPetFragment" />
+    </fragment>
+
+    <!-- 7. Owner Detail & History -->
+    <fragment
+        android:id="@+id/ownerDetailFragment"
+        android:name="com.example.theloopprototype.ui.aht.OwnerDetailFragment"
+        android:label="Owner Details"
+        tools:layout="@layout/fragment_owner_detail">
+
+        <action
+            android:id="@+id/action_ownerDetailFragment_to_createVisitEntryFragment"
+            app:destination="@id/createVisitEntryFragment" />
+
+        <action
+            android:id="@+id/action_ownerDetailFragment_to_updateOwnerPetFragment"
+            app:destination="@id/updateOwnerPetFragment" />
+    </fragment>
+
+    <!-- 8. Create User & Pet Profile -->
+    <fragment
+        android:id="@+id/createUserPetFragment"
+        android:name="com.example.theloopprototype.ui.aht.CreateUserPetFragment"
+        android:label="Create User and Pet"
+        tools:layout="@layout/fragment_create_user_pet">
+
+        <action
+            android:id="@+id/action_createUserPetFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
+    </fragment>
+
+    <!-- 9. Update Owner & Pet Data -->
+    <fragment
+        android:id="@+id/updateOwnerPetFragment"
+        android:name="com.example.theloopprototype.ui.aht.UpdateOwnerPetFragment"
+        android:label="Update Owner and Pet"
+        tools:layout="@layout/fragment_update_owner_pet">
+
+        <action
+            android:id="@+id/action_updateOwnerPetFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
+    </fragment>
 
 </navigation>
