@@ -47,6 +47,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Create Visit Entry"
-        android:backgroundTint="@color/said_primary"/>
+        android:backgroundTint="@color/said_primary"
+        android:layout_marginBottom="12dp"/>
+
+    <!-- Trigger Button to Update Owner Details -->
+    <Button
+        android:id="@+id/btnUpdateOwnerDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Update Owner Details"
+        android:backgroundTint="@color/said_accent"/>
 
 </LinearLayout>

@@ -38,5 +38,15 @@ class ViewScheduledRequestFragment : Fragment(R.layout.fragment_view_scheduled_r
             }
             findNavController().navigate(R.id.action_viewScheduledRequestFragment_to_createVisitEntryFragment, bundle)
         }
+
+        // Setup button to update owner details directly from the request screen
+        val btnUpdateDetails = view.findViewById<Button>(R.id.btnUpdateOwnerDetails)
+        btnUpdateDetails?.setOnClickListener {
+            val ownerId = owner?.id ?: return@setOnClickListener
+            val bundle = Bundle().apply {
+                putString("ownerId", ownerId)
+            }
+            findNavController().navigate(R.id.action_viewScheduledRequestFragment_to_updateOwnerPetFragment, bundle)
+        }
     }
 }
