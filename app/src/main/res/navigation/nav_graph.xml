@@ -17,7 +17,28 @@
         <action
             android:id="@+id/action_login_to_owner_home"
             app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_login_to_admin_dashboard"
+            app:destination="@id/adminDashboardFragment" />
     </fragment>
+
+    <!-- Administrator Dashboard (Tablet / Desktop Simulated View) -->
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminDashboardFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard">
+        <action
+            android:id="@+id/action_adminDashboard_to_adminRequests"
+            app:destination="@id/adminRequestsFragment" />
+    </fragment>
+
+    <!-- Admin Requests & Demand Concentration View -->
+    <fragment
+        android:id="@+id/adminRequestsFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminRequestsFragment"
+        android:label="Manage Requests"
+        tools:layout="@layout/fragment_admin_requests" />
 
     <!-- 2. AHT Home -->
     <fragment
@@ -44,7 +65,6 @@
             android:id="@+id/action_viewScheduledRequestFragment_to_createVisitEntryFragment"
             app:destination="@id/createVisitEntryFragment" />
 
-        <!-- Added action to jump straight to updating owner and pet data -->
         <action
             android:id="@+id/action_viewScheduledRequestFragment_to_updateOwnerPetFragment"
             app:destination="@id/updateOwnerPetFragment" />

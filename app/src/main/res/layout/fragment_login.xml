@@ -33,6 +33,16 @@
         android:layout_height="50dp"
         android:backgroundTint="@color/said_accent"
         android:text="Login as Owner (Nomvula)"
+        android:textColor="@color/said_white"
+        android:layout_marginBottom="16dp" />
+
+    <!-- Temporary button to simulate Administrator Login (Tablet/Desktop View) -->
+    <Button
+        android:id="@+id/btnLoginAdmin"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:backgroundTint="@color/said_navy_text"
+        android:text="Login as Administrator (Desktop/Tablet)"
         android:textColor="@color/said_white" />
 
 </LinearLayout>
