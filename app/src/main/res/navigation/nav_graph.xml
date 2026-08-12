@@ -69,6 +69,96 @@
         android:label="Add Pet"
         tools:layout="@layout/fragment_add_pet"/>
 
+    <fragment
+        android:id="@+id/viewPetFragment"
+        android:name="com.example.theloopprototype.ui.petowner.ViewPetFragment"
+        android:label="View Pet"
+        tools:layout="@layout/fragment_view_pet">
+
+        <argument
+            android:name="petId"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/action_viewPetFragment_to_requestVisitFragment"
+            app:destination="@id/requestVisitFragment"/>
+
+        <action
+            android:id="@+id/action_viewPetFragment_to_viewVisitHistoryFragment"
+            app:destination="@id/viewVisitHistoryFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/myRequestsFragment"
+        android:name="com.example.theloopprototype.ui.petowner.MyRequestsFragment"
+        android:label="My Requests"
+        tools:layout="@layout/fragment_my_requests">
+
+        <action
+            android:id="@+id/action_myRequestsFragment_to_requestDetailsFragment"
+            app:destination="@id/requestDetailsFragment"/>
+
+        <action
+            android:id="@+id/action_myRequestsFragment_to_addPetFragment"
+            app:destination="@id/addPetFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/requestDetailsFragment"
+        android:name="com.example.theloopprototype.ui.petowner.RequestDetailsFragment"
+        android:label="Request Details"
+        tools:layout="@layout/fragment_request_details">
+
+        <argument
+            android:name="requestId"
+            app:argType="string"/>
+
+        <action
+            android:id="@+id/action_requestDetailsFragment_to_viewVisitHistoryFragment"
+            app:destination="@id/viewVisitHistoryFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/viewVisitHistoryFragment"
+        android:name="com.example.theloopprototype.ui.petowner.ViewVisitHistoryFragment"
+        android:label="Visit History"
+        tools:layout="@layout/fragment_view_visit_history">
+
+        <argument
+            android:name="petId"
+            app:argType="string"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/requestVisitFragment"
+        android:name="com.example.theloopprototype.ui.petowner.RequestVisitFragment"
+        android:label="Request Visit"
+        tools:layout="@layout/fragment_request_visit">
+
+        <argument
+            android:name="petId"
+            app:argType="string"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/petOwnerProfileFragment"
+        android:name="com.example.theloopprototype.ui.petowner.PetOwnerProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_pet_owner_profile">
+
+        <action
+            android:id="@+id/action_petOwnerProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/petOwnerHomeFragment"
+            app:popUpToInclusive="true"/>
+
+    </fragment>
+
 
 
 </navigation>
