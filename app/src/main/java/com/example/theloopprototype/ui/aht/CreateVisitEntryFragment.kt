@@ -1,60 +1,44 @@
 package com.example.theloopprototype.ui.aht
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class CreateVisitEntryFragment : Fragment(R.layout.fragment_create_visit_entry) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [CreateVisitEntryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class CreateVisitEntryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+        val etCareGiven = view.findViewById<EditText>(R.id.etCareGiven)
+        val etWelfareConcern = view.findViewById<EditText>(R.id.etWelfareConcern)
+        val cbReturnVisit = view.findViewById<CheckBox>(R.id.cbReturnVisit)
+        val btnSaveVisit = view.findViewById<Button>(R.id.btnSaveVisit)
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_create_visit_entry, container, false)
-    }
+        // Retrieve passed arguments (like schedule or pet ID) if needed
+        val targetListId = arguments?.getString("targetListId")
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment CreateVisitEntryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            CreateVisitEntryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        btnSaveVisit.setOnClickListener {
+            val careGiven = etCareGiven.text.toString()
+            val concern = etWelfareConcern.text.toString()
+            val needsReturn = cbReturnVisit.isChecked
+
+            if (careGiven.isBlank()) {
+                Toast.makeText(requireContext(), "Please log the care given", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
+
+            // TODO: Save visit data to DummyData or repository here
+
+            Toast.makeText(requireContext(), "Visit Entry Saved Successfully!", Toast.LENGTH_SHORT).show()
+
+            // Navigate back or to home
+            findNavController().popBackStack()
+        }
     }
 }

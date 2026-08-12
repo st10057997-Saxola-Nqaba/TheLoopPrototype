@@ -25,12 +25,14 @@
         android:name="com.example.theloopprototype.ui.aht.AhtHomeFragment"
         android:label="Scheduled Requests"
         tools:layout="@layout/fragment_aht_home">
-
-        <!-- Added action to navigate to the details screen -->
         <action
             android:id="@+id/action_ahtHomeFragment_to_viewScheduledRequestFragment"
             app:destination="@id/viewScheduledRequestFragment" />
 
+        <!-- Added action to navigate to Owner & Pet Search -->
+        <action
+            android:id="@+id/action_ahtHomeFragment_to_ownerSearchFragment"
+            app:destination="@id/ownerSearchFragment" />
     </fragment>
 
     <!-- 3. Pet Owner Home (My Pets) -->
@@ -45,6 +47,27 @@
         android:id="@+id/viewScheduledRequestFragment"
         android:name="com.example.theloopprototype.ui.aht.ViewScheduledRequestFragment"
         android:label="View Scheduled Request"
-        tools:layout="@layout/fragment_view_scheduled_request" />
+        tools:layout="@layout/fragment_view_scheduled_request">
+
+        <!-- Added action to navigate to Create Visit Entry -->
+        <action
+            android:id="@+id/action_viewScheduledRequestFragment_to_createVisitEntryFragment"
+            app:destination="@id/createVisitEntryFragment" />
+
+    </fragment>
+
+    <!-- 5. Create Visit Entry -->
+    <fragment
+        android:id="@+id/createVisitEntryFragment"
+        android:name="com.example.theloopprototype.ui.aht.CreateVisitEntryFragment"
+        android:label="Create Visit Entry"
+        tools:layout="@layout/fragment_create_visit_entry" />
+
+    <!-- 6. Owner + Pet Search -->
+    <fragment
+        android:id="@+id/ownerSearchFragment"
+        android:name="com.example.theloopprototype.ui.aht.OwnerSearchFragment"
+        android:label="Owner and Pet Search"
+        tools:layout="@layout/fragment_owner_search" />
 
 </navigation>

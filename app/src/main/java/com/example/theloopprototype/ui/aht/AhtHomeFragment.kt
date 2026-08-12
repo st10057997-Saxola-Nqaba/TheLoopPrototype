@@ -21,7 +21,13 @@ class AhtHomeFragment : Fragment(R.layout.fragment_aht_home) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewRequests)
         val btnToggleView = view.findViewById<Button>(R.id.btnToggleView)
+        val btnOpenSearch = view.findViewById<Button>(R.id.btnOpenSearch)
         val mapContainer = view.findViewById<View>(R.id.mapContainer)
+
+        // Setup Search Button click listener
+        btnOpenSearch?.setOnClickListener {
+            findNavController().navigate(R.id.action_ahtHomeFragment_to_ownerSearchFragment)
+        }
 
         // Setup RecyclerView & Drag-and-Drop
         if (recyclerView != null) {
@@ -38,8 +44,6 @@ class AhtHomeFragment : Fragment(R.layout.fragment_aht_home) {
                     putString("targetListId", clickedSchedule.id)
                 }
 
-                // Navigate using Jetpack Navigation (replace R.id.action_ahtHomeFragment_to_viewScheduledRequestFragment
-                // with your actual nav_graph action ID if it differs)
                 findNavController().navigate(R.id.action_ahtHomeFragment_to_viewScheduledRequestFragment, bundle)
             }
 

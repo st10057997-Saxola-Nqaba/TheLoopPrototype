@@ -39,6 +39,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="16sp"
-        android:paddingBottom="8dp"/>
+        android:paddingBottom="24dp"/>
+
+    <!-- Trigger Button to Create Visit Entry -->
+    <Button
+        android:id="@+id/btnCreateVisit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create Visit Entry"
+        android:backgroundTint="@color/said_primary"/>
 
 </LinearLayout>
