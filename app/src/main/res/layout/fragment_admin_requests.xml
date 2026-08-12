@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/said_background"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Admin: Manage Requests &amp; Map Concentration"
+        android:textColor="@color/said_navy_text"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:paddingBottom="12dp"/>
+
+    <!-- Action Toolbar for Admin Operations -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="12dp">
+
+        <Button
+            android:id="@+id/btnViewMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="View Map by Area"
+            android:backgroundTint="@color/said_accent"
+            android:textSize="12sp"
+            android:layout_marginEnd="4dp"/>
+
+        <Button
+            android:id="@+id/btnCreateSchedule"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Schedule Area"
+            android:backgroundTint="@color/said_primary"
+            android:textSize="12sp"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <!-- Scrollable container for interactive request items -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:id="@+id/containerRequestsList"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"/>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/btnBackToDashboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Back to Admin Dashboard"
+        android:backgroundTint="@color/said_navy_text"
+        android:layout_marginTop="12dp"/>
+
+</LinearLayout>
