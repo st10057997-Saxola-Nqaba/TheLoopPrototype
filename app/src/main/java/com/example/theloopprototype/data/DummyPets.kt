@@ -4,7 +4,7 @@ import com.example.theloopprototype.models.DPet
 import java.time.LocalDate
 
 object DummyPets {
-    val pets = listOf(
+    var pets = mutableListOf(
         DPet("p1", "u1", "at1", "Rex", "Boerboel Cross", "Male", LocalDate.of(2021, 4, 12), 32.5, 60.0, true),
         DPet("p2", "u1", "at2", "Whiskers", "Domestic Shorthair", "Female", LocalDate.of(2022, 9, 3), 3.8, 24.0, true),
         DPet("p3", "u2", "at3", "Duke", "Boerperd", "Male", null, 420.0, 152.0, false),
@@ -14,18 +14,4 @@ object DummyPets {
         DPet("p7", "u5", "at3", "Storm", "Boerperd", "Female", null, 380.0, 148.0, false),
         DPet("p8", "u5", "at1", "Buttons", "Mixed Breed", "Male", LocalDate.of(2024, 2, 1), 14.0, 40.0, false),
     )
-    // pet owner screen funtion
-
-    fun getPetsForOwner(ownerId: String): List<DPet> {
-        return pets.filter { it.ownerId == ownerId }
-    }
-
-    fun getPetById(petId: String?): DPet? {
-        if (petId == null) return null
-        return pets.firstOrNull { it.id == petId }
-    }
-
-    fun getAllPets(): List<DPet> {
-        return pets
-    }
 }

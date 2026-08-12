@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create a Visit Entry"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/said_navy_text"
+        android:paddingBottom="16dp"/>
+
+    <EditText
+        android:id="@+id/etCareGiven"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Log care given..."
+        android:minLines="3"
+        android:gravity="top"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="12dp"/>
+
+    <EditText
+        android:id="@+id/etWelfareConcern"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Flag specific illness/disease/welfare concern..."
+        android:minLines="2"
+        android:layout_marginBottom="12dp"/>
+
+    <CheckBox
+        android:id="@+id/cbReturnVisit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Flag for return visit"
+        android:textSize="16sp"
+        android:layout_marginBottom="24dp"/>
+
+    <Button
+        android:id="@+id/btnSaveVisit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Save Visit Entry"
+        android:backgroundTint="@color/said_primary"/>
+
+</LinearLayout>

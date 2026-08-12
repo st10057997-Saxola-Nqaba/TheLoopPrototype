@@ -4,7 +4,7 @@ import com.example.theloopprototype.models.DUser
 import com.example.theloopprototype.models.Role
 
 object DummyUsers {
-    val users = listOf(
+    var users = mutableListOf(
         DUser("u1", "Nomvula", "Dlamini", "12 Setai St, Tembisa", "0821234567", "nomvula.d@example.com", Role.OWNER),
         DUser("u2", "Sipho", "Khumalo", "45 Winnie Mandela Dr, Ivory Park", "0827654321", null, Role.OWNER),
         DUser("u3", "Grace", "Mokoena", "8 Extension 4, Diepsloot", "0731122334", "grace.mokoena@example.com", Role.OWNER),

@@ -19,15 +19,22 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val btnLoginAht = view.findViewById<Button>(R.id.btnLoginAht)
         val btnLoginOwner = view.findViewById<Button>(R.id.btnLoginOwner)
 
+        // Added Administrator login button reference (ensure you have btnLoginAdmin in fragment_login.xml)
+        val btnLoginAdmin = view.findViewById<Button>(R.id.btnLoginAdmin)
+
         // Action when logging in as AHT
         btnLoginAht.setOnClickListener {
-            // Navigates using the action defined in your nav_graph.xml
             findNavController().navigate(R.id.action_login_to_aht_home)
         }
 
         // Action when logging in as Pet Owner
         btnLoginOwner.setOnClickListener {
             findNavController().navigate(R.id.action_login_to_owner_home)
+        }
+
+        // Action when logging in as Administrator (Tablet/Desktop View)
+        btnLoginAdmin?.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_admin_dashboard)
         }
     }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
-    <!-- 1. Login Screen (Entry point) -->
+    <!-- 1. Login Screen -->
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.theloopprototype.ui.auth.LoginFragment"
@@ -16,149 +16,133 @@
             app:destination="@id/ahtHomeFragment" />
         <action
             android:id="@+id/action_login_to_owner_home"
-            app:destination="@id/ownerHomeFragment" />
+            app:destination="@id/myProfileFragment" />
+        <action
+            android:id="@+id/action_login_to_admin_dashboard"
+            app:destination="@id/adminDashboardFragment" />
     </fragment>
 
-    <!-- 2. AHT Home (Scheduled Requests) -->
+    <!-- Administrator Dashboard (Tablet / Desktop Simulated View) -->
+    <fragment
+        android:id="@+id/adminDashboardFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminDashboardFragment"
+        android:label="Admin Dashboard"
+        tools:layout="@layout/fragment_admin_dashboard">
+        <action
+            android:id="@+id/action_adminDashboard_to_adminRequests"
+            app:destination="@id/adminRequestsFragment" />
+    </fragment>
+
+    <!-- Admin Requests & Demand Concentration View -->
+    <fragment
+        android:id="@+id/adminRequestsFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminRequestsFragment"
+        android:label="Manage Requests"
+        tools:layout="@layout/fragment_admin_requests" />
+
+    <!-- 2. AHT Home -->
     <fragment
         android:id="@+id/ahtHomeFragment"
         android:name="com.example.theloopprototype.ui.aht.AhtHomeFragment"
         android:label="Scheduled Requests"
-        tools:layout="@layout/fragment_aht_home" />
-
-    <!-- 3. Pet Owner Home (My Pets) -->
-   <!-- <fragment
-        android:id="@+id/ownerHomeFragment"
-        android:name="com.example.theloopprototype.ui.owner.OwnerHomeFragment"
-        android:label="My Pets"
-        tools:layout="@layout/fragment_owner_home" />-->
-    <!--pet-owner home OV-->
-    <fragment
-        android:id="@+id/petOwnerHomeFragment"
-        android:name="com.example.theloopprototype.ui.petowner.PetOwnerHomeFragment"
-        android:label="My Pets"
-        tools:layout="@layout/fragment_pet_owner_home">
-
+        tools:layout="@layout/fragment_aht_home">
         <action
-            android:id="@+id/action_petOwnerHomeFragment_to_addPetFragment"
-            app:destination="@id/addPetFragment"/>
-
+            android:id="@+id/action_ahtHomeFragment_to_viewScheduledRequestFragment"
+            app:destination="@id/viewScheduledRequestFragment" />
         <action
-            android:id="@+id/action_petOwnerHomeFragment_to_myRequestsFragment"
-            app:destination="@id/myRequestsFragment"/>
-
-        <action
-            android:id="@+id/action_petOwnerHomeFragment_to_petOwnerProfileFragment"
-            app:destination="@id/petOwnerProfileFragment"/>
-
-        <action
-            android:id="@+id/action_petOwnerHomeFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/petOwnerHomeFragment"
-            app:popUpToInclusive="true"/>
-
-        <action
-            android:id="@+id/action_petOwnerHomeFragment_to_viewPetFragment"
-            app:destination="@id/viewPetFragment"/>
-
+            android:id="@+id/action_ahtHomeFragment_to_ownerSearchFragment"
+            app:destination="@id/ownerSearchFragment" />
     </fragment>
 
+    <!-- 3. View Scheduled Request Details -->
     <fragment
-        android:id="@+id/addPetFragment"
-        android:name="com.example.theloopprototype.ui.petowner.AddPetFragment"
-        android:label="Add Pet"
-        tools:layout="@layout/fragment_add_pet"/>
-
-    <fragment
-        android:id="@+id/viewPetFragment"
-        android:name="com.example.theloopprototype.ui.petowner.ViewPetFragment"
-        android:label="View Pet"
-        tools:layout="@layout/fragment_view_pet">
-
-        <argument
-            android:name="petId"
-            app:argType="string"/>
+        android:id="@+id/viewScheduledRequestFragment"
+        android:name="com.example.theloopprototype.ui.aht.ViewScheduledRequestFragment"
+        android:label="View Scheduled Request"
+        tools:layout="@layout/fragment_view_scheduled_request">
 
         <action
-            android:id="@+id/action_viewPetFragment_to_requestVisitFragment"
-            app:destination="@id/requestVisitFragment"/>
+            android:id="@+id/action_viewScheduledRequestFragment_to_createVisitEntryFragment"
+            app:destination="@id/createVisitEntryFragment" />
 
         <action
-            android:id="@+id/action_viewPetFragment_to_viewVisitHistoryFragment"
-            app:destination="@id/viewVisitHistoryFragment"/>
-
+            android:id="@+id/action_viewScheduledRequestFragment_to_updateOwnerPetFragment"
+            app:destination="@id/updateOwnerPetFragment" />
     </fragment>
 
+    <!-- 4. Create Visit Entry -->
     <fragment
-        android:id="@+id/myRequestsFragment"
-        android:name="com.example.theloopprototype.ui.petowner.MyRequestsFragment"
-        android:label="My Requests"
-        tools:layout="@layout/fragment_my_requests">
+        android:id="@+id/createVisitEntryFragment"
+        android:name="com.example.theloopprototype.ui.aht.CreateVisitEntryFragment"
+        android:label="Create Visit Entry"
+        tools:layout="@layout/fragment_create_visit_entry" />
 
+    <!-- 5. Owner + Pet Search -->
+    <fragment
+        android:id="@+id/ownerSearchFragment"
+        android:name="com.example.theloopprototype.ui.aht.OwnerSearchFragment"
+        android:label="Owner and Pet Search"
+        tools:layout="@layout/fragment_owner_search">
         <action
-            android:id="@+id/action_myRequestsFragment_to_requestDetailsFragment"
-            app:destination="@id/requestDetailsFragment"/>
-
+            android:id="@+id/action_ownerSearchFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
         <action
-            android:id="@+id/action_myRequestsFragment_to_addPetFragment"
-            app:destination="@id/addPetFragment"/>
-
+            android:id="@+id/action_ownerSearchFragment_to_createUserPetFragment"
+            app:destination="@id/createUserPetFragment" />
     </fragment>
 
+    <!-- 6. Owner Detail & History -->
     <fragment
-        android:id="@+id/requestDetailsFragment"
-        android:name="com.example.theloopprototype.ui.petowner.RequestDetailsFragment"
-        android:label="Request Details"
-        tools:layout="@layout/fragment_request_details">
-
-        <argument
-            android:name="requestId"
-            app:argType="string"/>
-
+        android:id="@+id/ownerDetailFragment"
+        android:name="com.example.theloopprototype.ui.aht.OwnerDetailFragment"
+        android:label="Owner Details"
+        tools:layout="@layout/fragment_owner_detail">
         <action
-            android:id="@+id/action_requestDetailsFragment_to_viewVisitHistoryFragment"
-            app:destination="@id/viewVisitHistoryFragment"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/viewVisitHistoryFragment"
-        android:name="com.example.theloopprototype.ui.petowner.ViewVisitHistoryFragment"
-        android:label="Visit History"
-        tools:layout="@layout/fragment_view_visit_history">
-
-        <argument
-            android:name="petId"
-            app:argType="string"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/requestVisitFragment"
-        android:name="com.example.theloopprototype.ui.petowner.RequestVisitFragment"
-        android:label="Request Visit"
-        tools:layout="@layout/fragment_request_visit">
-
-        <argument
-            android:name="petId"
-            app:argType="string"/>
-
-    </fragment>
-
-    <fragment
-        android:id="@+id/petOwnerProfileFragment"
-        android:name="com.example.theloopprototype.ui.petowner.PetOwnerProfileFragment"
-        android:label="Profile"
-        tools:layout="@layout/fragment_pet_owner_profile">
-
+            android:id="@+id/action_ownerDetailFragment_to_createVisitEntryFragment"
+            app:destination="@id/createVisitEntryFragment" />
         <action
-            android:id="@+id/action_petOwnerProfileFragment_to_loginFragment"
-            app:destination="@id/loginFragment"
-            app:popUpTo="@id/petOwnerHomeFragment"
-            app:popUpToInclusive="true"/>
-
+            android:id="@+id/action_ownerDetailFragment_to_updateOwnerPetFragment"
+            app:destination="@id/updateOwnerPetFragment" />
     </fragment>
 
+    <!-- 7. Create User & Pet Profile -->
+    <fragment
+        android:id="@+id/createUserPetFragment"
+        android:name="com.example.theloopprototype.ui.aht.CreateUserPetFragment"
+        android:label="Create User and Pet"
+        tools:layout="@layout/fragment_create_user_pet">
+        <action
+            android:id="@+id/action_createUserPetFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
+    </fragment>
 
+    <!-- 8. Update Owner & Pet Data -->
+    <fragment
+        android:id="@+id/updateOwnerPetFragment"
+        android:name="com.example.theloopprototype.ui.aht.UpdateOwnerPetFragment"
+        android:label="Update Owner and Pet"
+        tools:layout="@layout/fragment_update_owner_pet">
+        <action
+            android:id="@+id/action_updateOwnerPetFragment_to_ownerDetailFragment"
+            app:destination="@id/ownerDetailFragment" />
+    </fragment>
+
+    <!-- 9. My Profile Screen -->
+    <fragment
+        android:id="@+id/myProfileFragment"
+        android:name="com.example.theloopprototype.ui.aht.MyProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_my_profile">
+        <action
+            android:id="@+id/action_myProfileFragment_to_editProfileFragment"
+            app:destination="@id/editProfileFragment" />
+    </fragment>
+
+    <!-- 10. Edit Profile Screen -->
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.theloopprototype.ui.aht.EditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_edit_profile" />
 
 </navigation>

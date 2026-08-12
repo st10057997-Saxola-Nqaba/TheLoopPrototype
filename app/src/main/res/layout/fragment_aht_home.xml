@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Header and Toggle Button Row -->
+    <!-- Header, Search Button, and Toggle Button Row -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,8 +20,17 @@
             android:layout_weight="1"
             android:text="Scheduled Requests (AHT)"
             android:textColor="@color/said_navy_text"
-            android:textSize="20sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
+
+        <!-- Search Button -->
+        <Button
+            android:id="@+id/btnOpenSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:layout_marginEnd="8dp"
+            style="?attr/materialButtonOutlinedStyle" />
 
         <Button
             android:id="@+id/btnToggleView"

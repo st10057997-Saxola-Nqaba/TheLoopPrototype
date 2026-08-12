@@ -15,4 +15,5 @@
     <color name="status_scheduled">#1C8FD6</color>
     <color name="status_fulfilled">#5CB85C</color>
     <color name="status_expired">#9E9E9E</color>
+    <color name="create_user_background">#5A5A5A</color>
 </resources>

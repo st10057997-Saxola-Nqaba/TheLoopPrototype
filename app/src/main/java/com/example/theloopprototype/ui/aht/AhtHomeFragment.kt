@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,13 @@ class AhtHomeFragment : Fragment(R.layout.fragment_aht_home) {
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewRequests)
         val btnToggleView = view.findViewById<Button>(R.id.btnToggleView)
+        val btnOpenSearch = view.findViewById<Button>(R.id.btnOpenSearch)
         val mapContainer = view.findViewById<View>(R.id.mapContainer)
+
+        // Setup Search Button click listener
+        btnOpenSearch?.setOnClickListener {
+            findNavController().navigate(R.id.action_ahtHomeFragment_to_ownerSearchFragment)
+        }
 
         // Setup RecyclerView & Drag-and-Drop
         if (recyclerView != null) {
@@ -29,7 +36,17 @@ class AhtHomeFragment : Fragment(R.layout.fragment_aht_home) {
             val scheduledLists = DummyData.scheduledRequestLists?.toMutableList() ?: mutableListOf()
             val areas = DummyData.areas ?: emptyList()
 
-            val adapter = ScheduledRequestAdapter(scheduledLists, areas)
+            // Initialize the adapter with the click listener lambda
+            val adapter = ScheduledRequestAdapter(scheduledLists, areas) { clickedSchedule ->
+
+                // Pass the target list ID via a Bundle to the NavController
+                val bundle = Bundle().apply {
+                    putString("targetListId", clickedSchedule.id)
+                }
+
+                findNavController().navigate(R.id.action_ahtHomeFragment_to_viewScheduledRequestFragment, bundle)
+            }
+
             recyclerView.adapter = adapter
 
             val touchHelperCallback = object : ItemTouchHelper.SimpleCallback(
