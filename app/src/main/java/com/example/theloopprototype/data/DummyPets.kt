@@ -14,4 +14,18 @@ object DummyPets {
         DPet("p7", "u5", "at3", "Storm", "Boerperd", "Female", null, 380.0, 148.0, false),
         DPet("p8", "u5", "at1", "Buttons", "Mixed Breed", "Male", LocalDate.of(2024, 2, 1), 14.0, 40.0, false),
     )
+    // pet owner screen funtion
+
+    fun getPetsForOwner(ownerId: String): List<DPet> {
+        return pets.filter { it.ownerId == ownerId }
+    }
+
+    fun getPetById(petId: String?): DPet? {
+        if (petId == null) return null
+        return pets.firstOrNull { it.id == petId }
+    }
+
+    fun getAllPets(): List<DPet> {
+        return pets
+    }
 }
