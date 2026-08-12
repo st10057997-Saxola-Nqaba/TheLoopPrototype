@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/said_background"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Owner &amp; Pet Details"
+            android:textColor="@color/said_navy_text"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:paddingBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvOwnerInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/said_navy_text"
+            android:paddingBottom="16dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/create_user_background"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Linked Pets &amp; Clinical History:"
+            android:textColor="@color/said_navy_text"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPetsHistoryInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/said_navy_text"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnCreateVisitEntry"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create Visit Entry"
+            android:backgroundTint="@color/said_primary"
+            android:layout_marginBottom="12dp"/>
+
+        <Button
+            android:id="@+id/btnUpdateOwnerPet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Update Owner &amp; Pet Data"
+            android:backgroundTint="@color/said_accent"/>
+
+    </LinearLayout>
+</ScrollView>

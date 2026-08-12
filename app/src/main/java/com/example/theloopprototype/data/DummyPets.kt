@@ -4,7 +4,7 @@ import com.example.theloopprototype.models.DPet
 import java.time.LocalDate
 
 object DummyPets {
-    val pets = listOf(
+    var pets = mutableListOf(
         DPet("p1", "u1", "at1", "Rex", "Boerboel Cross", "Male", LocalDate.of(2021, 4, 12), 32.5, 60.0, true),
         DPet("p2", "u1", "at2", "Whiskers", "Domestic Shorthair", "Female", LocalDate.of(2022, 9, 3), 3.8, 24.0, true),
         DPet("p3", "u2", "at3", "Duke", "Boerperd", "Male", null, 420.0, 152.0, false),

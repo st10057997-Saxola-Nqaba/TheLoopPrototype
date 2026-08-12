@@ -13,7 +13,8 @@ import java.util.Collections
 
 class ScheduledRequestAdapter(
     private val requestList: MutableList<DScheduledRequestList>,
-    private val areas: List<DArea>
+    private val areas: List<DArea>,
+    private val onItemClick: (DScheduledRequestList) -> Unit
 ) : RecyclerView.Adapter<ScheduledRequestAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -39,6 +40,11 @@ class ScheduledRequestAdapter(
 
         holder.tvScheduleDate.text = "Date: $formattedDate"
         holder.tvStatus.text = "Status: ${schedule.status}"
+
+        // Handle item click
+        holder.itemView.setOnClickListener {
+            onItemClick(schedule)
+        }
     }
 
     override fun getItemCount(): Int = requestList.size
