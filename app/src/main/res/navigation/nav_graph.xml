@@ -27,10 +27,48 @@
         tools:layout="@layout/fragment_aht_home" />
 
     <!-- 3. Pet Owner Home (My Pets) -->
-    <fragment
+   <!-- <fragment
         android:id="@+id/ownerHomeFragment"
         android:name="com.example.theloopprototype.ui.owner.OwnerHomeFragment"
         android:label="My Pets"
-        tools:layout="@layout/fragment_owner_home" />
+        tools:layout="@layout/fragment_owner_home" />-->
+    <!--pet-owner home OV-->
+    <fragment
+        android:id="@+id/petOwnerHomeFragment"
+        android:name="com.example.theloopprototype.ui.petowner.PetOwnerHomeFragment"
+        android:label="My Pets"
+        tools:layout="@layout/fragment_pet_owner_home">
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_addPetFragment"
+            app:destination="@id/addPetFragment"/>
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_myRequestsFragment"
+            app:destination="@id/myRequestsFragment"/>
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_petOwnerProfileFragment"
+            app:destination="@id/petOwnerProfileFragment"/>
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/petOwnerHomeFragment"
+            app:popUpToInclusive="true"/>
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_viewPetFragment"
+            app:destination="@id/viewPetFragment"/>
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addPetFragment"
+        android:name="com.example.theloopprototype.ui.petowner.AddPetFragment"
+        android:label="Add Pet"
+        tools:layout="@layout/fragment_add_pet"/>
+
+
 
 </navigation>
