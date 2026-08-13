@@ -8,10 +8,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.R
 import com.example.theloopprototype.adapter.VisitEntryAdapter
-import com.example.theloopprototype.data.DummyPets
-import com.example.theloopprototype.data.DummyVisitEntries
 import com.example.theloopprototype.databinding.FragmentViewVisitHistoryBinding
 
 class ViewVisitHistoryFragment : Fragment() {
@@ -32,7 +31,7 @@ class ViewVisitHistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val pet = DummyPets.getPetById(args.petId)
+        val pet = DummyData.getPetById(args.petId)
         if (pet == null) {
             findNavController().popBackStack()
             return
@@ -49,7 +48,7 @@ class ViewVisitHistoryFragment : Fragment() {
     }
 
     private fun setupVisitHistory(petId: String) {
-        val visitEntries = DummyVisitEntries.getVisitEntriesForPet(petId)
+        val visitEntries = DummyData.getVisitEntriesForPet(petId)
         val adapter = VisitEntryAdapter(visitEntries)
 
         binding.rvVisitHistory.apply {

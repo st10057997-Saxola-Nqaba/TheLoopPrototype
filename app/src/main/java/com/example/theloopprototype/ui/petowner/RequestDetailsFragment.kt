@@ -7,10 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.R
-import com.example.theloopprototype.data.DummyPets
-import com.example.theloopprototype.data.DummyRequests
-import com.example.theloopprototype.data.DummyVisitEntries
 import com.example.theloopprototype.databinding.FragmentRequestDetailsBinding
 import com.example.theloopprototype.models.DRequest
 import com.example.theloopprototype.models.RequestStatus
@@ -38,7 +36,7 @@ class RequestDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         // Load request data
-        request = DummyRequests.getRequestById(args.requestId) ?: run {
+        request = DummyData.getRequestById(args.requestId) ?: run {
             // Handle not found
             findNavController().popBackStack()
             return
@@ -52,7 +50,7 @@ class RequestDetailsFragment : Fragment() {
         val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
 
         // Pet name
-        val pet = DummyPets.getPetById(request.petId)
+        val pet = DummyData.getPetById(request.petId ?: "")
         binding.tvPetName.text = pet?.name ?: "Unknown Pet"
 
         // Request ID
@@ -100,7 +98,7 @@ class RequestDetailsFragment : Fragment() {
 
         // Check if fulfilled and has visit entry
         if (request.status == RequestStatus.FULFILLED) {
-            val visitEntry = DummyVisitEntries.getVisitEntryByRequestId(request.id)
+            val visitEntry = DummyData.getVisitEntryByRequestId(request.id)
             if (visitEntry != null) {
                 binding.btnViewVisit.visibility = View.VISIBLE
             }

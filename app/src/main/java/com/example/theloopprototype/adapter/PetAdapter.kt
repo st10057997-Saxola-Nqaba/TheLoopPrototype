@@ -3,7 +3,7 @@ package com.example.theloopprototype.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.theloopprototype.data.DummyAnimalTypes
+import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.databinding.ItemPetBinding
 import com.example.theloopprototype.models.DPet
 
@@ -34,7 +34,7 @@ class PetAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(pet: DPet) {
-            val animalType = DummyAnimalTypes.getAnimalTypes()
+            val animalType = DummyData.animalTypes
                 .firstOrNull { it.id == pet.animalTypeId }
                 ?.typeName ?: "Unknown"
 

@@ -4,8 +4,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.R
-import com.example.theloopprototype.data.DummyPets
 import com.example.theloopprototype.databinding.ItemRequestBinding
 import com.example.theloopprototype.models.DRequest
 import com.example.theloopprototype.models.RequestStatus
@@ -40,7 +40,7 @@ class RequestAdapter(
 
         fun bind(request: DRequest) {
             // Get pet name if exists
-            val pet = DummyPets.getPetById(request.petId)
+            val pet = DummyData.getPetById(request.petId ?: "")
             val petName = pet?.name ?: "Unknown Pet"
 
             binding.tvPetName.text = petName

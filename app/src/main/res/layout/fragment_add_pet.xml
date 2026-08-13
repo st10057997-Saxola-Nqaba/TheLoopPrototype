@@ -57,18 +57,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:endIconMode="clear_text">
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/spinnerAnimalType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Animal Type *"
-                android:focusable="false"
-                android:inputType="none"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:clickable="true"
-                android:focusableInTouchMode="false"/>
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,18 +90,14 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:endIconMode="clear_text">
+            style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
                 android:id="@+id/spinnerGender"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Gender"
-                android:focusable="false"
-                android:inputType="none"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:clickable="true"
-                android:focusableInTouchMode="false"/>
+                android:inputType="none"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.databinding.FragmentAddPetBinding
-import com.example.theloopprototype.data.DummyAnimalTypes
+import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.models.DPet
 import java.time.LocalDate
 import java.util.UUID
@@ -37,15 +37,15 @@ class AddPetFragment : Fragment() {
 
     private fun setupSpinners() {
         // Animal Types
-        val animalTypes = DummyAnimalTypes.getAnimalTypes()
+        val animalTypes = DummyData.animalTypes
         val typeNames = animalTypes.map { it.typeName }
         val typeAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, typeNames)
-        binding.spinnerAnimalType.adapter = typeAdapter
+        binding.spinnerAnimalType.setAdapter(typeAdapter)
 
         // Gender options
         val genderOptions = listOf("Male", "Female")
         val genderAdapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, genderOptions)
-        binding.spinnerGender.adapter = genderAdapter
+        binding.spinnerGender.setAdapter(genderAdapter)
     }
 
     private fun setupClickListeners() {
@@ -60,9 +60,9 @@ class AddPetFragment : Fragment() {
 
     private fun savePet() {
         val name = binding.etPetName.text.toString().trim()
-        val animalType = binding.spinnerAnimalType.selectedItem.toString()
+        val animalType = binding.spinnerAnimalType.text.toString()
         val breed = binding.etBreed.text.toString().trim()
-        val gender = binding.spinnerGender.selectedItem.toString()
+        val gender = binding.spinnerGender.text.toString()
         val dateOfBirth = binding.etDateOfBirth.text.toString().trim()
         val weight = binding.etWeight.text.toString().toDoubleOrNull() ?: 0.0
         val height = binding.etHeight.text.toString().toDoubleOrNull() ?: 0.0
@@ -74,7 +74,7 @@ class AddPetFragment : Fragment() {
         }
 
         // Find animal type ID
-        val animalTypeId = DummyAnimalTypes.getAnimalTypes()
+        val animalTypeId = DummyData.animalTypes
             .firstOrNull { it.typeName.equals(animalType, ignoreCase = true) }
             ?.id ?: "unknown"
 
