@@ -19,12 +19,20 @@ class MainActivity : AppCompatActivity() {
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         bottomNavigationView.setupWithNavController(navController)
 
-        // Hide bottom navigation bar on login and administrator screens
+        // Hide bottom navigation bar on login, administrator, and pet owner screens
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
                 R.id.loginFragment,
                 R.id.adminDashboardFragment,
-                R.id.adminRequestsFragment -> {
+                R.id.adminRequestsFragment,
+                R.id.petOwnerHomeFragment,
+                R.id.addPetFragment,
+                R.id.viewPetFragment,
+                R.id.myRequestsFragment,
+                R.id.requestDetailsFragment,
+                R.id.viewVisitHistoryFragment,
+                R.id.requestVisitFragment,
+                R.id.petOwnerProfileFragment -> {
                     bottomNavigationView.visibility = View.GONE
                 }
                 else -> {
