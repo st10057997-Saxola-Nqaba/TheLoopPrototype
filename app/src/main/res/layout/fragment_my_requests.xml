@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        android:background="@null"
+        android:contentDescription="Back"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="My Requests"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="4dp"/>
+
+    <TextView
+        android:id="@+id/tvRequestCount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="You have 0 request(s)"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:layout_marginBottom="16dp"/>
+
+    <!-- New Request Button -->
+    <Button
+        android:id="@+id/btnNewRequest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="+ New Request"
+        android:layout_marginBottom="16dp"
+        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+    <!-- Requests List -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvRequests"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+</LinearLayout>

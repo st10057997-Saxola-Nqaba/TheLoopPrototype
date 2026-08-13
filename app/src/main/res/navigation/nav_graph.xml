@@ -16,7 +16,7 @@
             app:destination="@id/ahtHomeFragment" />
         <action
             android:id="@+id/action_login_to_owner_home"
-            app:destination="@id/myProfileFragment" />
+            app:destination="@id/petOwnerHomeFragment" />
         <action
             android:id="@+id/action_login_to_admin_dashboard"
             app:destination="@id/adminDashboardFragment" />
@@ -145,4 +145,138 @@
         android:label="Edit Profile"
         tools:layout="@layout/fragment_edit_profile" />
 
+    <!-- Pet Owner Section -->
+    <!-- Pet Owner Home -->
+    <fragment
+        android:id="@+id/petOwnerHomeFragment"
+        android:name="com.example.theloopprototype.ui.petowner.PetOwnerHomeFragment"
+        android:label="My Pets"
+        tools:layout="@layout/fragment_pet_owner_home">
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_addPetFragment"
+            app:destination="@id/addPetFragment" />
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_myRequestsFragment"
+            app:destination="@id/myRequestsFragment" />
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_petOwnerProfileFragment"
+            app:destination="@id/petOwnerProfileFragment" />
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/petOwnerHomeFragment"
+            app:popUpToInclusive="true" />
+
+        <action
+            android:id="@+id/action_petOwnerHomeFragment_to_viewPetFragment"
+            app:destination="@id/viewPetFragment" />
+
+    </fragment>
+
+    <!-- Add Pet -->
+    <fragment
+        android:id="@+id/addPetFragment"
+        android:name="com.example.theloopprototype.ui.petowner.AddPetFragment"
+        android:label="Add Pet"
+        tools:layout="@layout/fragment_add_pet" />
+
+    <!-- View Pet -->
+    <fragment
+        android:id="@+id/viewPetFragment"
+        android:name="com.example.theloopprototype.ui.petowner.ViewPetFragment"
+        android:label="View Pet"
+        tools:layout="@layout/fragment_view_pet">
+
+        <argument
+            android:name="petId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_viewPetFragment_to_requestVisitFragment"
+            app:destination="@id/requestVisitFragment" />
+
+        <action
+            android:id="@+id/action_viewPetFragment_to_viewVisitHistoryFragment"
+            app:destination="@id/viewVisitHistoryFragment" />
+
+    </fragment>
+
+    <!-- My Requests -->
+    <fragment
+        android:id="@+id/myRequestsFragment"
+        android:name="com.example.theloopprototype.ui.petowner.MyRequestsFragment"
+        android:label="My Requests"
+        tools:layout="@layout/fragment_my_requests">
+
+        <action
+            android:id="@+id/action_myRequestsFragment_to_requestDetailsFragment"
+            app:destination="@id/requestDetailsFragment" />
+
+        <action
+            android:id="@+id/action_myRequestsFragment_to_addPetFragment"
+            app:destination="@id/addPetFragment" />
+
+    </fragment>
+
+    <!-- Request Details -->
+    <fragment
+        android:id="@+id/requestDetailsFragment"
+        android:name="com.example.theloopprototype.ui.petowner.RequestDetailsFragment"
+        android:label="Request Details"
+        tools:layout="@layout/fragment_request_details">
+
+        <argument
+            android:name="requestId"
+            app:argType="string" />
+
+        <action
+            android:id="@+id/action_requestDetailsFragment_to_viewVisitHistoryFragment"
+            app:destination="@id/viewVisitHistoryFragment" />
+
+    </fragment>
+
+    <!-- View Visit History -->
+    <fragment
+        android:id="@+id/viewVisitHistoryFragment"
+        android:name="com.example.theloopprototype.ui.petowner.ViewVisitHistoryFragment"
+        android:label="Visit History"
+        tools:layout="@layout/fragment_view_visit_history">
+
+        <argument
+            android:name="petId"
+            app:argType="string" />
+
+    </fragment>
+
+    <!-- Request Visit -->
+    <fragment
+        android:id="@+id/requestVisitFragment"
+        android:name="com.example.theloopprototype.ui.petowner.RequestVisitFragment"
+        android:label="Request Visit"
+        tools:layout="@layout/fragment_request_visit">
+
+        <argument
+            android:name="petId"
+            app:argType="string" />
+
+    </fragment>
+
+    <!-- Pet Owner Profile -->
+    <fragment
+        android:id="@+id/petOwnerProfileFragment"
+        android:name="com.example.theloopprototype.ui.petowner.PetOwnerProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_pet_owner_profile">
+
+        <action
+            android:id="@+id/action_petOwnerProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/petOwnerHomeFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
 </navigation>

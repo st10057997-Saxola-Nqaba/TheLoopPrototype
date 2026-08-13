@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="said_primary">#1C8FD6</color>       <!-- header/hero blue -->
+    <color name="primary">#1C8FD6</color>
     <color name="said_primary_dark">#146AA3</color>   <!-- pressed/status bar -->
     <color name="said_accent">#29ABE2</color>          <!-- lighter accent, icons -->
     <color name="said_navy_text">#0D3B66</color>       <!-- headings on white -->

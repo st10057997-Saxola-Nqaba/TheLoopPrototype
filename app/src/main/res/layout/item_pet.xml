@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <!-- Pet Avatar -->
+        <TextView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_pet_avatar"
+            android:gravity="center"
+            android:text="🐾"
+            android:textSize="28dp"
+            android:layout_marginEnd="16dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[Pet Name]"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvPetType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[Type]"
+                android:textSize="14sp"
+                android:textColor="#666666"/>
+
+            <TextView
+                android:id="@+id/tvPetBreed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[Breed]"
+                android:textSize="14sp"
+                android:textColor="#666666"/>
+
+            <TextView
+                android:id="@+id/tvPetGender"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="[Gender]"
+                android:textSize="14sp"
+                android:textColor="#666666"/>
+
+        </LinearLayout>
+
+        <!-- Sterilised Badge -->
+        <TextView
+            android:id="@+id/ivSterilised"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✔"
+            android:textSize="18sp"
+            android:textColor="#4CAF50"
+            android:visibility="gone"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="Sterilised"/>
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@android:drawable/ic_menu_manage"
+            android:contentDescription="View Pet"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

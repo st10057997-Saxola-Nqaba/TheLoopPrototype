@@ -16,4 +16,12 @@ object DummyData {
     val requestListItems = DummyRequests.requestListItems
 
     val notifications = DummyNotifications.notifications
+//changed here
+    fun getPetById(id: String) = pets.find { it.id == id }
+    fun getRequestsForOwner(ownerId: String) = requests.filter { it.ownerId == ownerId }
+    fun getPetsForOwner(ownerId: String) = pets.filter { it.ownerId == ownerId }
+    fun getUserName(userId: String) = users.find { it.id == userId }?.firstName ?: "Unknown User"
+    fun getRequestById(id: String) = requests.find { it.id == id }
+    fun getVisitEntriesForPet(petId: String) = visitEntries.filter { it.petId == petId }
+    fun getVisitEntryByRequestId(requestId: String) = visitEntries.find { it.requestId == requestId }
 }

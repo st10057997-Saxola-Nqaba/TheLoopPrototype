@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardElevation="4dp"
+    app:cardCornerRadius="12dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Date -->
+        <TextView
+            android:id="@+id/tvVisitDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="10 Aug 2026, 14:30"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Reason -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Reason"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvReason"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[Reason for visit]"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Outcome -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Outcome"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvOutcome"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[Outcome]"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Prescribed Action -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Prescribed"
+            android:textSize="12sp"
+            android:textColor="#999999"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvPrescribedAction"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="[Prescribed action]"
+            android:textSize="14sp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- Flags Row -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="8dp">
+
+            <TextView
+                android:id="@+id/tvIllnessFlag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="⚠️ Illness"
+                android:textSize="12sp"
+                android:textColor="#F44336"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="#FFEBEE"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tvReturnVisit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🔄 Return visit"
+                android:textSize="12sp"
+                android:textColor="#FF9800"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="#FFF3E0"
+                android:visibility="gone"
+                android:layout_marginEnd="8dp"/>
+
+            <TextView
+                android:id="@+id/tvLinkedRequest"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📋 Linked to request"
+                android:textSize="12sp"
+                android:textColor="#2196F3"
+                android:paddingHorizontal="8dp"
+                android:paddingVertical="4dp"
+                android:background="#E3F2FD"
+                android:visibility="gone"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
