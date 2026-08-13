@@ -97,7 +97,7 @@ class RequestDetailsFragment : Fragment() {
         binding.tvExpiryDate.text = "Expires: ${request.expirationDateTime.format(formatter)}"
 
         // Check if fulfilled and has visit entry
-        if (request.status == RequestStatus.FULFILLED) {
+        if (request.status == RequestStatus.FULFILLED && request.petId != null) {
             val visitEntry = DummyData.getVisitEntryByRequestId(request.id)
             if (visitEntry != null) {
                 binding.btnViewVisit.visibility = View.VISIBLE
@@ -114,9 +114,11 @@ class RequestDetailsFragment : Fragment() {
 
         binding.btnViewVisit.setOnClickListener {
             // Navigate to ViewVisitHistoryFragment or ViewPetFragment
-            findNavController().navigate(
-                R.id.action_requestDetailsFragment_to_viewVisitHistoryFragment
-            )
+            val petId = request.petId ?: return@setOnClickListener
+            val action = RequestDetailsFragmentDirections
+                .actionRequestDetailsFragmentToViewVisitHistoryFragment(petId)
+
+            findNavController().navigate(action)
         }
     }
 
