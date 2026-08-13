@@ -4,7 +4,7 @@ import com.example.theloopprototype.models.*
 import java.time.LocalDateTime
 
 object DummyRequests {
-    val requests = listOf(
+    var requests = mutableListOf(
         DRequest("r1", "u1", "p1", "area2", Severity.HIGH, "Limping on front-left leg since yesterday",
             RequestStatus.PENDING, -25.9987, 28.2201, null,
             LocalDateTime.of(2026, 8, 9, 8, 0), LocalDateTime.of(2026, 8, 16, 8, 0)),
