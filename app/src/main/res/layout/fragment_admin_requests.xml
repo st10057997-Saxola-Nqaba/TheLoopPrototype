@@ -30,7 +30,19 @@
             android:text="View Map by Area"
             android:backgroundTint="@color/said_accent"
             android:textSize="12sp"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="2dp"/>
+
+        <!-- Added Button to match AdminRequestsFragment.kt reference -->
+        <Button
+            android:id="@+id/btnViewExpiredMap"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Expired Map"
+            android:backgroundTint="@android:color/holo_red_dark"
+            android:textSize="12sp"
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"/>
 
         <Button
             android:id="@+id/btnCreateSchedule"
@@ -40,7 +52,7 @@
             android:text="Schedule Area"
             android:backgroundTint="@color/said_primary"
             android:textSize="12sp"
-            android:layout_marginStart="4dp"/>
+            android:layout_marginStart="2dp"/>
     </LinearLayout>
 
     <!-- Scrollable container for interactive request items -->

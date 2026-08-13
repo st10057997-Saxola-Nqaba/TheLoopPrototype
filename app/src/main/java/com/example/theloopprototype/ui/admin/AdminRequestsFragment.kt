@@ -34,11 +34,20 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateSchedule)
         val btnBackToDashboard = view.findViewById<Button>(R.id.btnBackToDashboard)
 
+        // Button to open the dedicated Expired Requests Map View
+        // Make sure to add a corresponding button with id `btnViewExpiredMap` in fragment_admin_requests.xml if you haven't yet.
+        val btnViewExpiredMap = view.findViewById<Button>(R.id.btnViewExpiredMap)
+
         refreshRequestsList(containerList)
 
-        // Google Maps clustering view popup or navigation
+        // Google Maps clustering view popup or navigation for pending/general map
         btnViewMap.setOnClickListener {
             showMapClusterDialog()
+        }
+
+        // Navigate to the separate Expired Requests Map screen
+        btnViewExpiredMap?.setOnClickListener {
+            findNavController().navigate(R.id.adminExpiredMapFragment)
         }
 
         // Schedule area with Drop-Pin map picker dialog
@@ -123,7 +132,6 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
     private fun showMapClusterDialog() {
         val dialogView = layoutInflater.inflate(R.layout.fragment_admin_map_picker, null)
 
-        // Corrected reference matching map views inside fragment_admin_map_picker.xml
         mapViewCluster = dialogView.findViewById(R.id.mapViewCluster)
         mapViewCluster?.onCreate(null)
 
@@ -144,7 +152,7 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(tembisa, 12f))
 
             // Add pins for all pending requests
-            DummyRequests.requests.filter { it.latitude != null && it.longitude != null }.forEach { req ->
+            DummyRequests.requests.filter { it.latitude != null && it.longitude != null && it.status == RequestStatus.PENDING }.forEach { req ->
                 map.addMarker(
                     MarkerOptions()
                         .position(LatLng(req.latitude!!, req.longitude!!))
