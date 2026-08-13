@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,6 +17,7 @@ import com.example.theloopprototype.R
 import com.example.theloopprototype.adapter.RequestAdapter
 import com.example.theloopprototype.databinding.FragmentMyRequestsBinding
 import com.example.theloopprototype.models.DRequest
+import android.app.AlertDialog
 
 class MyRequestsFragment : Fragment() {
 
@@ -58,10 +60,43 @@ class MyRequestsFragment : Fragment() {
         }
 
         binding.btnNewRequest.setOnClickListener {
-            // Navigate to AddPet fragment - using action ID from nav_graph
-            findNavController().navigate(R.id.action_myRequestsFragment_to_addPetFragment)
+           showPetPickerAndRequest()
+
         }
     }
+
+    private fun showPetPickerAndRequest(){
+        val pets = DummyData.getPetsForOwner(currentOwnerId)
+
+        if (pets.isEmpty()){
+            Toast.makeText(
+                requireContext(),
+                "Add a pet first before requesting a visit.",
+                Toast.LENGTH_LONG
+
+            ).show()
+
+            return
+        }
+
+        val petNames = pets.map {it.name}.toTypedArray()
+        AlertDialog.Builder(requireContext())
+            .setTitle("Which pet is this request for?")
+            .setItems(petNames) { _,index ->
+                val bundle = Bundle().apply{
+                    putString("petId",pets[index].id)
+                }
+                findNavController().navigate(R.id.requestVisitFragment,bundle)
+
+            }
+            .setNegativeButton("Cancel",null)
+            .show()
+
+    }
+
+
+
+
 
     private fun navigateToRequestDetails(request: DRequest) {
         val action = MyRequestsFragmentDirections.actionMyRequestsFragmentToRequestDetailsFragment(request.id)
