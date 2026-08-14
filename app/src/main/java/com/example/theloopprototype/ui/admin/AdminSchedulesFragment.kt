@@ -46,7 +46,7 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
             showBroadcastDialog()
         }
 
-        // Handles creation of new request lists
+        // Handles creation/editing of new request lists with granular targeting
         btnCreateSchedule.setOnClickListener {
             showEditOrCreateDialog(null)
         }
@@ -66,7 +66,7 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         }
 
         val inputTarget = EditText(context).apply {
-            hint = "Target (e.g. Area ID, Owner ID, or Group Name)"
+            hint = "Target (Area ID, Owner ID, Group Name)"
         }
         layout.addView(inputTarget)
 
@@ -109,6 +109,21 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         }
         layout.addView(inputArea)
 
+        val inputOwner = EditText(context).apply {
+            hint = "Owner ID (Optional, e.g. u1)"
+        }
+        layout.addView(inputOwner)
+
+        val inputPet = EditText(context).apply {
+            hint = "Pet ID (Optional, e.g. p1)"
+        }
+        layout.addView(inputPet)
+
+        val inputGroup = EditText(context).apply {
+            hint = "Group Name (Optional, e.g. Community Group)"
+        }
+        layout.addView(inputGroup)
+
         val inputDate = EditText(context).apply {
             hint = "Schedule Date (yyyy-MM-dd HH:mm)"
             setText(existingSchedule?.scheduleDate?.format(formatter) ?: LocalDateTime.now().plusDays(3).format(formatter))
@@ -125,32 +140,37 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
 
         builder.setPositiveButton("Save") { _, _ ->
             val areaText = inputArea.text.toString().trim()
+            val ownerText = inputOwner.text.toString().trim()
+            val petText = inputPet.text.toString().trim()
+            val groupText = inputGroup.text.toString().trim()
             val dateText = inputDate.text.toString().trim()
             val adminText = inputAdmin.text.toString().trim()
 
-            if (areaText.isNotEmpty()) {
+            if (areaText.isNotEmpty() || ownerText.isNotEmpty() || groupText.isNotEmpty()) {
                 val parsedDate = try {
                     LocalDateTime.parse(dateText, formatter)
                 } catch (e: Exception) {
                     LocalDateTime.now().plusDays(3)
                 }
 
+                val effectiveArea = if (areaText.isNotEmpty()) areaText else (groupText.ifEmpty { "general_target" })
+
                 if (existingSchedule == null) {
                     val newId = "srl_${System.currentTimeMillis()}"
                     val newList = DScheduledRequestList(
                         id = newId,
-                        areaId = areaText,
+                        areaId = effectiveArea,
                         adminId = if (adminText.isNotEmpty()) adminText else "u8",
                         scheduleDate = parsedDate,
                         status = ScheduleStatus.CONFIRMED
                     )
                     scheduleLists.add(newList)
-                    Toast.makeText(context, "Request List Created", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Request List Created for target", Toast.LENGTH_SHORT).show()
                 } else {
                     val index = scheduleLists.indexOfFirst { it.id == existingSchedule.id }
                     if (index != -1) {
                         scheduleLists[index] = existingSchedule.copy(
-                            areaId = areaText,
+                            areaId = effectiveArea,
                             scheduleDate = parsedDate,
                             adminId = if (adminText.isNotEmpty()) adminText else existingSchedule.adminId
                         )
@@ -158,6 +178,8 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                     }
                 }
                 adapter.notifyDataSetChanged()
+            } else {
+                Toast.makeText(context, "Please provide at least an Area, Owner, or Group", Toast.LENGTH_SHORT).show()
             }
         }
         builder.setNegativeButton("Cancel", null)
