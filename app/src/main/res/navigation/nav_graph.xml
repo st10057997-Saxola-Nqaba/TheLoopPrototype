@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_adminRequestsFragment_to_adminMapPickerFragment"
             app:destination="@id/adminMapPickerFragment" />
+        <action
+            android:id="@+id/action_adminRequestsFragment_to_adminSchedules"
+            app:destination="@id/adminSchedulesFragment" />
     </fragment>
 
     <!-- Admin Schedules & Notifications Manager -->
