@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
@@ -32,7 +34,7 @@ class AdminExpiredMapFragment : Fragment(R.layout.fragment_admin_expired_map) {
             findNavController().popBackStack()
         }
 
-        // Calculate summary statistics matching your card description
+        // Calculate summary statistics
         val expiredList = DummyRequests.requests.filter { it.status == RequestStatus.EXPIRED }
         val groupedByArea = expiredList.groupBy { it.areaId }
         val summaryText = StringBuilder("Total Expired: ${expiredList.size}\n")
@@ -46,16 +48,41 @@ class AdminExpiredMapFragment : Fragment(R.layout.fragment_admin_expired_map) {
             val tembisa = LatLng(-25.9987, 28.2201)
             map.moveCamera(CameraUpdateFactory.newLatLngZoom(tembisa, 12f))
 
-            // Plot only expired requests with specific styling/markers
+            // Plot expired requests and attach the corresponding request object using tag
             expiredList.filter { it.latitude != null && it.longitude != null }.forEach { req ->
-                map.addMarker(
+                val position = LatLng(req.latitude!!, req.longitude!!)
+                val marker = map.addMarker(
                     MarkerOptions()
-                        .position(LatLng(req.latitude!!, req.longitude!!))
+                        .position(position)
                         .title("EXPIRED - Area: ${req.areaId} (${req.severity})")
                         .snippet(req.description)
                 )
+                // Tag the marker with the DRequest object to retrieve it on click
+                marker?.tag = req
+            }
+
+            // Handle info window clicks to show the administrative options dialog
+            map.setOnInfoWindowClickListener { marker ->
+                val req = marker.tag as? com.example.theloopprototype.models.DRequest
+                if (req != null) {
+                    showExpiredActionDialog(req.id, req.areaId, req.petId ?: "None")
+                }
             }
         }
+    }
+
+    private fun showExpiredActionDialog(id: String, area: String, pet: String) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Expired Request Options ($id)")
+            .setMessage("This request for Pet $pet in $area elapsed before unit dispatch.\n\nChoose an administrative action:")
+            .setPositiveButton("Follow-up / Referral") { _, _ ->
+                Toast.makeText(requireContext(), "Referral alternative sent to owner.", Toast.LENGTH_SHORT).show()
+            }
+            .setNeutralButton("Priority Next Cycle") { _, _ ->
+                Toast.makeText(requireContext(), "Queued for priority inclusion in next cycle.", Toast.LENGTH_SHORT).show()
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     override fun onResume() {
