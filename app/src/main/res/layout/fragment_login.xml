@@ -1,48 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/said_background"
+    android:background="#F5F5F5"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp">
 
+    <!-- App Logo / Icon -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="SAID Prototype Login"
-        android:textColor="@color/said_navy_text"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="32dp" />
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/ic_pet_avatar_large"
+        android:gravity="center"
+        android:text="🐾"
+        android:textSize="48dp"
+        android:layout_marginBottom="16dp"/>
 
-    <!-- Temporary button to simulate AHT Login -->
-    <Button
-        android:id="@+id/btnLoginAht"
+    <!-- App Title -->
+    <TextView
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/said_primary"
-        android:text="Login as AHT (Kagiso)"
-        android:textColor="@color/said_white"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="wrap_content"
+        android:text="SAID Mobile Outreach"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1A237E"
+        android:gravity="center"
+        android:layout_marginBottom="4dp"/>
 
-    <!-- Temporary button to simulate Pet Owner Login -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Society for Animals in Distress"
+        android:textSize="14sp"
+        android:textColor="#666666"
+        android:gravity="center"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="60dp"
+        android:layout_height="3dp"
+        android:background="#4CAF50"
+        android:layout_marginBottom="32dp"/>
+
+    <!-- Login as Pet Owner -->
     <Button
         android:id="@+id/btnLoginOwner"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/said_accent"
-        android:text="Login as Owner (Nomvula)"
-        android:textColor="@color/said_white"
-        android:layout_marginBottom="16dp" />
+        android:layout_height="56dp"
+        android:text="Login as Pet Owner"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#4CAF50"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.Material3.Button"/>
 
-    <!-- Temporary button to simulate Administrator Login (Tablet/Desktop View) -->
+    <!-- Login as AHT -->
+    <Button
+        android:id="@+id/btnLoginAht"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Login as AHT (Animal Health Technician)"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#2196F3"
+        android:layout_marginBottom="12dp"
+        style="@style/Widget.Material3.Button.OutlinedButton"/>
+
+    <!-- Login as Administrator -->
     <Button
         android:id="@+id/btnLoginAdmin"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:backgroundTint="@color/said_navy_text"
-        android:text="Login as Administrator (Desktop/Tablet)"
-        android:textColor="@color/said_white" />
+        android:layout_height="56dp"
+        android:text="Login as Administrator"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1A237E"
+        style="@style/Widget.Material3.Button.TextButton"/>
+
+    <!-- Version Info -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="v1.0 — Prototype"
+        android:textSize="12sp"
+        android:textColor="#BDBDBD"
+        android:gravity="center"
+        android:layout_marginTop="32dp"/>
 
 </LinearLayout>
