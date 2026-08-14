@@ -62,12 +62,6 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.GONE
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        // Restore bottom navigation bar only when permanently leaving Admin Schedules
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
-    }
-
     private fun showBroadcastDialog() {
         val context = requireContext()
         val layout = LinearLayout(context).apply {
