@@ -8,14 +8,18 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Spinner
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.DummyData
 import com.example.theloopprototype.R
+import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.DPet
-import java.time.LocalDate
+import com.example.theloopprototype.models.RequestStatus
+import com.example.theloopprototype.models.DRequest
+import com.example.theloopprototype.models.Severity
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import java.time.LocalDateTime
 import java.util.UUID
 
 class RequestVisitFragment : Fragment() {
@@ -24,8 +28,10 @@ class RequestVisitFragment : Fragment() {
     private lateinit var tvPetName: TextView
     private lateinit var tvPetBreed: TextView
     private lateinit var etDescription: EditText
-    private lateinit var spinnerSeverity: Spinner
+    private lateinit var spinnerSeverity: MaterialAutoCompleteTextView
     private lateinit var btnSubmitRequest: Button
+
+    private val currentOwnerId = "u1"
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,7 +61,7 @@ class RequestVisitFragment : Fragment() {
         }
 
         setupUI(pet)
-        setupClickListeners()
+        setupClickListeners(pet)
     }
 
     private fun setupUI(pet: DPet) {
@@ -65,26 +71,49 @@ class RequestVisitFragment : Fragment() {
         // Setup severity spinner
         val severityOptions = listOf("LOW", "MEDIUM", "HIGH")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_dropdown_item, severityOptions)
-        spinnerSeverity.adapter = adapter
+        spinnerSeverity.setAdapter(adapter)
+        spinnerSeverity.setText(severityOptions[0], false) // default to LOW
     }
 
-    private fun setupClickListeners() {
+    private fun setupClickListeners(pet: DPet) {
         btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
         btnSubmitRequest.setOnClickListener {
             val description = etDescription.text.toString().trim()
-            val severity = spinnerSeverity.selectedItem.toString()
+            val severityText = spinnerSeverity.text.toString().ifBlank { "LOW" }
+            val severity = Severity.valueOf(severityText)
 
             if (description.isEmpty()) {
                 etDescription.error = "Please describe the issue"
                 return@setOnClickListener
             }
 
+            val areaId = DummyData.getRequestsForOwner(currentOwnerId).firstOrNull()?.areaId
+                ?: DummyData.areas.firstOrNull()?.id ?: "area1"
+
+            val newRequest = DRequest(
+                id = UUID.randomUUID().toString(),
+                ownerId = currentOwnerId,
+                petId = pet.id,
+                areaId = areaId,
+                severity = severity,
+                description = description,
+                status = RequestStatus.PENDING,
+                latitude = null,
+                longitude = null,
+                generatedFromVisitEntryId = null,
+                createdAt = LocalDateTime.now(),
+                expirationDateTime = LocalDateTime.now().plusDays(7)
+
+            )
+
+            DummyRequests.requests.add(newRequest)
+
             // In real app, save request to database
             // For prototype, just navigate back
-            findNavController().popBackStack()
+            findNavController().popBackStack(R.id.petOwnerHomeFragment , false)
         }
     }
 
