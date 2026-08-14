@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_adminDashboard_to_adminSchedules"
             app:destination="@id/adminSchedulesFragment" />
+        <action
+            android:id="@+id/action_adminDashboard_to_adminOutreachOutcomes"
+            app:destination="@id/adminOutreachOutcomesFragment" />
     </fragment>
 
     <!-- Admin Requests & Demand Concentration View -->
@@ -59,6 +62,13 @@
         android:name="com.example.theloopprototype.ui.admin.AdminSchedulesFragment"
         android:label="Admin Schedules"
         tools:layout="@layout/fragment_admin_schedules" />
+
+    <!-- Admin Outreach Outcomes Summary -->
+    <fragment
+        android:id="@+id/adminOutreachOutcomesFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminOutreachOutcomesFragment"
+        android:label="Outreach Outcomes"
+        tools:layout="@layout/fragment_admin_outreach_outcomes" />
 
     <!-- 2. AHT Home -->
     <fragment
