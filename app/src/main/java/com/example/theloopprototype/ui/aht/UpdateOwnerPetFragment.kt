@@ -16,6 +16,8 @@ class UpdateOwnerPetFragment : Fragment(R.layout.fragment_update_owner_pet) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+
         val ownerId = arguments?.getString("ownerId") ?: return
         val ownerIndex = DummyUsers.users.indexOfFirst { it.id == ownerId }
         val petIndex = DummyPets.pets.indexOfFirst { it.ownerId == ownerId }
@@ -66,5 +68,20 @@ class UpdateOwnerPetFragment : Fragment(R.layout.fragment_update_owner_pet) {
             }
             findNavController().navigate(R.id.action_updateOwnerPetFragment_to_ownerDetailFragment, bundle)
         }
+        // Added this method to work with fragment_update_owner_pet
+        //val tvOwnerName = view.findViewById<TextView>(R.id.tvOwnerName)
+        //val tvPetName = view.findViewById<TextView>(R.id.tvPetName)
+
+       // owner?.let {
+       //     tvOwnerName.text = "${it.firstName} ${it.lastName}"
+        //    etPhone.setText(it.cellphoneNumber)
+        //    etAddress.setText(it.physicalAddress)
+       // }
+
+       // pet?.let {
+         //   tvPetName.text = it.name
+           // etWeight.setText(it.weightKg.toString())
+         //   etHeight.setText(it.heightCm.toString())
+       // }
     }
 }

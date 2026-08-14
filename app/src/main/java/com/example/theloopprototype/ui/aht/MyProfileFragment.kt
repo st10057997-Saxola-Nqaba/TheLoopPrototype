@@ -14,13 +14,17 @@ class MyProfileFragment : Fragment(R.layout.fragment_my_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        val tvProfileInfo = view.findViewById<TextView>(R.id.tvProfileInfo)
+//had to edit here so fragment_my_profile could work, to use correct iDs
+        val tvProfileName = view.findViewById<TextView>(R.id.tvProfileName)
+        val tvProfileEmail = view.findViewById<TextView>(R.id.tvProfileEmail)
+        val tvProfileRole = view.findViewById<TextView>(R.id.tvProfileRole)
         val btnEditProfile = view.findViewById<Button>(R.id.btnEditProfile)
         val btnDeleteProfile = view.findViewById<Button>(R.id.btnDeleteProfile)
         val btnLogout = view.findViewById<Button>(R.id.btnLogout)
 
-        tvProfileInfo.text = "Name: John Doe\nRole: AHT User\nEmail: aht@example.com"
+        tvProfileName.text = "John Doe"
+        tvProfileEmail.text = "aht@example.com"
+        tvProfileRole.text = "AHT User"
 
         btnEditProfile.setOnClickListener {
             findNavController().navigate(R.id.action_myProfileFragment_to_editProfileFragment)
