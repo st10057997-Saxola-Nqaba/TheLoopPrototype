@@ -17,11 +17,13 @@ import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.DScheduledRequestList
 import com.example.theloopprototype.models.ScheduleStatus
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
 
     private val scheduleLists = mutableListOf<DScheduledRequestList>()
     private lateinit var adapter: AdminScheduleListAdapter
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -96,23 +98,50 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         val builder = AlertDialog.Builder(context)
         builder.setTitle(if (existingSchedule == null) "Create Request List" else "Edit Request List")
 
+        val layout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(50, 40, 50, 10)
+        }
+
         val inputArea = EditText(context).apply {
             hint = "Area ID (e.g. area2)"
             setText(existingSchedule?.areaId ?: "")
         }
+        layout.addView(inputArea)
 
-        builder.setView(inputArea)
+        val inputDate = EditText(context).apply {
+            hint = "Schedule Date (yyyy-MM-dd HH:mm)"
+            setText(existingSchedule?.scheduleDate?.format(formatter) ?: LocalDateTime.now().plusDays(3).format(formatter))
+        }
+        layout.addView(inputDate)
+
+        val inputAdmin = EditText(context).apply {
+            hint = "Assigned AHT / Admin ID (e.g. u8)"
+            setText(existingSchedule?.adminId ?: "u8")
+        }
+        layout.addView(inputAdmin)
+
+        builder.setView(layout)
 
         builder.setPositiveButton("Save") { _, _ ->
             val areaText = inputArea.text.toString().trim()
+            val dateText = inputDate.text.toString().trim()
+            val adminText = inputAdmin.text.toString().trim()
+
             if (areaText.isNotEmpty()) {
+                val parsedDate = try {
+                    LocalDateTime.parse(dateText, formatter)
+                } catch (e: Exception) {
+                    LocalDateTime.now().plusDays(3)
+                }
+
                 if (existingSchedule == null) {
                     val newId = "srl_${System.currentTimeMillis()}"
                     val newList = DScheduledRequestList(
                         id = newId,
                         areaId = areaText,
-                        adminId = "u8",
-                        scheduleDate = LocalDateTime.now().plusDays(3),
+                        adminId = if (adminText.isNotEmpty()) adminText else "u8",
+                        scheduleDate = parsedDate,
                         status = ScheduleStatus.CONFIRMED
                     )
                     scheduleLists.add(newList)
@@ -120,7 +149,11 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                 } else {
                     val index = scheduleLists.indexOfFirst { it.id == existingSchedule.id }
                     if (index != -1) {
-                        scheduleLists[index] = existingSchedule.copy(areaId = areaText)
+                        scheduleLists[index] = existingSchedule.copy(
+                            areaId = areaText,
+                            scheduleDate = parsedDate,
+                            adminId = if (adminText.isNotEmpty()) adminText else existingSchedule.adminId
+                        )
                         Toast.makeText(context, "Request List Updated", Toast.LENGTH_SHORT).show()
                     }
                 }
