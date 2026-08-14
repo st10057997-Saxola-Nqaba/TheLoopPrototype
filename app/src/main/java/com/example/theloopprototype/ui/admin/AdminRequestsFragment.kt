@@ -5,6 +5,7 @@ import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -14,7 +15,10 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.data.DummyRequests
+import com.example.theloopprototype.models.DScheduledRequestList
 import com.example.theloopprototype.models.RequestStatus
+import com.example.theloopprototype.models.ScheduleStatus
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
@@ -42,9 +46,9 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
             findNavController().navigate(R.id.adminExpiredMapFragment)
         }
 
-        // Schedule area with Drop-Pin map picker dialog
+        // Opens the exact same creation form as AdminSchedulesFragment
         btnCreateSchedule.setOnClickListener {
-            showDropPinMapPicker()
+            showCreateScheduleDialog()
         }
 
         btnBackToDashboard.setOnClickListener {
@@ -130,18 +134,86 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         return card
     }
 
-    private fun showDropPinMapPicker() {
-        AlertDialog.Builder(requireContext())
-            .setTitle("Schedule Area (Drop Pin)")
-            .setMessage("Select an active sector to drop schedule marker pin:")
-            .setPositiveButton("Area 2 (Tembisa) - Drop Pin") { _, _ ->
-                Toast.makeText(requireContext(), "Pin dropped at Tembisa Center. Schedule list created!", Toast.LENGTH_LONG).show()
+    private fun showCreateScheduleDialog() {
+        val context = requireContext()
+        val builder = AlertDialog.Builder(context)
+        builder.setTitle("Create Request List")
+
+        val layout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(50, 40, 50, 10)
+        }
+
+        val inputArea = EditText(context).apply {
+            hint = "Area ID (e.g. area2)"
+        }
+        layout.addView(inputArea)
+
+        val inputOwner = EditText(context).apply {
+            hint = "Owner ID (Optional, e.g. u1)"
+        }
+        layout.addView(inputOwner)
+
+        val inputPet = EditText(context).apply {
+            hint = "Pet ID (Optional, e.g. p1)"
+        }
+        layout.addView(inputPet)
+
+        val inputGroup = EditText(context).apply {
+            hint = "Group Name (Optional, e.g. Community Group)"
+        }
+        layout.addView(inputGroup)
+
+        val inputDate = EditText(context).apply {
+            hint = "Schedule Date (yyyy-MM-dd HH:mm)"
+            setText(LocalDateTime.now().plusDays(3).format(formatter))
+        }
+        layout.addView(inputDate)
+
+        val inputAdmin = EditText(context).apply {
+            hint = "Assigned AHT / Admin ID (e.g. u8)"
+            setText("u8")
+        }
+        layout.addView(inputAdmin)
+
+        builder.setView(layout)
+
+        builder.setPositiveButton("Save") { _, _ ->
+            val areaText = inputArea.text.toString().trim()
+            val groupText = inputGroup.text.toString().trim()
+            val dateText = inputDate.text.toString().trim()
+            val adminText = inputAdmin.text.toString().trim()
+
+            if (areaText.isNotEmpty() || groupText.isNotEmpty()) {
+                val parsedDate = try {
+                    LocalDateTime.parse(dateText, formatter)
+                } catch (e: Exception) {
+                    LocalDateTime.now().plusDays(3)
+                }
+
+                val effectiveArea = if (areaText.isNotEmpty()) areaText else groupText
+                val newId = "srl_${System.currentTimeMillis()}"
+
+                val newList = DScheduledRequestList(
+                    id = newId,
+                    areaId = effectiveArea,
+                    adminId = if (adminText.isNotEmpty()) adminText else "u8",
+                    scheduleDate = parsedDate,
+                    status = ScheduleStatus.CONFIRMED
+                )
+
+                // Fixed: using .add() on the now-mutable scheduledRequestLists list
+                DummyRequests.scheduledRequestLists.add(newList)
+                Toast.makeText(context, "Schedule list created successfully!", Toast.LENGTH_SHORT).show()
+
+                // Navigate directly to the Admin Schedules fragment upon saving
+                findNavController().navigate(R.id.adminSchedulesFragment)
+            } else {
+                Toast.makeText(context, "Please provide at least an Area or Group", Toast.LENGTH_SHORT).show()
             }
-            .setNeutralButton("Area 3 (Ivory Park) - Drop Pin") { _, _ ->
-                Toast.makeText(requireContext(), "Pin dropped at Ivory Park Center. Schedule list created!", Toast.LENGTH_LONG).show()
-            }
-            .setNegativeButton("Cancel", null)
-            .show()
+        }
+        builder.setNegativeButton("Cancel", null)
+        builder.show()
     }
 
     private fun showRequestDetailsDialog(id: String, area: String, pet: String, issue: String, status: String, notes: String) {
