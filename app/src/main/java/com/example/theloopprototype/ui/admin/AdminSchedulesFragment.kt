@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
@@ -25,20 +26,25 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Initialize with default dummy list items
         if (scheduleLists.isEmpty()) {
             scheduleLists.addAll(DummyRequests.scheduledRequestLists)
         }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSchedulesList)
         val btnBack = view.findViewById<Button>(R.id.btnBackFromSchedules)
-        val btnCreateSchedule = view.findViewById<Button>(R.id.btnBroadcastNotification) // repurposed or add new button ID
-        btnCreateSchedule.text = "Create New Request List"
+        val btnBroadcast = view.findViewById<Button>(R.id.btnBroadcastNotification)
+        val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateRequestList)
 
         btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
 
+        // Broadcast notification with targeting options for specific groups, owners, or areas
+        btnBroadcast.setOnClickListener {
+            showBroadcastDialog()
+        }
+
+        // Handles creation of new request lists
         btnCreateSchedule.setOnClickListener {
             showEditOrCreateDialog(null)
         }
@@ -48,6 +54,41 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
             showEditOrCreateDialog(schedule)
         }
         recyclerView.adapter = adapter
+    }
+
+    private fun showBroadcastDialog() {
+        val context = requireContext()
+        val layout = LinearLayout(context).apply {
+            orientation = LinearLayout.VERTICAL
+            setPadding(50, 40, 50, 10)
+        }
+
+        val inputTarget = EditText(context).apply {
+            hint = "Target (e.g. Area ID, Owner ID, or Group Name)"
+        }
+        layout.addView(inputTarget)
+
+        val inputMessage = EditText(context).apply {
+            hint = "Notification Message..."
+            minLines = 3
+        }
+        layout.addView(inputMessage)
+
+        AlertDialog.Builder(context)
+            .setTitle("Send Targeted Broadcast")
+            .setView(layout)
+            .setPositiveButton("Send") { _, _ ->
+                val target = inputTarget.text.toString().trim()
+                val message = inputMessage.text.toString().trim()
+
+                if (target.isNotEmpty() && message.isNotEmpty()) {
+                    Toast.makeText(context, "Broadcast sent to $target successfully!", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, "Target and message cannot be empty", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     private fun showEditOrCreateDialog(existingSchedule: DScheduledRequestList?) {
