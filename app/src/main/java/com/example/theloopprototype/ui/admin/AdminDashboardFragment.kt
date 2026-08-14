@@ -23,8 +23,9 @@ class AdminDashboardFragment : Fragment(R.layout.fragment_admin_dashboard) {
             findNavController().navigate(R.id.action_adminDashboard_to_adminRequests)
         }
 
+        // Navigate to Scheduling & Notifications Manager
         view.findViewById<Button>(R.id.btnManageScheduling).setOnClickListener {
-            Toast.makeText(requireContext(), "Opening Schedule & Notifications manager", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.adminSchedulesFragment)
         }
 
         view.findViewById<Button>(R.id.btnOutcomesSummary).setOnClickListener {

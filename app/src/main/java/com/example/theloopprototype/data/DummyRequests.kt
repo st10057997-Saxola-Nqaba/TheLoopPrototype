@@ -31,7 +31,7 @@ object DummyRequests {
             LocalDateTime.of(2026, 8, 6, 13, 45), LocalDateTime.of(2026, 8, 20, 13, 45)),
     )
 
-    val scheduledRequestLists = listOf(
+    var scheduledRequestLists = mutableListOf(
         DScheduledRequestList("srl1", "area3", "u8", LocalDateTime.of(2026, 8, 17, 8, 0), ScheduleStatus.CONFIRMED),
         DScheduledRequestList("srl2", "area2", "u8", LocalDateTime.of(2026, 8, 18, 8, 0), ScheduleStatus.CONFIRMED),
     )
