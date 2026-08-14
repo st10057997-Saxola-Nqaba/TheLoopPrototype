@@ -1,6 +1,7 @@
 package com.example.theloopprototype.ui.admin
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
 import android.widget.LinearLayout
@@ -23,30 +24,52 @@ class AdminOutreachOutcomesFragment : Fragment(R.layout.fragment_admin_outreach_
             findNavController().popBackStack()
         }
 
-        // Dynamically populate outreach outcome cards from Dummy data
         container.removeAllViews()
+        val inflater = LayoutInflater.from(requireContext())
+
         for (outcome in DummyRequests.outreachOutcomes) {
-            val itemLayout = LinearLayout(requireContext()).apply {
-                orientation = LinearLayout.VERTICAL
-                setPadding(0, 0, 0, 24)
+            // Inflate main outreach card
+            val cardView = inflater.inflate(R.layout.item_outreach_outcome, container, false)
+
+            val textInitiativeName = cardView.findViewById<TextView>(R.id.textInitiativeName)
+            val textAreaId = cardView.findViewById<TextView>(R.id.textAreaId)
+            val textPeriodAndFlags = cardView.findViewById<TextView>(R.id.textPeriodAndFlags)
+            val textFlagSummary = cardView.findViewById<TextView>(R.id.textFlagSummary)
+            val containerVisits = cardView.findViewById<LinearLayout>(R.id.containerVisits)
+
+            textInitiativeName.text = outcome.initiativeName
+            textAreaId.text = "Area: ${outcome.areaId}"
+            textPeriodAndFlags.text = "Period: ${outcome.startDate} to ${outcome.endDate} | Total Flags: ${outcome.totalFlags}"
+            textFlagSummary.text = "Summary: ${outcome.flagSummary}"
+
+            // Populate individual visit summary cards
+            containerVisits.removeAllViews()
+            for (visit in outcome.visitSummaries) {
+                val visitCard = inflater.inflate(R.layout.item_visit_summary, containerVisits, false)
+
+                val textOwnerName = visitCard.findViewById<TextView>(R.id.textOwnerName)
+                val textVisitOutcome = visitCard.findViewById<TextView>(R.id.textVisitOutcome)
+                val textFlagsPosted = visitCard.findViewById<TextView>(R.id.textFlagsPosted)
+
+                textOwnerName.text = "Owner: ${visit.petOwnerName}"
+                textVisitOutcome.text = "Outcome: ${visit.visitOutcome}"
+                textFlagsPosted.text = "Flags: ${visit.flagsPosted}"
+
+                // Wire up click listener to pass visitId via navigation action
+                visitCard.setOnClickListener {
+                    val bundle = Bundle().apply {
+                        putString("visitId", visit.visitId)
+                    }
+                    findNavController().navigate(
+                        R.id.action_adminOutreachOutcomesFragment_to_adminVisitEntryDetailFragment,
+                        bundle
+                    )
+                }
+
+                containerVisits.addView(visitCard)
             }
 
-            val titleView = TextView(requireContext()).apply {
-                text = outcome.initiativeName
-                textSize = 16f
-                setTypeface(null, android.graphics.Typeface.BOLD)
-                setTextColor(resources.getColor(R.color.said_navy_text, null))
-            }
-
-            val detailsView = TextView(requireContext()).apply {
-                text = "Area: ${outcome.areaId}\nPeriod: ${outcome.startDate} to ${outcome.endDate}\nTotal Flags: ${outcome.totalFlags}\nSummary: ${outcome.flagSummary}"
-                textSize = 14f
-                setPadding(0, 4, 0, 0)
-            }
-
-            itemLayout.addView(titleView)
-            itemLayout.addView(detailsView)
-            container.addView(itemLayout)
+            container.addView(cardView)
         }
     }
 
