@@ -29,11 +29,12 @@ class AdminDashboardFragment : Fragment(R.layout.fragment_admin_dashboard) {
         }
 
         view.findViewById<Button>(R.id.btnOutcomesSummary).setOnClickListener {
-            Toast.makeText(requireContext(), "Opening Outreach Outcomes summary", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_adminDashboard_to_adminOutreachOutcomes)
         }
 
+        // Correctly route to Admin Profile instead of the AHT edit profile screen
         view.findViewById<Button>(R.id.btnAdminProfile).setOnClickListener {
-            findNavController().navigate(R.id.editProfileFragment)
+            findNavController().navigate(R.id.action_adminDashboard_to_adminProfileFragment)
         }
     }
 }

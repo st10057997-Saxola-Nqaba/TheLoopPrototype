@@ -1,6 +1,7 @@
 package com.example.theloopprototype.data
 
 import com.example.theloopprototype.models.*
+import java.time.LocalDate
 import java.time.LocalDateTime
 
 object DummyRequests {
@@ -39,5 +40,35 @@ object DummyRequests {
     val requestListItems = listOf(
         DRequestListItem("rli1", "srl1", "r2", 1),
         DRequestListItem("rli2", "srl2", "r7", 1),
+    )
+
+    var outreachOutcomes = mutableListOf(
+        DOutreachOutcome(
+            id = "out_1",
+            initiativeName = "Community Rabies Vaccine Drive",
+            areaId = "Area A - North",
+            flagSummary = "High concentration of unimmunized pets and overdue follow-ups.",
+            totalFlags = 14,
+            startDate = LocalDate.now().minusMonths(1),
+            endDate = LocalDate.now(),
+            visitSummaries = listOf(
+                DVisitSummary("v1", "John Doe", "Vaccinated successfully", "None"),
+                DVisitSummary("v2", "Jane Smith", "Owner absent, left notice", "Overdue follow-up flagged"),
+                DVisitSummary("v3", "Bob Johnson", "Animal aggressive, vaccination deferred", "Safety hazard flag")
+            )
+        ),
+        DOutreachOutcome(
+            id = "out_2",
+            initiativeName = "Downtown Pet Census & Check",
+            areaId = "Area B - Central",
+            flagSummary = "General compliance stable, minor address discrepancies flagged.",
+            totalFlags = 5,
+            startDate = LocalDate.now().minusWeeks(2),
+            endDate = LocalDate.now(),
+            visitSummaries = listOf(
+                DVisitSummary("v4", "Alice Brown", "Census info updated", "Address discrepancy flag"),
+                DVisitSummary("v5", "Charlie Green", "Check completed", "None")
+            )
+        )
     )
 }

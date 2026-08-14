@@ -34,6 +34,12 @@
         <action
             android:id="@+id/action_adminDashboard_to_adminSchedules"
             app:destination="@id/adminSchedulesFragment" />
+        <action
+            android:id="@+id/action_adminDashboard_to_adminOutreachOutcomes"
+            app:destination="@id/adminOutreachOutcomesFragment" />
+        <action
+            android:id="@+id/action_adminDashboard_to_adminProfileFragment"
+            app:destination="@id/adminProfileFragment" />
     </fragment>
 
     <!-- Admin Requests & Demand Concentration View -->
@@ -59,6 +65,51 @@
         android:name="com.example.theloopprototype.ui.admin.AdminSchedulesFragment"
         android:label="Admin Schedules"
         tools:layout="@layout/fragment_admin_schedules" />
+
+    <!-- Admin Outreach Outcomes Summary -->
+    <fragment
+        android:id="@+id/adminOutreachOutcomesFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminOutreachOutcomesFragment"
+        android:label="Outreach Outcomes"
+        tools:layout="@layout/fragment_admin_outreach_outcomes">
+        <action
+            android:id="@+id/action_adminOutreachOutcomesFragment_to_adminVisitEntryDetailFragment"
+            app:destination="@id/adminVisitEntryDetailFragment" />
+    </fragment>
+
+    <!-- Admin Visit Entry Detail View -->
+    <fragment
+        android:id="@+id/adminVisitEntryDetailFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminVisitEntryDetailFragment"
+        android:label="Visit Entry Detail"
+        tools:layout="@layout/fragment_admin_visit_entry_detail">
+        <argument
+            android:name="visitId"
+            app:argType="string" />
+    </fragment>
+
+    <!-- Admin Profile Fragment -->
+    <fragment
+        android:id="@+id/adminProfileFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminProfileFragment"
+        android:label="My Profile"
+        tools:layout="@layout/fragment_admin_profile">
+        <action
+            android:id="@+id/action_adminProfileFragment_to_adminEditProfileFragment"
+            app:destination="@id/adminEditProfileFragment" />
+        <action
+            android:id="@+id/action_adminProfileFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/adminDashboardFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <!-- Admin Edit Profile Fragment -->
+    <fragment
+        android:id="@+id/adminEditProfileFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminEditProfileFragment"
+        android:label="Edit Profile"
+        tools:layout="@layout/fragment_admin_edit_profile" />
 
     <!-- 2. AHT Home -->
     <fragment

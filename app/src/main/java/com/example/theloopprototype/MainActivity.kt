@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
@@ -17,28 +16,25 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
-        bottomNavigationView.setupWithNavController(navController)
 
-        // Hide bottom navigation bar on login, admin section, and pet owner screens
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.ahtHomeFragment -> { navController.navigate(R.id.ahtHomeFragment); true }
+                R.id.ownerSearchFragment -> { navController.navigate(R.id.ownerSearchFragment); true }
+                R.id.myProfileFragment -> { navController.navigate(R.id.myProfileFragment); true }
+                else -> false
+            }
+        }
+
         navController.addOnDestinationChangedListener { _, destination, _ ->
             when (destination.id) {
-                R.id.loginFragment,
-                R.id.adminDashboardFragment,
-                R.id.adminRequestsFragment,
-                R.id.adminExpiredMapFragment,
-                R.id.adminMapPickerFragment,
-                R.id.petOwnerHomeFragment,
-                R.id.addPetFragment,
-                R.id.viewPetFragment,
-                R.id.myRequestsFragment,
-                R.id.requestDetailsFragment,
-                R.id.viewVisitHistoryFragment,
-                R.id.requestVisitFragment,
-                R.id.petOwnerProfileFragment -> {
-                    bottomNavigationView.visibility = View.GONE
+                R.id.ahtHomeFragment,
+                R.id.ownerSearchFragment,
+                R.id.myProfileFragment -> {
+                    bottomNavigationView.visibility = View.VISIBLE
                 }
                 else -> {
-                    bottomNavigationView.visibility = View.VISIBLE
+                    bottomNavigationView.visibility = View.GONE
                 }
             }
         }
