@@ -68,7 +68,22 @@
         android:id="@+id/adminOutreachOutcomesFragment"
         android:name="com.example.theloopprototype.ui.admin.AdminOutreachOutcomesFragment"
         android:label="Outreach Outcomes"
-        tools:layout="@layout/fragment_admin_outreach_outcomes" />
+        tools:layout="@layout/fragment_admin_outreach_outcomes">
+        <action
+            android:id="@+id/action_adminOutreachOutcomesFragment_to_adminVisitEntryDetailFragment"
+            app:destination="@id/adminVisitEntryDetailFragment" />
+    </fragment>
+
+    <!-- Admin Visit Entry Detail View -->
+    <fragment
+        android:id="@+id/adminVisitEntryDetailFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminVisitEntryDetailFragment"
+        android:label="Visit Entry Detail"
+        tools:layout="@layout/fragment_admin_visit_entry_detail">
+        <argument
+            android:name="visitId"
+            app:argType="string" />
+    </fragment>
 
     <!-- 2. AHT Home -->
     <fragment

@@ -50,7 +50,12 @@ object DummyRequests {
             flagSummary = "High concentration of unimmunized pets and overdue follow-ups.",
             totalFlags = 14,
             startDate = LocalDate.now().minusMonths(1),
-            endDate = LocalDate.now()
+            endDate = LocalDate.now(),
+            visitSummaries = listOf(
+                DVisitSummary("v1", "John Doe", "Vaccinated successfully", "None"),
+                DVisitSummary("v2", "Jane Smith", "Owner absent, left notice", "Overdue follow-up flagged"),
+                DVisitSummary("v3", "Bob Johnson", "Animal aggressive, vaccination deferred", "Safety hazard flag")
+            )
         ),
         DOutreachOutcome(
             id = "out_2",
@@ -59,7 +64,11 @@ object DummyRequests {
             flagSummary = "General compliance stable, minor address discrepancies flagged.",
             totalFlags = 5,
             startDate = LocalDate.now().minusWeeks(2),
-            endDate = LocalDate.now()
+            endDate = LocalDate.now(),
+            visitSummaries = listOf(
+                DVisitSummary("v4", "Alice Brown", "Census info updated", "Address discrepancy flag"),
+                DVisitSummary("v5", "Charlie Green", "Check completed", "None")
+            )
         )
     )
 }
