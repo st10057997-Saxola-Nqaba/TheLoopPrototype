@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/said_background"
+    android:background="#F5F5F5"
     android:padding="16dp">
 
     <LinearLayout
@@ -10,75 +11,196 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
+        <!-- Header -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Create User &amp; Pet Profile"
-            android:textColor="@color/said_navy_text"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:paddingBottom="16dp"/>
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
 
-        <EditText
-            android:id="@+id/etFirstName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Owner First Name *"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create User &amp; Pet Profile"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#1A237E" />
 
-        <EditText
-            android:id="@+id/etLastName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Owner Last Name"
-            android:inputType="textPersonName"
-            android:layout_marginBottom="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Register a new owner and their pet"
+                android:textSize="14sp"
+                android:textColor="#666666" />
 
-        <EditText
-            android:id="@+id/etPhone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Cellphone Number *"
-            android:inputType="phone"
-            android:layout_marginBottom="12dp"/>
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/etAddress"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Physical Address *"
-            android:inputType="textPostalAddress"
-            android:layout_marginBottom="24dp"/>
-
+        <!-- Divider -->
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/create_user_background"
-            android:layout_marginBottom="16dp"/>
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp" />
 
-        <EditText
-            android:id="@+id/etPetName"
+        <!-- Owner Information Section -->
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Name *"
-            android:inputType="text"
-            android:layout_marginBottom="12dp"/>
+            android:text="Owner Information"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginBottom="12dp" />
 
-        <EditText
-            android:id="@+id/etPetBreed"
+        <!-- First Name -->
+        <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Pet Breed"
-            android:inputType="text"
-            android:layout_marginBottom="24dp"/>
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:boxStrokeColor="#4CAF50"
+            app:hintTextColor="#4CAF50">
 
-        <Button
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Owner First Name *"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Last Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Owner Last Name"
+                android:inputType="textPersonName" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Cellphone Number -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Cellphone Number *"
+                android:inputType="phone" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Physical Address -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Physical Address *"
+                android:inputType="textPostalAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginVertical="16dp" />
+
+        <!-- Pet Information Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pet Information"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginBottom="12dp" />
+
+        <!-- Pet Name -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPetName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pet Name *"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Pet Breed -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPetBreed"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Pet Breed"
+                android:inputType="text" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Animal Type Spinner -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/spinnerAnimalType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Animal Type"
+                android:focusable="false"
+                android:inputType="none"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:clickable="true"
+                android:focusableInTouchMode="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Save Button -->
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="56dp"
             android:text="Save and View Profile"
-            android:backgroundTint="@color/said_primary"/>
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginTop="8dp"
+            style="@style/Widget.Material3.Button" />
 
     </LinearLayout>
+
 </ScrollView>
