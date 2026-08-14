@@ -26,17 +26,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Send General Broadcast Notification"
+        android:layout_marginBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnCreateRequestList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Create New Request List"
         android:layout_marginBottom="16dp" />
 
-    <ScrollView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerSchedulesList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <LinearLayout
-            android:id="@+id/containerSchedulesList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        android:layout_height="0dp"
+        android:layout_weight="1" />
 
 </LinearLayout>
