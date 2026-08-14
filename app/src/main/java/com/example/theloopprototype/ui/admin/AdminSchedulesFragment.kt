@@ -15,7 +15,7 @@ import com.example.theloopprototype.R
 import com.example.theloopprototype.adapter.AdminScheduleListAdapter
 import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.DScheduledRequestList
-import com.example.theloopprototype.models.ScheduleStatus
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
@@ -28,9 +28,9 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        if (scheduleLists.isEmpty()) {
-            scheduleLists.addAll(DummyRequests.scheduledRequestLists)
-        }
+        // Always sync with the latest list source of truth
+        scheduleLists.clear()
+        scheduleLists.addAll(DummyRequests.scheduledRequestLists)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSchedulesList)
         val btnBack = view.findViewById<Button>(R.id.btnBackFromSchedules)
@@ -41,21 +41,31 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
             findNavController().popBackStack()
         }
 
-        // Broadcast notification with targeting options for specific groups, owners, or areas
         btnBroadcast.setOnClickListener {
             showBroadcastDialog()
         }
 
-        // Handles creation/editing of new request lists with granular targeting
         btnCreateSchedule.setOnClickListener {
             showEditOrCreateDialog(null)
         }
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = AdminScheduleListAdapter(scheduleLists) { schedule ->
-            showEditOrCreateDialog(schedule)
+            showOptionsDialog(schedule)
         }
         recyclerView.adapter = adapter
+    }
+
+    override fun onResume() {
+        super.onResume()
+        // Keep hidden when coming back from dialogs or interactions
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.GONE
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        // Restore bottom navigation bar only when permanently leaving Admin Schedules
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.VISIBLE
     }
 
     private fun showBroadcastDialog() {
@@ -88,6 +98,33 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                 } else {
                     Toast.makeText(context, "Target and message cannot be empty", Toast.LENGTH_SHORT).show()
                 }
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
+    }
+
+    private fun showOptionsDialog(schedule: DScheduledRequestList) {
+        val options = arrayOf("Edit Schedule", "Delete Schedule")
+        AlertDialog.Builder(requireContext())
+            .setTitle("Manage Schedule (${schedule.id})")
+            .setItems(options) { _, which ->
+                when (which) {
+                    0 -> showEditOrCreateDialog(schedule)
+                    1 -> confirmAndDeleteSchedule(schedule)
+                }
+            }
+            .show()
+    }
+
+    private fun confirmAndDeleteSchedule(schedule: DScheduledRequestList) {
+        AlertDialog.Builder(requireContext())
+            .setTitle("Confirm Deletion")
+            .setMessage("Are you sure you want to delete schedule list ${schedule.id}?")
+            .setPositiveButton("Delete") { _, _ ->
+                DummyRequests.scheduledRequestLists.remove(schedule)
+                scheduleLists.remove(schedule)
+                adapter.notifyDataSetChanged()
+                Toast.makeText(requireContext(), "Schedule deleted", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancel", null)
             .show()
@@ -162,18 +199,26 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                         areaId = effectiveArea,
                         adminId = if (adminText.isNotEmpty()) adminText else "u8",
                         scheduleDate = parsedDate,
-                        status = ScheduleStatus.CONFIRMED
+                        status = com.example.theloopprototype.models.ScheduleStatus.CONFIRMED
                     )
+                    DummyRequests.scheduledRequestLists.add(newList)
                     scheduleLists.add(newList)
-                    Toast.makeText(context, "Request List Created for target", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Request List Created", Toast.LENGTH_SHORT).show()
                 } else {
                     val index = scheduleLists.indexOfFirst { it.id == existingSchedule.id }
                     if (index != -1) {
-                        scheduleLists[index] = existingSchedule.copy(
+                        val updatedList = existingSchedule.copy(
                             areaId = effectiveArea,
                             scheduleDate = parsedDate,
                             adminId = if (adminText.isNotEmpty()) adminText else existingSchedule.adminId
                         )
+                        scheduleLists[index] = updatedList
+
+                        val dummyIndex = DummyRequests.scheduledRequestLists.indexOfFirst { it.id == existingSchedule.id }
+                        if (dummyIndex != -1) {
+                            DummyRequests.scheduledRequestLists[dummyIndex] = updatedList
+                        }
+
                         Toast.makeText(context, "Request List Updated", Toast.LENGTH_SHORT).show()
                     }
                 }
