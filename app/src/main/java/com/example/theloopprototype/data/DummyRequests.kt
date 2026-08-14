@@ -15,7 +15,7 @@ object DummyRequests {
             RequestStatus.FULFILLED, -25.9331, 27.9269, null,
             LocalDateTime.of(2026, 7, 28, 11, 0), LocalDateTime.of(2026, 8, 4, 11, 0)),
         DRequest("r4", "u4", "p6", "area1", Severity.MEDIUM, "Skin rash around ears, worsening",
-            RequestStatus.EXPIRED, -25.9755, 27.9012, null,
+            RequestStatus.EXPIRED, -25.9950, 28.2150, null,
             LocalDateTime.of(2026, 7, 15, 10, 0), LocalDateTime.of(2026, 7, 22, 10, 0)),
         DRequest("r5", "u5", "p7", "area2", Severity.HIGH, "Possible colic — off food, lying down often",
             RequestStatus.PENDING, -25.9986, 28.2185, null,

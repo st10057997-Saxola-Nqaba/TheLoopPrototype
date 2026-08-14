@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="said_primary">#1C8FD6</color>       <!-- header/hero blue -->
-    <color name="primary">#1C8FD6</color>
-    <color name="said_primary_dark">#146AA3</color>   <!-- pressed/status bar -->
-    <color name="said_accent">#29ABE2</color>          <!-- lighter accent, icons -->
-    <color name="said_navy_text">#0D3B66</color>       <!-- headings on white -->
-    <color name="said_white">#FFFFFF</color>
-    <color name="said_background">#F5F9FC</color>      <!-- soft off-white, not pure white -->
+    <!-- Exact colours from the Society of Animals in Distress website kit -->
+    <color name="said_primary">#1C9DD9</color>       <!-- -e-global-color-primary -->
+    <color name="primary">#1C9DD9</color>
+    <color name="said_primary_dark">#064F94</color>   <!-- -e-global-color-b49aa77 (Darker Blue) -->
+    <color name="said_accent">#303A80</color>          <!-- -e-global-color-secondary (Secondary Navy Accent) -->
+    <color name="said_navy_text">#303A80</color>       <!-- Headings aligned with secondary brand tone -->
+    <color name="said_white">#FFFFFF</color>           <!-- -e-global-color-accent -->
+    <color name="said_background">#F5F9FC</color>      <!-- Soft off-white layout background -->
 
-    <!-- functional and status colors -->
+    <!-- Functional and status colors -->
     <color name="severity_high">#D9534F</color>
     <color name="severity_medium">#F0AD4E</color>
     <color name="severity_low">#5CB85C</color>
     <color name="status_pending">#F0AD4E</color>
-    <color name="status_scheduled">#1C8FD6</color>
+    <color name="status_scheduled">#1C9DD9</color>
     <color name="status_fulfilled">#5CB85C</color>
     <color name="status_expired">#9E9E9E</color>
     <color name="create_user_background">#5A5A5A</color>

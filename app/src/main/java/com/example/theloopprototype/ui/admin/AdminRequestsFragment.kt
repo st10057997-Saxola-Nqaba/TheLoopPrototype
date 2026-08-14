@@ -15,16 +15,11 @@ import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.RequestStatus
-import com.google.android.gms.maps.CameraUpdateFactory
-import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.MapView
-import com.google.android.gms.maps.model.LatLng
-import com.google.android.gms.maps.model.MarkerOptions
+import java.time.format.DateTimeFormatter
 
 class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
 
-    private var googleMapInstance: GoogleMap? = null
-    private var mapViewCluster: MapView? = null
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -33,12 +28,18 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         val btnViewMap = view.findViewById<Button>(R.id.btnViewMap)
         val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateSchedule)
         val btnBackToDashboard = view.findViewById<Button>(R.id.btnBackToDashboard)
+        val btnViewExpiredMap = view.findViewById<Button>(R.id.btnViewExpiredMap)
 
         refreshRequestsList(containerList)
 
-        // Google Maps clustering view popup or navigation
+        // Navigate to full-screen Pending Cluster/Map Screen
         btnViewMap.setOnClickListener {
-            showMapClusterDialog()
+            findNavController().navigate(R.id.adminMapPickerFragment)
+        }
+
+        // Navigate to the separate Expired Requests Map screen
+        btnViewExpiredMap?.setOnClickListener {
+            findNavController().navigate(R.id.adminExpiredMapFragment)
         }
 
         // Schedule area with Drop-Pin map picker dialog
@@ -68,14 +69,22 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         container.addView(pendingHeader)
 
         pendingList.forEach { req ->
+            val formattedDate = req.createdAt.format(formatter)
             val card = createRequestCard(
                 title = "Area: ${req.areaId} | Pet: ${req.petId ?: "Stray"}",
                 desc = req.description,
-                meta = "Status: ${req.status} | Severity: ${req.severity}",
+                meta = "Status: ${req.status} | Date & Time: $formattedDate | Severity: ${req.severity}",
                 severity = req.severity.name,
                 isExpired = false
             ) {
-                showRequestDetailsDialog(req.id, req.areaId, req.petId ?: "None", req.description, req.status.name, "Pending dispatch review.")
+                showRequestDetailsDialog(
+                    req.id,
+                    req.areaId,
+                    req.petId ?: "None",
+                    req.description,
+                    req.status.name,
+                    "Logged on: $formattedDate"
+                )
             }
             container.addView(card)
         }
@@ -90,9 +99,10 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         container.addView(expiredHeader)
 
         expiredList.forEach { req ->
+            val formattedDate = req.createdAt.format(formatter)
             val card = createRequestCard(
                 title = "Expired - Area: ${req.areaId} | Pet: ${req.petId ?: "Stray"}",
-                meta = "Status: Expired Window Elapsed",
+                meta = "Status: Expired Window Elapsed | Logged: $formattedDate",
                 desc = req.description,
                 severity = req.severity.name,
                 isExpired = true
@@ -118,41 +128,6 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
 
         card.setOnClickListener { onClick() }
         return card
-    }
-
-    private fun showMapClusterDialog() {
-        val dialogView = layoutInflater.inflate(R.layout.fragment_admin_map_picker, null)
-
-        // Corrected reference matching map views inside fragment_admin_map_picker.xml
-        mapViewCluster = dialogView.findViewById(R.id.mapViewCluster)
-        mapViewCluster?.onCreate(null)
-
-        val dialog = AlertDialog.Builder(requireContext())
-            .setTitle("Area Requests Cluster Map")
-            .setView(dialogView)
-            .setPositiveButton("Close") { _, _ ->
-                mapViewCluster?.onDestroy()
-            }
-            .create()
-
-        dialog.show()
-        mapViewCluster?.onResume()
-
-        mapViewCluster?.getMapAsync { map ->
-            googleMapInstance = map
-            val tembisa = LatLng(-25.9987, 28.2201)
-            map.moveCamera(CameraUpdateFactory.newLatLngZoom(tembisa, 12f))
-
-            // Add pins for all pending requests
-            DummyRequests.requests.filter { it.latitude != null && it.longitude != null }.forEach { req ->
-                map.addMarker(
-                    MarkerOptions()
-                        .position(LatLng(req.latitude!!, req.longitude!!))
-                        .title("Area: ${req.areaId} (${req.severity})")
-                        .snippet(req.description)
-                )
-            }
-        }
     }
 
     private fun showDropPinMapPicker() {
