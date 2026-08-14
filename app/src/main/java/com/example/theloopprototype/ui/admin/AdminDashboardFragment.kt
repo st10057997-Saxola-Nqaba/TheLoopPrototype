@@ -29,7 +29,7 @@ class AdminDashboardFragment : Fragment(R.layout.fragment_admin_dashboard) {
         }
 
         view.findViewById<Button>(R.id.btnOutcomesSummary).setOnClickListener {
-            Toast.makeText(requireContext(), "Opening Outreach Outcomes summary", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_adminDashboard_to_adminOutreachOutcomes)
         }
 
         view.findViewById<Button>(R.id.btnAdminProfile).setOnClickListener {
