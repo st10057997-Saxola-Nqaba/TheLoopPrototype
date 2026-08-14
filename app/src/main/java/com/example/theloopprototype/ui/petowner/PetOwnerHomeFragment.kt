@@ -53,6 +53,13 @@ class PetOwnerHomeFragment : Fragment() {
         setupClickListeners()
     }
 
+    override fun onResume() {
+        super.onResume()
+        //refreshes every time we come back to home
+        setupRecyclerView()
+        updateStats()
+    }
+
     private fun setupRecyclerView() {
         val pets = DummyData.getPetsForOwner(currentOwnerId)
         val adapter = PetAdapter(pets) { pet ->
@@ -65,8 +72,9 @@ class PetOwnerHomeFragment : Fragment() {
 
     private fun updateStats() {
         val pets = DummyData.getPetsForOwner(currentOwnerId)
+        val requests = DummyData.getRequestsForOwner(currentOwnerId)
         tvPetCount.text = pets.size.toString()
-        tvRequestCount.text = "0" // Can be updated with actual request count
+        tvRequestCount.text = requests.size.toString() // updated with actual request count
     }
 
     private fun setupClickListeners() {

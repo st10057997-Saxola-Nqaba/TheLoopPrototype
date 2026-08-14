@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.databinding.FragmentAddPetBinding
 import com.example.theloopprototype.DummyData
+import com.example.theloopprototype.data.DummyPets
 import com.example.theloopprototype.models.DPet
 import java.time.LocalDate
 import java.util.UUID
@@ -18,6 +19,9 @@ class AddPetFragment : Fragment() {
 
     private var _binding: FragmentAddPetBinding? = null
     private val binding get() = _binding!!
+
+    private val currentOwnerId = "u1"
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -80,7 +84,7 @@ class AddPetFragment : Fragment() {
 
         val pet = DPet(
             id = UUID.randomUUID().toString(),
-            ownerId = "owner1", // In real app, this would be the logged-in user
+            ownerId = currentOwnerId, // In real app, this would be the logged-in user
             animalTypeId = animalTypeId,
             name = name,
             breed = breed,
@@ -90,6 +94,10 @@ class AddPetFragment : Fragment() {
             heightCm = height,
             isSterilised = sterilised
         )
+
+        //writes to fake memory
+        DummyPets.pets.add(pet)
+
 
         // In real app, save to database
         // For prototype, just navigate back
