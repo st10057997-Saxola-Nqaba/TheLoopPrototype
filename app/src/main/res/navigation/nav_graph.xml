@@ -42,6 +42,9 @@
         <action
             android:id="@+id/action_adminRequestsFragment_to_adminExpiredMapFragment"
             app:destination="@id/adminExpiredMapFragment" />
+        <action
+            android:id="@+id/action_adminRequestsFragment_to_adminMapPickerFragment"
+            app:destination="@id/adminMapPickerFragment" />
     </fragment>
 
     <!-- 2. AHT Home -->
@@ -290,4 +293,11 @@
         android:name="com.example.theloopprototype.ui.admin.AdminExpiredMapFragment"
         android:label="Expired Requests Map"
         tools:layout="@layout/fragment_admin_expired_map" />
+
+    <!-- Schedule Area Map View (Full Screen) -->
+    <fragment
+        android:id="@+id/adminMapPickerFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminMapPickerFragment"
+        android:label="Schedule Area Map"
+        tools:layout="@layout/fragment_admin_map_picker" />
 </navigation>
