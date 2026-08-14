@@ -31,6 +31,9 @@
         <action
             android:id="@+id/action_adminDashboard_to_adminRequests"
             app:destination="@id/adminRequestsFragment" />
+        <action
+            android:id="@+id/action_adminDashboard_to_adminSchedules"
+            app:destination="@id/adminSchedulesFragment" />
     </fragment>
 
     <!-- Admin Requests & Demand Concentration View -->
@@ -46,6 +49,13 @@
             android:id="@+id/action_adminRequestsFragment_to_adminMapPickerFragment"
             app:destination="@id/adminMapPickerFragment" />
     </fragment>
+
+    <!-- Admin Schedules & Notifications Manager -->
+    <fragment
+        android:id="@+id/adminSchedulesFragment"
+        android:name="com.example.theloopprototype.ui.admin.AdminSchedulesFragment"
+        android:label="Admin Schedules"
+        tools:layout="@layout/fragment_admin_schedules" />
 
     <!-- 2. AHT Home -->
     <fragment
@@ -300,4 +310,5 @@
         android:name="com.example.theloopprototype.ui.admin.AdminMapPickerFragment"
         android:label="Schedule Area Map"
         tools:layout="@layout/fragment_admin_map_picker" />
+
 </navigation>
