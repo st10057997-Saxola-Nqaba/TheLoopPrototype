@@ -3,6 +3,7 @@ package com.example.theloopprototype.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theloopprototype.R
@@ -29,7 +30,7 @@ class AdminScheduleListAdapter(
     class ScheduleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val tvTitle: TextView = itemView.findViewById(R.id.tvScheduleTitle)
         private val tvDetails: TextView = itemView.findViewById(R.id.tvScheduleDetails)
-        private val btnEdit: TextView = itemView.findViewById(R.id.btnEditSchedule)
+        private val btnEdit: Button = itemView.findViewById(R.id.btnEditSchedule)
 
         fun bind(schedule: DScheduledRequestList, onEditClick: (DScheduledRequestList) -> Unit) {
             tvTitle.text = "Schedule List: ${schedule.id} | Area: ${schedule.areaId}"
