@@ -1,50 +1,180 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="#F5F5F5"
     android:padding="16dp">
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Create a Visit Entry"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/said_navy_text"
-        android:paddingBottom="16dp"/>
+        android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/etCareGiven"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Log care given..."
-        android:minLines="3"
-        android:gravity="top"
-        android:inputType="textMultiLine"
-        android:layout_marginBottom="12dp"/>
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="16dp">
 
-    <EditText
-        android:id="@+id/etWelfareConcern"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Flag specific illness/disease/welfare concern..."
-        android:minLines="2"
-        android:layout_marginBottom="12dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Create Visit Entry"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#1A237E" />
 
-    <CheckBox
-        android:id="@+id/cbReturnVisit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Flag for return visit"
-        android:textSize="16sp"
-        android:layout_marginBottom="24dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Log treatment and care provided"
+                android:textSize="14sp"
+                android:textColor="#666666" />
 
-    <Button
-        android:id="@+id/btnSaveVisit"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Save Visit Entry"
-        android:backgroundTint="@color/said_primary"/>
+        </LinearLayout>
 
-</LinearLayout>
+        <!-- Divider -->
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#E0E0E0"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Pet Info Card (Optional - for context) -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp"
+            android:layout_marginBottom="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Pet: [Pet Name]"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#1A237E" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Owner: [Owner Name]"
+                    android:textSize="14sp"
+                    android:textColor="#666666" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Care Given -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Treatment Details"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etCareGiven"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Log care given... *"
+                android:minLines="3"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Illness / Welfare Concern -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Illness / Welfare Concern"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E"
+            android:layout_marginBottom="8dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etWelfareConcern"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Flag illness/disease/welfare concern..."
+                android:minLines="2"
+                android:gravity="top"
+                android:inputType="textMultiLine" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Illness Type Spinner -->
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp"
+            app:boxBackgroundMode="outline"
+            app:endIconMode="clear_text">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/spinnerIllnessType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Select Illness Type"
+                android:focusable="false"
+                android:inputType="none"
+                android:drawableEnd="@android:drawable/arrow_down_float"
+                android:clickable="true"
+                android:focusableInTouchMode="false" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!-- Return Visit Checkbox -->
+        <com.google.android.material.checkbox.MaterialCheckBox
+            android:id="@+id/cbReturnVisit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Flag for return visit"
+            android:textSize="16sp"
+            android:textColor="#1A237E"
+            android:layout_marginVertical="8dp" />
+
+        <!-- Save Button -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveVisit"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Save Visit Entry"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:layout_marginTop="16dp"
+            style="@style/Widget.Material3.Button" />
+
+    </LinearLayout>
+
+</ScrollView>
