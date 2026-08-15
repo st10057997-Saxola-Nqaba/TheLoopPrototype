@@ -2,6 +2,8 @@ package com.example.theloopprototype.ui.aht
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -27,7 +29,18 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
         val etAddress = view.findViewById<EditText>(R.id.etAddress)
         val etPetName = view.findViewById<EditText>(R.id.etPetName)
         val etPetBreed = view.findViewById<EditText>(R.id.etPetBreed)
+        val spinnerAnimalType = view.findViewById<AutoCompleteTextView>(R.id.spinnerAnimalType)
         val btnSave = view.findViewById<Button>(R.id.btnSaveProfile)
+
+        // Populate Animal Type Dropdown Options
+        val animalTypes = listOf("Dog", "Cat", "Horse", "Livestock", "Other")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, animalTypes)
+        spinnerAnimalType?.setAdapter(adapter)
+
+        // Force dropdown to show on click/focus
+        spinnerAnimalType?.setOnClickListener {
+            spinnerAnimalType.showDropDown()
+        }
 
         val initialPhone = arguments?.getString("initialPhone")
         if (!initialPhone.isNullOrBlank()) {
@@ -41,6 +54,7 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
             val address = etAddress.text.toString().trim()
             val petName = etPetName.text.toString().trim()
             val petBreed = etPetBreed.text.toString().trim()
+            val animalTypeSelection = spinnerAnimalType?.text.toString().trim()
 
             // Enforce mandatory fields including address
             if (fName.isBlank() || lName.isBlank() || phone.isBlank() || address.isBlank() || petName.isBlank()) {
@@ -64,7 +78,7 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
             val newPet = DPet(
                 id = newPetId,
                 ownerId = newOwnerId,
-                animalTypeId = "at1",
+                animalTypeId = animalTypeSelection.ifBlank { "Dog" },
                 name = petName,
                 breed = petBreed,
                 sex = "Unknown",
