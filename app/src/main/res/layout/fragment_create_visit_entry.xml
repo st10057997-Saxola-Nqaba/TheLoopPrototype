@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCreateVisit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationContentDescription="Back"
+            android:layout_marginBottom="4dp" />
+
         <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -41,41 +49,6 @@
             android:layout_height="1dp"
             android:background="#E0E0E0"
             android:layout_marginBottom="16dp" />
-
-        <!-- Pet Info Card (Optional - for context) -->
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="12dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="16dp"
-                android:gravity="center_vertical">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Pet: [Pet Name]"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="#1A237E" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Owner: [Owner Name]"
-                    android:textSize="14sp"
-                    android:textColor="#666666" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
 
         <!-- Care Given -->
         <TextView
@@ -128,27 +101,6 @@
                 android:minLines="2"
                 android:gravity="top"
                 android:inputType="textMultiLine" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <!-- Illness Type Spinner -->
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="12dp"
-            app:boxBackgroundMode="outline"
-            app:endIconMode="clear_text">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/spinnerIllnessType"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Select Illness Type"
-                android:focusable="false"
-                android:inputType="none"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:clickable="true"
-                android:focusableInTouchMode="false" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

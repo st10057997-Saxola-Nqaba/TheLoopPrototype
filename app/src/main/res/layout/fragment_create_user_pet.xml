@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarCreateUserPet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationContentDescription="Back"
+            android:layout_marginBottom="4dp" />
+
         <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -167,24 +175,22 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
-        <!-- Animal Type Spinner -->
+        <!-- Animal Type Dropdown -->
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:endIconMode="clear_text">
+            app:endIconMode="dropdown_menu">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <AutoCompleteTextView
                 android:id="@+id/spinnerAnimalType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="Animal Type"
-                android:focusable="false"
                 android:inputType="none"
-                android:drawableEnd="@android:drawable/arrow_down_float"
-                android:clickable="true"
-                android:focusableInTouchMode="false" />
+                android:focusable="false"
+                android:clickable="true" />
 
         </com.google.android.material.textfield.TextInputLayout>
 

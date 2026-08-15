@@ -2,6 +2,8 @@ package com.example.theloopprototype.ui.aht
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -13,6 +15,7 @@ import com.example.theloopprototype.data.DummyUsers
 import com.example.theloopprototype.models.DPet
 import com.example.theloopprototype.models.DUser
 import com.example.theloopprototype.models.Role
+import com.google.android.material.appbar.MaterialToolbar
 import java.time.LocalDate
 import java.util.UUID
 
@@ -21,13 +24,27 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbarCreateUserPet)
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         val etFirstName = view.findViewById<EditText>(R.id.etFirstName)
         val etLastName = view.findViewById<EditText>(R.id.etLastName)
         val etPhone = view.findViewById<EditText>(R.id.etPhone)
         val etAddress = view.findViewById<EditText>(R.id.etAddress)
         val etPetName = view.findViewById<EditText>(R.id.etPetName)
         val etPetBreed = view.findViewById<EditText>(R.id.etPetBreed)
+        val spinnerAnimalType = view.findViewById<AutoCompleteTextView>(R.id.spinnerAnimalType)
         val btnSave = view.findViewById<Button>(R.id.btnSaveProfile)
+
+        val animalTypes = listOf("Dog", "Cat", "Horse", "Livestock", "Other")
+        val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, animalTypes)
+        spinnerAnimalType?.setAdapter(adapter)
+
+        spinnerAnimalType?.setOnClickListener {
+            spinnerAnimalType.showDropDown()
+        }
 
         val initialPhone = arguments?.getString("initialPhone")
         if (!initialPhone.isNullOrBlank()) {
@@ -41,8 +58,8 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
             val address = etAddress.text.toString().trim()
             val petName = etPetName.text.toString().trim()
             val petBreed = etPetBreed.text.toString().trim()
+            val animalTypeSelection = spinnerAnimalType?.text.toString().trim()
 
-            // Enforce mandatory fields including address
             if (fName.isBlank() || lName.isBlank() || phone.isBlank() || address.isBlank() || petName.isBlank()) {
                 Toast.makeText(requireContext(), "Please fill in all mandatory fields (* including Address)", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
@@ -64,7 +81,7 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
             val newPet = DPet(
                 id = newPetId,
                 ownerId = newOwnerId,
-                animalTypeId = "at1",
+                animalTypeId = animalTypeSelection.ifBlank { "Dog" },
                 name = petName,
                 breed = petBreed,
                 sex = "Unknown",
