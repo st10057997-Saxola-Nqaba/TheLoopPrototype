@@ -71,12 +71,12 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
     private fun refreshStats(view: View){
         val pending = DummyRequests.requests.count{ it.status == RequestStatus.PENDING }
         val scheduled = DummyRequests.requests.count{ it.status == RequestStatus.SCHEDULED }
-        val fulfilled = DummyRequests.requests.count{ it.status == RequestStatus.FULFILLED }
+        val fulfilled = DummyRequests.requests.count{ it.status == RequestStatus.EXPIRED }
 
 
-        view.findViewById<TextView>(R.id.tvPendingRequests).text = pending.toString()
-        view.findViewById<TextView>(R.id.tvScheduledRequests).text = scheduled.toString()
-        view.findViewById<TextView>(R.id.tvFulfilledRequests).text = fulfilled.toString()
+        view.findViewById<TextView>(R.id.tvPendingCount).text = pending.toString()
+        view.findViewById<TextView>(R.id.tvScheduledCount).text = scheduled.toString()
+        view.findViewById<TextView>(R.id.tvExpiredCount).text = fulfilled.toString()
 
     }
 
