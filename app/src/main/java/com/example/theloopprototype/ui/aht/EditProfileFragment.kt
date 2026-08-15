@@ -8,14 +8,19 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
+import com.google.android.material.appbar.MaterialToolbar
 
 class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbarEditProfile)
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+
         val etEditName = view.findViewById<EditText>(R.id.etEditName)
-        val etNewPassword = view.findViewById<EditText>(R.id.etNewPassword)
         val btnSave = view.findViewById<Button>(R.id.btnSaveProfileChanges)
 
         etEditName.setText("John Doe")
