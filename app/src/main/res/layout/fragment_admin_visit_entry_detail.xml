@@ -128,23 +128,6 @@
                     android:textColor="#1A237E"
                     android:layout_marginBottom="12dp" />
 
-                <!-- Pet -->
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pet"
-                    android:textSize="12sp"
-                    android:textColor="#999999"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/textDetailPet"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="[Pet Name]"
-                    android:textSize="16sp"
-                    android:textColor="#1A237E"
-                    android:layout_marginBottom="12dp" />
 
                 <!-- Outcome -->
                 <TextView
