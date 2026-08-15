@@ -1,81 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/said_background"
+    android:background="#F5F5F5"
     android:orientation="vertical"
-    android:padding="20dp">
+    android:padding="16dp">
 
-    <TextView
+    <!-- Header -->
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Admin: Manage Requests &amp; Map Concentration"
-        android:textColor="@color/said_navy_text"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        android:paddingBottom="12dp"/>
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manage Requests"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="#1A237E" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="View and manage requests by area"
+            android:textSize="12sp"
+            android:textColor="#666666" />
+
+    </LinearLayout>
+
+    <!-- Divider -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#E0E0E0"
+        android:layout_marginBottom="12dp" />
+
+    <!-- Stats Row -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="12dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginEnd="8dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvPendingCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#FF9800"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pending"
+                    android:textSize="11sp"
+                    android:textColor="#666666"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvScheduledCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#2196F3"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Scheduled"
+                    android:textSize="11sp"
+                    android:textColor="#666666"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="8dp"
+            app:cardElevation="4dp"
+            app:cardCornerRadius="12dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvExpiredCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="#9E9E9E"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expired"
+                    android:textSize="11sp"
+                    android:textColor="#666666"/>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
 
     <!-- Action Toolbar for Admin Operations -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingBottom="12dp">
+        android:layout_marginBottom="12dp">
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnViewMap"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_weight="1"
-            android:text="View Map by Area"
-            android:backgroundTint="@color/said_accent"
+            android:text="View Map"
             android:textSize="12sp"
-            android:layout_marginEnd="2dp"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#FF9800"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginEnd="4dp"
+            style="@style/Widget.Material3.Button" />
 
-        <!-- Added Button to match AdminRequestsFragment.kt reference -->
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnViewExpiredMap"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_weight="1"
             android:text="Expired Map"
-            android:backgroundTint="@android:color/holo_red_dark"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#D32F2F"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginEnd="4dp"
+            style="@style/Widget.Material3.Button" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCreateSchedule"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="44dp"
             android:layout_weight="1"
-            android:text="Schedule Area"
-            android:backgroundTint="@color/said_primary"
+            android:text="Schedule"
             android:textSize="12sp"
-            android:layout_marginStart="2dp"/>
+            android:textStyle="bold"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#4CAF50"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:layout_marginStart="4dp"
+            style="@style/Widget.Material3.Button" />
+
     </LinearLayout>
 
+    <!-- Requests List -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Requests List"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#1A237E"
+        android:layout_marginBottom="8dp" />
+
     <!-- Scrollable container for interactive request items -->
-    <ScrollView
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@android:color/white"
-        android:padding="12dp">
+        app:cardElevation="4dp"
+        app:cardCornerRadius="12dp">
 
-        <LinearLayout
-            android:id="@+id/containerRequestsList"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:padding="8dp">
 
-    <Button
+            <LinearLayout
+                android:id="@+id/containerRequestsList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+        </ScrollView>
+
+    </androidx.cardview.widget.CardView>
+
+    <!-- Back Button -->
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnBackToDashboard"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:text="Back to Admin Dashboard"
-        android:backgroundTint="@color/said_navy_text"
-        android:layout_marginTop="12dp"/>
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#1A237E"
+        android:layout_marginTop="12dp"
+        style="@style/Widget.Material3.Button" />
 
 </LinearLayout>
