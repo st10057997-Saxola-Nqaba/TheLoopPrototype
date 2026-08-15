@@ -11,6 +11,14 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarOwnerDetail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:navigationIcon="@drawable/ic_arrow_back"
+            app:navigationContentDescription="Back"
+            android:layout_marginBottom="4dp" />
+
         <!-- Header -->
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,166 +148,6 @@
 
         </androidx.cardview.widget.CardView>
 
-        <!-- Pets Section -->
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Linked Pets &amp; Clinical History"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#1A237E"
-            android:layout_marginBottom="12dp" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardElevation="4dp"
-            app:cardCornerRadius="12dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <!-- Pet 1 -->
-                <LinearLayout
-                    android:id="@+id/layoutPet1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:id="@+id/tvPet1Name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="🐾 [Pet Name]"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#1A237E" />
-
-                    <TextView
-                        android:id="@+id/tvPet1Details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="[Breed] • [Gender] • [Age]"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/tvPet1History"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="History: [Visit count] visit(s)"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50"
-                        android:layout_marginTop="4dp" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/dividerPet1"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0"
-                    android:layout_marginVertical="8dp" />
-
-                <!-- Pet 2 -->
-                <LinearLayout
-                    android:id="@+id/layoutPet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_marginBottom="12dp">
-
-                    <TextView
-                        android:id="@+id/tvPet2Name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="🐾 [Pet Name]"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#1A237E" />
-
-                    <TextView
-                        android:id="@+id/tvPet2Details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="[Breed] • [Gender] • [Age]"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/tvPet2History"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="History: [Visit count] visit(s)"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50"
-                        android:layout_marginTop="4dp" />
-
-                </LinearLayout>
-
-                <View
-                    android:id="@+id/dividerPet2"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0"
-                    android:layout_marginVertical="8dp" />
-
-                <!-- Pet 3 -->
-                <LinearLayout
-                    android:id="@+id/layoutPet3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tvPet3Name"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="🐾 [Pet Name]"
-                        android:textSize="16sp"
-                        android:textStyle="bold"
-                        android:textColor="#1A237E" />
-
-                    <TextView
-                        android:id="@+id/tvPet3Details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="[Breed] • [Gender] • [Age]"
-                        android:textSize="14sp"
-                        android:textColor="#666666" />
-
-                    <TextView
-                        android:id="@+id/tvPet3History"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="History: [Visit count] visit(s)"
-                        android:textSize="14sp"
-                        android:textColor="#4CAF50"
-                        android:layout_marginTop="4dp" />
-
-                </LinearLayout>
-
-                <!-- No Pets Message -->
-                <TextView
-                    android:id="@+id/tvNoPets"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="No pets registered for this owner"
-                    android:textSize="14sp"
-                    android:textColor="#999999"
-                    android:textAlignment="center"
-                    android:visibility="gone"
-                    android:paddingVertical="16dp" />
-
-            </LinearLayout>
-
-        </androidx.cardview.widget.CardView>
-
         <!-- Action Buttons -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnCreateVisitEntry"
@@ -312,18 +160,6 @@
             android:backgroundTint="#4CAF50"
             android:layout_marginBottom="12dp"
             style="@style/Widget.Material3.Button" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnUpdateOwnerPet"
-            android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="Update Owner &amp; Pet Data"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#1A237E"
-            android:backgroundTint="#E3F2FD"
-            android:layout_marginBottom="12dp"
-            style="@style/Widget.Material3.Button.OutlinedButton" />
 
     </LinearLayout>
 
