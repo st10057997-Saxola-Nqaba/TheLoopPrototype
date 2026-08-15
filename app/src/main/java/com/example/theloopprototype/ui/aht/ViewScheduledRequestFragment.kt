@@ -1,17 +1,35 @@
 package com.example.theloopprototype.ui.aht
 
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.data.*
+import com.google.android.material.appbar.MaterialToolbar
 
-class ViewScheduledRequestFragment : Fragment(R.layout.fragment_view_scheduled_request) {
+class ViewScheduledRequestFragment : Fragment() {
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        return inflater.inflate(R.layout.fragment_view_scheduled_request, container, false)
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Setup Toolbar back button
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbarScheduleDetails)
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         // Dynamically retrieve the passed argument instead of hardcoding "srl1"
         val targetListId = arguments?.getString("targetListId") ?: "srl1"
