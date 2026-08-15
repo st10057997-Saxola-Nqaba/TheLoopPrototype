@@ -15,6 +15,7 @@ import com.example.theloopprototype.data.DummyUsers
 import com.example.theloopprototype.models.DPet
 import com.example.theloopprototype.models.DUser
 import com.example.theloopprototype.models.Role
+import com.google.android.material.appbar.MaterialToolbar
 import java.time.LocalDate
 import java.util.UUID
 
@@ -22,6 +23,11 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val toolbar = view.findViewById<MaterialToolbar>(R.id.toolbarCreateUserPet)
+        toolbar?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val etFirstName = view.findViewById<EditText>(R.id.etFirstName)
         val etLastName = view.findViewById<EditText>(R.id.etLastName)
@@ -32,12 +38,10 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
         val spinnerAnimalType = view.findViewById<AutoCompleteTextView>(R.id.spinnerAnimalType)
         val btnSave = view.findViewById<Button>(R.id.btnSaveProfile)
 
-        // Populate Animal Type Dropdown Options
         val animalTypes = listOf("Dog", "Cat", "Horse", "Livestock", "Other")
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_dropdown_item_1line, animalTypes)
         spinnerAnimalType?.setAdapter(adapter)
 
-        // Force dropdown to show on click/focus
         spinnerAnimalType?.setOnClickListener {
             spinnerAnimalType.showDropDown()
         }
@@ -56,7 +60,6 @@ class CreateUserPetFragment : Fragment(R.layout.fragment_create_user_pet) {
             val petBreed = etPetBreed.text.toString().trim()
             val animalTypeSelection = spinnerAnimalType?.text.toString().trim()
 
-            // Enforce mandatory fields including address
             if (fName.isBlank() || lName.isBlank() || phone.isBlank() || address.isBlank() || petName.isBlank()) {
                 Toast.makeText(requireContext(), "Please fill in all mandatory fields (* including Address)", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
