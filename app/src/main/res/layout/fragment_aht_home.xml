@@ -70,13 +70,18 @@
         android:orientation="horizontal"
         android:layout_marginBottom="16dp">
 
+        <!-- Pending Card -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardPending"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginEnd="8dp"
             app:cardElevation="4dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,14 +110,19 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- Scheduled Card -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardScheduled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
             app:cardElevation="4dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -141,13 +151,18 @@
 
         </androidx.cardview.widget.CardView>
 
+        <!-- Fulfilled Card -->
         <androidx.cardview.widget.CardView
+            android:id="@+id/cardFulfilled"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_marginStart="8dp"
             app:cardElevation="4dp"
-            app:cardCornerRadius="12dp">
+            app:cardCornerRadius="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?attr/selectableItemBackground">
 
             <LinearLayout
                 android:layout_width="match_parent"
