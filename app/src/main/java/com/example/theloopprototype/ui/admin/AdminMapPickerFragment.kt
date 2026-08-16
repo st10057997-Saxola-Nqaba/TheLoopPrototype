@@ -4,9 +4,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.Toast
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
+import com.example.theloopprototype.models.DScheduledRequestList
+import com.example.theloopprototype.models.ScheduleStatus
+import com.google.android.gms.maps.model.Marker
 import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.RequestStatus
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -15,13 +19,22 @@ import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
+import kotlin.math.pow
 
 class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnMapReadyCallback {
 
     private var mapView: MapView? = null
     private var googleMap: GoogleMap? = null
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
+
+    private var pinnedLocation: LatLng? = null
+
+    private var resolvedAreaId: String? = null
+
+    private var dropPinMarker: Marker? = null
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,10 +43,36 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
         mapView?.onCreate(savedInstanceState)
         mapView?.getMapAsync(this)
 
+        val tvSelectedLocation = view.findViewById<TextView>(R.id.tvSelectedLocation)
         val btnConfirm = view.findViewById<Button>(R.id.btnConfirmPinLocation)
+        tvSelectedLocation.text = "No location selected"
+
+
+        //Creates the list(pin + nearest area)
         btnConfirm?.setOnClickListener {
-            Toast.makeText(requireContext(), "Schedule location confirmed & list created!", Toast.LENGTH_LONG).show()
-            findNavController().popBackStack()
+            val areaId = resolvedAreaId
+
+            if ( pinnedLocation == null || areaId == null){
+
+                Toast.makeText(requireContext(), "Tap a point on the map to select a location first.", Toast.LENGTH_LONG).show()
+                return@setOnClickListener
+
+            }
+
+            val newId = "srl_${System.currentTimeMillis()}"
+            val newList = DScheduledRequestList(
+                id = newId,
+                areaId = areaId,
+                adminId = "u8",
+                scheduleDate = LocalDateTime.now().plusDays(3),
+                status = ScheduleStatus.CONFIRMED
+            )
+
+            DummyRequests.scheduledRequestLists.add(newList)
+            val movedCount = DummyRequests.linkPendingRequestsToSchedule(areaId,newId)
+
+            Toast.makeText(requireContext(), "Schedule created for $areaId , $movedCount pending requests moved to schedule", Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.adminSchedulesFragment)
         }
     }
 
@@ -52,6 +91,30 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
                     .snippet("${req.description} - Date/Time: $formattedDate")
             )
         }
+
+
+
+        //Finds the nearest area with pending requests
+        map.setOnMapClickListener { tapped ->
+            dropPinMarker?.remove()
+            dropPinMarker = map.addMarker(MarkerOptions().position(tapped).title("Selected Schedule Location"))
+            pinnedLocation = tapped
+
+            val nearestPending = DummyRequests.requests
+                .filter { it.latitude != null && it.longitude != null && it.status == RequestStatus.PENDING }
+                .minByOrNull { req ->
+                    val dLat = req.latitude!! - tapped.latitude
+                    val dLng = req.longitude!! - tapped.longitude
+                    dLat.pow(2) + dLng.pow(2)
+                }
+
+            resolvedAreaId = nearestPending?.areaId
+            val label = resolvedAreaId ?: "No nearby serviced area found"
+            view?.findViewById<TextView>(R.id.tvSelectedLocation)?.text = "Selected area: $label (${"%.4f".format(tapped.latitude)}, ${"%.4f".format(tapped.longitude)})"
+
+        }
+
+
     }
 
     override fun onResume() {

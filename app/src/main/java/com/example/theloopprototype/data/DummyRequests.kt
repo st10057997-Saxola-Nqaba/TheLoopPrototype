@@ -37,7 +37,8 @@ object DummyRequests {
         DScheduledRequestList("srl2", "area2", "u8", LocalDateTime.of(2026, 8, 18, 8, 0), ScheduleStatus.CONFIRMED),
     )
 
-    val requestListItems = listOf(
+    //mutable so admin can record the requests it schedules
+    val requestListItems = mutableListOf(
         DRequestListItem("rli1", "srl1", "r2", 1),
         DRequestListItem("rli2", "srl2", "r7", 1),
     )
@@ -71,4 +72,37 @@ object DummyRequests {
             )
         )
     )
+
+
+    // schedules all pending requests in areaid under schedulelistid
+    fun linkPendingRequestsToSchedule(areaId: String, scheduleListId: String): Int {
+        var nextSortOrder = (requestListItems
+            .filter { it.scheduleRequestListId == scheduleListId }
+            .maxOfOrNull { it.sortOrder } ?: 0) + 1
+
+        val toMove = requests.filter { it.areaId == areaId && it.status == RequestStatus.PENDING }
+
+        toMove.forEach { pending ->
+            val index = requests.indexOf(pending)
+            if (index != -1) {
+                requests[index] = pending.copy(status = RequestStatus.SCHEDULED)
+            }
+            requestListItems.add(
+                DRequestListItem(
+                    id = "rli_${System.currentTimeMillis()}_${pending.id}",
+                    scheduleRequestListId = scheduleListId,
+                    requestId = pending.id,
+                    sortOrder = nextSortOrder++
+                )
+            )
+        }
+
+        return toMove.size
+    }
+
+
+
+
+
+
 }

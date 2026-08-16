@@ -70,8 +70,28 @@ class AdminOutreachOutcomesFragment : Fragment(R.layout.fragment_admin_outreach_
             }
 
             container.addView(cardView)
+
         }
+
+
+        refreshStats(view)
+
     }
+
+
+    private fun refreshStats(view: View) {
+        val allVisits = DummyRequests.outreachOutcomes.flatMap { it.visitSummaries }
+        val illnessFlags = allVisits.count { !it.flagsPosted.equals("None", ignoreCase = true) }
+        // generatedfromvisitentryid indicates a return visit per schema
+        val returnVisits = DummyRequests.requests.count { it.generatedFromVisitEntryId != null }
+
+        view.findViewById<TextView>(R.id.tvIllnessFlags).text = illnessFlags.toString()
+        view.findViewById<TextView>(R.id.tvReturnVisits).text = returnVisits.toString()
+        view.findViewById<TextView>(R.id.tvTotalVisits).text = allVisits.size.toString()
+    }
+
+
+
 
     override fun onResume() {
         super.onResume()

@@ -33,6 +33,23 @@ class AdminVisitEntryDetailFragment : Fragment(R.layout.fragment_admin_visit_ent
             view.findViewById<TextView>(R.id.textDetailOfficer).text = "AHT Officer: ${it.officerId}"
             view.findViewById<TextView>(R.id.textDetailTimestamp).text = "Timestamp: ${it.timestamp}"
             view.findViewById<TextView>(R.id.textDetailNotes).text = "Operational Notes:\n${it.detailedNotes}"
+
+
+            //Reflects whether specific visit has a flag posted against it
+            val hasFlag = !it.flagsPosted.equals("None", ignoreCase = true)
+            val badge = view.findViewById<TextView>(R.id.tvStatusBadge)
+            if (hasFlag){
+                badge.text ="FLAGGED"
+                badge.setBackgroundResource(R.drawable.bg_status_pending)
+            }else{
+                badge.text ="CLEAR"
+                badge.setBackgroundResource(R.drawable.bg_status_fulfilled)
+
+            }
+
+
+
+
         }
     }
 }

@@ -35,6 +35,7 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         val btnViewExpiredMap = view.findViewById<Button>(R.id.btnViewExpiredMap)
 
         refreshRequestsList(containerList)
+        refreshStats(view);
 
         // Navigate to full-screen Pending Cluster/Map Screen
         btnViewMap.setOnClickListener {
@@ -55,6 +56,31 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
             findNavController().popBackStack()
         }
     }
+
+    override fun onResume(){
+        super.onResume()
+        view?.let {
+            refreshRequestsList(it.findViewById(R.id.containerRequestsList))
+            refreshStats(it)
+
+        }
+
+
+    }
+
+    private fun refreshStats(view: View){
+        val pending = DummyRequests.requests.count{ it.status == RequestStatus.PENDING }
+        val scheduled = DummyRequests.requests.count{ it.status == RequestStatus.SCHEDULED }
+        val fulfilled = DummyRequests.requests.count{ it.status == RequestStatus.EXPIRED }
+
+
+        view.findViewById<TextView>(R.id.tvPendingCount).text = pending.toString()
+        view.findViewById<TextView>(R.id.tvScheduledCount).text = scheduled.toString()
+        view.findViewById<TextView>(R.id.tvExpiredCount).text = fulfilled.toString()
+
+    }
+
+
 
     private fun refreshRequestsList(container: LinearLayout) {
         container.removeAllViews()
@@ -204,7 +230,12 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
 
                 // Fixed: using .add() on the now-mutable scheduledRequestLists list
                 DummyRequests.scheduledRequestLists.add(newList)
-                Toast.makeText(context, "Schedule list created successfully!", Toast.LENGTH_SHORT).show()
+
+
+                val movedCount = DummyRequests.linkPendingRequestsToSchedule(effectiveArea,newId)
+
+
+                Toast.makeText(context, "Schedule list created $movedCount pending request in $effectiveArea moved to scheduled", Toast.LENGTH_SHORT).show()
 
                 // Navigate directly to the Admin Schedules fragment upon saving
                 findNavController().navigate(R.id.adminSchedulesFragment)
