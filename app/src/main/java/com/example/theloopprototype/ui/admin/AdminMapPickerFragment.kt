@@ -76,6 +76,14 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
         }
     }
 
+
+    // Code Attribution
+// Fix for map pin drop not resolving a real area
+// Used nearest-neighbour pattern to resolve areaId by comparing tapped
+// LatLng against pending request coordinates
+// Automating GIS Processes (2018) Nearest Neighbour Analysis.
+// https://automating-gis-processes.github.io/CSC18/lessons/L4/nearest-neighbour.html
+
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
         val tembisa = LatLng(-25.9987, 28.2201)

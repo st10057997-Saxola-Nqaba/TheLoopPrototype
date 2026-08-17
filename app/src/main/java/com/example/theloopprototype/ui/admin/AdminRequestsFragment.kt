@@ -58,6 +58,21 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         }
     }
 
+
+    // Code Attribution
+//
+// Fix: Resolved NullPointerException in AdminRequestsFragment caused by
+// incorrect view ID references in stat widgets.
+// - Removed references to R.id.tvPendingRequests, R.id.tvScheduledCount, etc.
+//   (these IDs only exist in fragment_admin_dashboard.xml)
+// - Updated to use the correct IDs from this fragment's own layout:
+//   tvPendingCount, tvScheduledCount, tvExpiredCount (fragment_admin_requests.xml)
+//
+// References:
+// - Birch, J. (2019). Exploring View Binding on Android. Google Developer Experts.
+//   https://medium.com/google-developer-experts/exploring-view-binding-on-android-44e57ba11635
+// - Joshi, S. (n.d.). How to Find, Prevent and Solve NullPointerException in Mobile Apps.
+//   DEV Community. https://dev.to/shubham_joshi_expert/how-to-find-prevent-and-solve-javalangnullpointerexception-in-mobile-apps-4304
     override fun onResume(){
         super.onResume()
         view?.let {

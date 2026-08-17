@@ -5,6 +5,20 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 
 object DummyRequests {
+
+    // Code Attribution
+//
+// Fix: Submitted visit requests are now properly persisted.
+// Changed DummyRequests.requests from listOf() (immutable) to mutableListOf()
+// to allow dynamic addition of new requests.
+//
+// References:
+// - Kotlin Documentation. (n.d.). Collections overview.
+//   https://kotlinlang.org/docs/collections-overview.html
+// - Kotlin Documentation. (n.d.). Collections in Java and Kotlin.
+//   https://kotlinlang.org/docs/java-to-kotlin-collections-guide.html
+
+
     var requests = mutableListOf(
         DRequest("r1", "u1", "p1", "area2", Severity.HIGH, "Limping on front-left leg since yesterday",
             RequestStatus.PENDING, -25.9987, 28.2201, null,
@@ -37,7 +51,21 @@ object DummyRequests {
         DScheduledRequestList("srl2", "area2", "u8", LocalDateTime.of(2026, 8, 18, 8, 0), ScheduleStatus.CONFIRMED),
     )
 
-    //mutable so admin can record the requests it schedules
+
+
+
+    // Code Attribution
+//
+// FR16 Implementation: Creating a schedule now correctly links and schedules
+// all pending requests.
+// - Added linkPendingRequestsToSchedule() to establish the association
+// - Changed requestListItems from listOf() (immutable) to mutableListOf()
+//   to allow dynamic addition of requests during schedule creation
+//
+// Note: No external reference cited — this implementation was derived directly
+// from functional requirement FR16 traceability.
+
+
     val requestListItems = mutableListOf(
         DRequestListItem("rli1", "srl1", "r2", 1),
         DRequestListItem("rli2", "srl2", "r7", 1),
