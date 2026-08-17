@@ -132,7 +132,7 @@ android:padding="16dp">
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:layout_marginTop="16dp"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="8dp"
     app:cardCornerRadius="12dp">
 

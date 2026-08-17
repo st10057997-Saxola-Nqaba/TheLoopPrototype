@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:text="Create Visit Entry"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:text="Treatment Details"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginBottom="8dp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -84,7 +84,7 @@
             android:text="Illness / Welfare Concern"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginBottom="8dp" />
 
         <com.google.android.material.textfield.TextInputLayout
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:text="Flag for return visit"
             android:textSize="16sp"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginVertical="8dp" />
 
         <!-- Save Button -->
@@ -123,7 +123,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/said_primary"
             android:layout_marginTop="16dp"
             style="@style/Widget.Material3.Button" />
 

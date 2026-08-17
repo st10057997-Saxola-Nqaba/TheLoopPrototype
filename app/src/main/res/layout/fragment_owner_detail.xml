@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:text="Owner &amp; Pet Details"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:text="Owner Information"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginBottom="12dp" />
 
         <androidx.cardview.widget.CardView
@@ -88,7 +88,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Owner Name]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Cellphone -->
@@ -106,7 +106,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Phone Number]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Email -->
@@ -124,7 +124,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Email Address]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Address -->
@@ -142,7 +142,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Physical Address]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E" />
+                    android:textColor="@color/said_accent" />
 
             </LinearLayout>
 
@@ -157,7 +157,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/said_primary"
             android:layout_marginBottom="12dp"
             style="@style/Widget.Material3.Button" />
 

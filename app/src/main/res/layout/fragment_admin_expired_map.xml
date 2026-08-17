@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5">
+    android:background="@color/said_background">
 
     <!-- Map Container with Card Styling -->
     <androidx.cardview.widget.CardView
@@ -43,7 +43,7 @@
                 android:text="Expired Requests"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -80,7 +80,7 @@
             android:textSize="14sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#1A237E"
+            android:backgroundTint="@color/said_accent"
             style="@style/Widget.Material3.Button" />
 
     </LinearLayout>

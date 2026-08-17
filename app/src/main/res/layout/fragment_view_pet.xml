@@ -116,7 +116,7 @@
                     android:layout_height="wrap_content"
                     android:text="✓ Sterilised"
                     android:textSize="14sp"
-                    android:textColor="#4CAF50"/>
+                    android:textColor="@color/said_primary"/>
 
             </LinearLayout>
 
