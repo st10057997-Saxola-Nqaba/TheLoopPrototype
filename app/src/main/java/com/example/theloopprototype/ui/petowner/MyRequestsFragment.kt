@@ -68,7 +68,25 @@ class MyRequestsFragment : Fragment() {
         }
     }
 
+    // Code Attribution
+//
+// Fix: "New Request" button now navigates to the correct destination.
+// Replaced the erroneous navigation action (R.id.action_myRequestsFragment_to_addPetFragment)
+// with a two-step flow:
+//   1. Navigate to requestVisitFragment using findNavController().navigate(R.id.requestVisitFragment, bundle)
+//   2. Display a pet-picker dialog built with AlertDialog.Builder().setItems()
+//
+// References:
+// - Android Developers. (2026). Use Navigation actions and Fragments.
+//   https://developer.android.com/guide/navigation/design/actions
+// - Android Developers. (2026). Navigate to a destination.
+//   https://developer.android.com/guide/navigation/use-graph/navigate
+// - Android Developers. (n.d.). Dialogs.
+//   https://developer.android.com/guide/topics/ui/dialogs
+
     private fun showPetPickerAndRequest() {
+
+
         val pets = DummyData.getPetsForOwner(currentOwnerId)
 
         if (pets.isEmpty()) {
