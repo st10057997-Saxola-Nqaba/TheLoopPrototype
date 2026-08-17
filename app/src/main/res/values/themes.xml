@@ -6,7 +6,6 @@
         <item name="colorPrimaryDark">@color/said_primary_dark</item>
         <item name="colorOnPrimary">@color/said_white</item>
 
-
         <item name="colorSecondary">@color/said_accent</item>
         <item name="colorOnSecondary">@color/said_white</item>
         <item name="colorTertiary">@color/said_primary_dark</item>
@@ -15,5 +14,12 @@
 
         <item name="android:windowBackground">@color/said_background</item>
         <item name="android:statusBarColor">@color/said_primary_dark</item>
+    </style>
+
+    <!-- Standard Screen Header Title Style -->
+    <style name="TextAppearance.TheLoop.ScreenTitle" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/said_accent</item>
     </style>
 </resources>

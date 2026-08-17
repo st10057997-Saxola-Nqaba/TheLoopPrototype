@@ -3,6 +3,7 @@ package com.example.theloopprototype.ui.admin
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.Toast
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -30,11 +31,8 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
     private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")
 
     private var pinnedLocation: LatLng? = null
-
     private var resolvedAreaId: String? = null
-
     private var dropPinMarker: Marker? = null
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,18 +43,22 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
 
         val tvSelectedLocation = view.findViewById<TextView>(R.id.tvSelectedLocation)
         val btnConfirm = view.findViewById<Button>(R.id.btnConfirmPinLocation)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
+
         tvSelectedLocation.text = "No location selected"
 
+        // Handle Back Button Action
+        btnBack?.setOnClickListener {
+            findNavController().popBackStack()
+        }
 
-        //Creates the list(pin + nearest area)
+        // Creates the list (pin + nearest area)
         btnConfirm?.setOnClickListener {
             val areaId = resolvedAreaId
 
-            if ( pinnedLocation == null || areaId == null){
-
+            if (pinnedLocation == null || areaId == null) {
                 Toast.makeText(requireContext(), "Tap a point on the map to select a location first.", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
-
             }
 
             val newId = "srl_${System.currentTimeMillis()}"
@@ -69,20 +71,19 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
             )
 
             DummyRequests.scheduledRequestLists.add(newList)
-            val movedCount = DummyRequests.linkPendingRequestsToSchedule(areaId,newId)
+            val movedCount = DummyRequests.linkPendingRequestsToSchedule(areaId, newId)
 
             Toast.makeText(requireContext(), "Schedule created for $areaId , $movedCount pending requests moved to schedule", Toast.LENGTH_LONG).show()
             findNavController().navigate(R.id.adminSchedulesFragment)
         }
     }
 
-
     // Code Attribution
-// Fix for map pin drop not resolving a real area
-// Used nearest-neighbour pattern to resolve areaId by comparing tapped
-// LatLng against pending request coordinates
-// Automating GIS Processes (2018) Nearest Neighbour Analysis.
-// https://automating-gis-processes.github.io/CSC18/lessons/L4/nearest-neighbour.html
+    // Fix for map pin drop not resolving a real area
+    // Used nearest-neighbour pattern to resolve areaId by comparing tapped
+    // LatLng against pending request coordinates
+    // Automating GIS Processes (2018) Nearest Neighbour Analysis.
+    // https://automating-gis-processes.github.io/CSC18/lessons/L4/nearest-neighbour.html
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
@@ -100,9 +101,7 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
             )
         }
 
-
-
-        //Finds the nearest area with pending requests
+        // Finds the nearest area with pending requests
         map.setOnMapClickListener { tapped ->
             dropPinMarker?.remove()
             dropPinMarker = map.addMarker(MarkerOptions().position(tapped).title("Selected Schedule Location"))
@@ -119,11 +118,13 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
             resolvedAreaId = nearestPending?.areaId
             val label = resolvedAreaId ?: "No nearby serviced area found"
             view?.findViewById<TextView>(R.id.tvSelectedLocation)?.text = "Selected area: $label (${"%.4f".format(tapped.latitude)}, ${"%.4f".format(tapped.longitude)})"
-
         }
-
-
     }
+
+    // Code Attribution
+    // This method was taken from – Google Maps SDK for Android (official documentation)
+    // Link – https://developers.google.com/android/reference/com/google/android/gms/maps/MapView
+    // Authors Name and Surname – Google
 
     override fun onResume() {
         super.onResume()

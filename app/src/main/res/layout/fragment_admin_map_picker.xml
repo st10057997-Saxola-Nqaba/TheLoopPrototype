@@ -20,6 +20,19 @@
 
     </androidx.cardview.widget.CardView>
 
+    <!-- Floating Back Button -->
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/bg_card_rounded"
+        android:src="@drawable/ic_arrow_back"
+        app:tint="@color/said_accent"
+        android:contentDescription="Back"
+        android:elevation="6dp" />
+
     <!-- Bottom Panel -->
     <LinearLayout
         android:layout_width="match_parent"

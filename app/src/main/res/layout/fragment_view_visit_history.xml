@@ -35,7 +35,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="[Pet Name]"
-        android:textSize="18sp"
+        android:textSize="14sp"
         android:textStyle="bold"/>
 
     <TextView
@@ -43,7 +43,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="[Breed] • [Gender]"
-        android:textSize="14sp"
+        android:textSize="12sp"
         android:textColor="#666666"
         android:layout_marginBottom="8dp"/>
 
