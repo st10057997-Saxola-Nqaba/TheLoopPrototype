@@ -7,11 +7,17 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
+import com.google.android.material.appbar.MaterialToolbar
 
 class AdminProfileFragment : Fragment(R.layout.fragment_admin_profile) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        view.findViewById<MaterialToolbar>(R.id.btnBack)?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         view.findViewById<Button>(R.id.btnEditProfile).setOnClickListener {
             findNavController().navigate(R.id.action_adminProfileFragment_to_adminEditProfileFragment)

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -15,44 +15,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
+            android:orientation="vertical"
             android:layout_marginBottom="16dp">
 
-            <LinearLayout
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
+                android:text="Administrator Console"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="@color/said_accent" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Administrator Console"
-                    android:textSize="24sp"
-                    android:textStyle="bold"
-                    android:textColor="#1A237E" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Desktop / Tablet View"
-                    android:textSize="14sp"
-                    android:textColor="#666666" />
-
-            </LinearLayout>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnAdminLogout"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="Log Out"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Desktop / Tablet View"
                 android:textSize="14sp"
-                android:textColor="#FFFFFF"
-                android:backgroundTint="#D32F2F"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                style="@style/Widget.Material3.Button" />
+                android:textColor="#666666" />
 
         </LinearLayout>
 
@@ -128,7 +107,7 @@
                         android:text="0"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#2196F3"/>
+                        android:textColor="@color/said_primary"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -163,7 +142,7 @@
                         android:text="0"
                         android:textSize="20sp"
                         android:textStyle="bold"
-                        android:textColor="#4CAF50"/>
+                        android:textColor="@color/said_primary"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -207,7 +186,7 @@
                         android:text="📋 Requests &amp; Areas"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A237E"
+                        android:textColor="@color/said_accent"
                         android:paddingBottom="8dp"/>
 
                     <TextView
@@ -220,14 +199,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnManageRequests"
+                        style="@style/Widget.Material3.Button"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="56dp"
+                        android:backgroundTint="@color/said_primary"
                         android:text="Manage Requests"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
                         android:textColor="#FFFFFF"
-                        android:backgroundTint="#4CAF50"
-                        style="@style/Widget.Material3.Button" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -254,7 +233,7 @@
                         android:text="📅 Scheduling &amp; Notifications"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A237E"
+                        android:textColor="@color/said_accent"
                         android:paddingBottom="8dp"/>
 
                     <TextView
@@ -267,14 +246,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnManageScheduling"
+                        style="@style/Widget.Material3.Button"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
+                        android:layout_height="56dp"
+                        android:backgroundTint="@color/said_primary"
                         android:text="Manage Schedules"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
                         android:textColor="#FFFFFF"
-                        android:backgroundTint="#2196F3"
-                        style="@style/Widget.Material3.Button" />
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -301,7 +280,7 @@
                         android:text="📊 Outreach Outcomes"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A237E"
+                        android:textColor="@color/said_accent"
                         android:paddingBottom="8dp"/>
 
                     <TextView
@@ -314,14 +293,14 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnOutcomesSummary"
+                        style="@style/Widget.Material3.Button"
                         android:layout_width="match_parent"
-                        android:layout_height="48dp"
-                        android:text="View Outcomes"
-                        android:textSize="14sp"
-                        android:textStyle="bold"
-                        android:textColor="#FFFFFF"
+                        android:layout_height="56dp"
                         android:backgroundTint="#FF9800"
-                        style="@style/Widget.Material3.Button" />
+                        android:text="View Outcomes"
+                        android:textColor="#FFFFFF"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
 
                 </LinearLayout>
 
@@ -348,7 +327,7 @@
                         android:text="👤 Admin Profile"
                         android:textStyle="bold"
                         android:textSize="18sp"
-                        android:textColor="#1A237E"
+                        android:textColor="@color/said_accent"
                         android:paddingBottom="8dp"/>
 
                     <TextView
@@ -363,10 +342,10 @@
                         android:id="@+id/btnAdminProfile"
                         android:layout_width="match_parent"
                         android:layout_height="48dp"
-                        android:text="Edit Profile"
+                        android:text="Profile"
                         android:textSize="14sp"
                         android:textStyle="bold"
-                        android:textColor="#1A237E"
+                        android:textColor="@color/said_accent"
                         android:backgroundTint="#E3F2FD"
                         style="@style/Widget.Material3.Button.OutlinedButton" />
 

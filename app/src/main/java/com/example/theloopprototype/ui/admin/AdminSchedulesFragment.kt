@@ -2,10 +2,11 @@ package com.example.theloopprototype.ui.admin
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
+import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,6 +16,7 @@ import com.example.theloopprototype.R
 import com.example.theloopprototype.adapter.AdminScheduleListAdapter
 import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.DScheduledRequestList
+import com.example.theloopprototype.models.ScheduleStatus
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -33,9 +35,9 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         scheduleLists.addAll(DummyRequests.scheduledRequestLists)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSchedulesList)
-        val btnBack = view.findViewById<Button>(R.id.btnBackFromSchedules)
-        val btnBroadcast = view.findViewById<Button>(R.id.btnBroadcastNotification)
-        val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateRequestList)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
+        val btnBroadcast = view.findViewById<android.widget.Button>(R.id.btnBroadcastNotification)
+        val btnCreateSchedule = view.findViewById<android.widget.Button>(R.id.btnCreateRequestList)
 
         btnBack.setOnClickListener {
             findNavController().popBackStack()
@@ -54,12 +56,34 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
             showOptionsDialog(schedule)
         }
         recyclerView.adapter = adapter
+        refreshStats(view)
     }
+
+    //The count Textviews were declared in XML but never wired up so they always displayed the dafault "0"
+    private fun refreshStats(view: View){
+        val confirmed = DummyRequests.scheduledRequestLists.count(){it.status == ScheduleStatus.CONFIRMED }
+        val drafts = DummyRequests.scheduledRequestLists.count(){it.status == ScheduleStatus.DRAFT }
+
+        view.findViewById<TextView>(R.id.tvScheduledCount).text = confirmed.toString()
+        view.findViewById<TextView>(R.id.tvDraftCount).text = drafts.toString()
+
+
+
+    }
+
 
     override fun onResume() {
         super.onResume()
         // Keep hidden when coming back from dialogs or interactions
-        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility = View.GONE
+        requireActivity().findViewById<BottomNavigationView>(R.id.bottomNavigationView)?.visibility =
+            View.GONE
+
+        scheduleLists.clear()
+        scheduleLists.addAll(DummyRequests.scheduledRequestLists)
+        if (::adapter.isInitialized) adapter.notifyDataSetChanged()
+        view?.let { refreshStats(it) }
+
+
     }
 
     private fun showBroadcastDialog() {
@@ -98,9 +122,13 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
     }
 
     private fun showOptionsDialog(schedule: DScheduledRequestList) {
+
+        val linkedCount = DummyRequests.requestListItems.count(){it.scheduleRequestListId == schedule.id}
+
+
         val options = arrayOf("Edit Schedule", "Delete Schedule")
         AlertDialog.Builder(requireContext())
-            .setTitle("Manage Schedule (${schedule.id})")
+            .setTitle("Manage Schedule (${schedule.id} - $linkedCount linked request)")
             .setItems(options) { _, which ->
                 when (which) {
                     0 -> showEditOrCreateDialog(schedule)
@@ -118,6 +146,7 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                 DummyRequests.scheduledRequestLists.remove(schedule)
                 scheduleLists.remove(schedule)
                 adapter.notifyDataSetChanged()
+                refreshStats(requireView())
                 Toast.makeText(requireContext(), "Schedule deleted", Toast.LENGTH_SHORT).show()
             }
             .setNegativeButton("Cancel", null)
@@ -172,7 +201,6 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         builder.setPositiveButton("Save") { _, _ ->
             val areaText = inputArea.text.toString().trim()
             val ownerText = inputOwner.text.toString().trim()
-            val petText = inputPet.text.toString().trim()
             val groupText = inputGroup.text.toString().trim()
             val dateText = inputDate.text.toString().trim()
             val adminText = inputAdmin.text.toString().trim()
@@ -193,11 +221,14 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                         areaId = effectiveArea,
                         adminId = if (adminText.isNotEmpty()) adminText else "u8",
                         scheduleDate = parsedDate,
-                        status = com.example.theloopprototype.models.ScheduleStatus.CONFIRMED
+                        status = ScheduleStatus.CONFIRMED
                     )
                     DummyRequests.scheduledRequestLists.add(newList)
                     scheduleLists.add(newList)
-                    Toast.makeText(context, "Request List Created", Toast.LENGTH_SHORT).show()
+
+                    val movedCount = DummyRequests.linkPendingRequestsToSchedule(effectiveArea,newId)
+
+                    Toast.makeText(context, "Request List Created : $movedCount pending request moved to Scheduled", Toast.LENGTH_SHORT).show()
                 } else {
                     val index = scheduleLists.indexOfFirst { it.id == existingSchedule.id }
                     if (index != -1) {
@@ -213,10 +244,16 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
                             DummyRequests.scheduledRequestLists[dummyIndex] = updatedList
                         }
 
+                        if (effectiveArea != existingSchedule.areaId){
+                            DummyRequests.linkPendingRequestsToSchedule(effectiveArea,existingSchedule.id)
+
+                        }
+
                         Toast.makeText(context, "Request List Updated", Toast.LENGTH_SHORT).show()
                     }
                 }
                 adapter.notifyDataSetChanged()
+                refreshStats(requireView())
             } else {
                 Toast.makeText(context, "Please provide at least an Area, Owner, or Group", Toast.LENGTH_SHORT).show()
             }

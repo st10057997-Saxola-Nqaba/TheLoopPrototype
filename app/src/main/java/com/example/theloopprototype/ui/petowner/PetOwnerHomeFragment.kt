@@ -21,9 +21,6 @@ class PetOwnerHomeFragment : Fragment() {
     private lateinit var tvRequestCount: TextView
     private lateinit var btnAddPet: Button
     private lateinit var rvPets: RecyclerView
-    private lateinit var btnMyRequests: Button
-    private lateinit var btnProfile: Button
-    private lateinit var btnLogout: Button
 
     private val currentOwnerId = "u1"
 
@@ -38,9 +35,6 @@ class PetOwnerHomeFragment : Fragment() {
         tvRequestCount = view.findViewById(R.id.tvRequestCount)
         btnAddPet = view.findViewById(R.id.btnAddPet)
         rvPets = view.findViewById(R.id.rvPets)
-        btnMyRequests = view.findViewById(R.id.btnMyRequests)
-        btnProfile = view.findViewById(R.id.btnProfile)
-        btnLogout = view.findViewById(R.id.btnLogout)
 
         return view
     }
@@ -87,25 +81,15 @@ class PetOwnerHomeFragment : Fragment() {
         val pets = DummyData.getPetsForOwner(currentOwnerId)
         val requests = DummyData.getRequestsForOwner(currentOwnerId)
         tvPetCount.text = pets.size.toString()
-        tvRequestCount.text = requests.size.toString() // updated with actual request count
+        tvRequestCount.text = requests.size.toString()
     }
 
     private fun setupClickListeners() {
         btnAddPet.setOnClickListener {
             findNavController().navigate(R.id.action_petOwnerHomeFragment_to_addPetFragment)
         }
-
-        btnMyRequests.setOnClickListener {
-            findNavController().navigate(R.id.action_petOwnerHomeFragment_to_myRequestsFragment)
-        }
-
-        btnProfile.setOnClickListener {
-            findNavController().navigate(R.id.action_petOwnerHomeFragment_to_petOwnerProfileFragment)
-        }
-
-        btnLogout.setOnClickListener {
-            findNavController().navigate(R.id.action_petOwnerHomeFragment_to_loginFragment)
-        }
+        // Requests and Profile navigation is now handled by the BottomNavigationView
+        // in MainActivity — no click listeners needed here for those anymore.
     }
 
     private fun navigateToViewPet(pet: DPet) {

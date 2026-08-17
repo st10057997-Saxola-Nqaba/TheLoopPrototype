@@ -15,9 +15,11 @@
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:background="@null"
-            android:contentDescription="Back"/>
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/said_accent"
+            android:contentDescription="Back"
+            android:layout_marginBottom="8dp"/>
 
         <!-- Pet Avatar -->
         <TextView
@@ -116,7 +118,7 @@
                     android:layout_height="wrap_content"
                     android:text="✓ Sterilised"
                     android:textSize="14sp"
-                    android:textColor="#4CAF50"/>
+                    android:textColor="@color/said_primary"/>
 
             </LinearLayout>
 

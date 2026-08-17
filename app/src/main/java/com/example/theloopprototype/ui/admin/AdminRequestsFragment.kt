@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -31,10 +32,11 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         val containerList = view.findViewById<LinearLayout>(R.id.containerRequestsList)
         val btnViewMap = view.findViewById<Button>(R.id.btnViewMap)
         val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateSchedule)
-        val btnBackToDashboard = view.findViewById<Button>(R.id.btnBackToDashboard)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         val btnViewExpiredMap = view.findViewById<Button>(R.id.btnViewExpiredMap)
 
         refreshRequestsList(containerList)
+        refreshStats(view)
 
         // Navigate to full-screen Pending Cluster/Map Screen
         btnViewMap.setOnClickListener {
@@ -51,7 +53,7 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
             showCreateScheduleDialog()
         }
 
-        btnBackToDashboard.setOnClickListener {
+        btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -71,6 +73,28 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
 //   https://medium.com/google-developer-experts/exploring-view-binding-on-android-44e57ba11635
 // - Joshi, S. (n.d.). How to Find, Prevent and Solve NullPointerException in Mobile Apps.
 //   DEV Community. https://dev.to/shubham_joshi_expert/how-to-find-prevent-and-solve-javalangnullpointerexception-in-mobile-apps-4304
+    override fun onResume(){
+        super.onResume()
+        view?.let {
+            refreshRequestsList(it.findViewById(R.id.containerRequestsList))
+            refreshStats(it)
+        }
+    }
+
+    private fun refreshStats(view: View){
+        val pending = DummyRequests.requests.count{ it.status == RequestStatus.PENDING }
+        val scheduled = DummyRequests.requests.count{ it.status == RequestStatus.SCHEDULED }
+        val fulfilled = DummyRequests.requests.count{ it.status == RequestStatus.EXPIRED }
+
+
+        view.findViewById<TextView>(R.id.tvPendingCount).text = pending.toString()
+        view.findViewById<TextView>(R.id.tvScheduledCount).text = scheduled.toString()
+        view.findViewById<TextView>(R.id.tvExpiredCount).text = fulfilled.toString()
+
+    }
+
+
+
     private fun refreshRequestsList(container: LinearLayout) {
         container.removeAllViews()
 
@@ -217,11 +241,12 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
                     status = ScheduleStatus.CONFIRMED
                 )
 
-                // Fixed: using .add() on the now-mutable scheduledRequestLists list
                 DummyRequests.scheduledRequestLists.add(newList)
-                Toast.makeText(context, "Schedule list created successfully!", Toast.LENGTH_SHORT).show()
 
-                // Navigate directly to the Admin Schedules fragment upon saving
+                val movedCount = DummyRequests.linkPendingRequestsToSchedule(effectiveArea, newId)
+
+                Toast.makeText(context, "Schedule list created $movedCount pending request in $effectiveArea moved to scheduled", Toast.LENGTH_SHORT).show()
+
                 findNavController().navigate(R.id.adminSchedulesFragment)
             } else {
                 Toast.makeText(context, "Please provide at least an Area or Group", Toast.LENGTH_SHORT).show()

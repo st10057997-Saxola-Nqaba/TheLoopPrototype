@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.theloopprototype.R
+import com.example.theloopprototype.data.DummyRequests
 import com.example.theloopprototype.models.DScheduledRequestList
 import java.time.format.DateTimeFormatter
 
@@ -35,7 +36,10 @@ class AdminScheduleListAdapter(
         fun bind(schedule: DScheduledRequestList, onEditClick: (DScheduledRequestList) -> Unit) {
             tvTitle.text = "Schedule List: ${schedule.id} | Area: ${schedule.areaId}"
             val formatter = DateTimeFormatter.ofPattern("dd MMM yyyy, HH:mm")
-            tvDetails.text = "Date: ${schedule.scheduleDate.format(formatter)}\nStatus: ${schedule.status}"
+
+            val linkedCount = DummyRequests.requestListItems.count{ it.scheduleRequestListId == schedule.id}
+
+            tvDetails.text = "Date: ${schedule.scheduleDate.format(formatter)}\nStatus: ${schedule.status}\n" + "Linked Requests: $linkedCount"
 
             btnEdit.setOnClickListener { onEditClick(schedule) }
         }

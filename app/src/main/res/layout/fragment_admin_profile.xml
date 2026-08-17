@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -11,27 +11,44 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header -->
+        <!-- Header with Back Button -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
             android:layout_marginBottom="16dp">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="My Profile"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                android:textColor="#1A237E" />
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:navigationIcon="?attr/homeAsUpIndicator"
+                app:navigationContentDescription="Back"
+                android:layout_marginEnd="4dp" />
 
-            <TextView
-                android:layout_width="match_parent"
+            <LinearLayout
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="View and manage your administrator account"
-                android:textSize="14sp"
-                android:textColor="#666666" />
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="My Profile"
+                    android:textSize="24sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/said_accent" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="View and manage your administrator account"
+                    android:textSize="14sp"
+                    android:textColor="#666666" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
@@ -82,7 +99,7 @@
                     android:layout_height="wrap_content"
                     android:text="System Administrator"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Email -->
@@ -100,7 +117,7 @@
                     android:layout_height="wrap_content"
                     android:text="admin@theloop.org"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Role Badge -->
@@ -125,11 +142,11 @@
             android:id="@+id/btnEditProfile"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Edit Profile"
+            android:text="Edit"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#2196F3"
+            android:backgroundTint="@color/said_primary"
             android:layout_marginBottom="12dp"
             style="@style/Widget.Material3.Button.OutlinedButton" />
 
@@ -148,15 +165,13 @@
             android:id="@+id/btnDeleteProfile"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Delete Profile"
+            android:text="Delete"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:backgroundTint="#D32F2F"
             android:layout_marginBottom="12dp"
             style="@style/Widget.Material3.Button" />
-
-
 
     </LinearLayout>
 
