@@ -23,7 +23,7 @@
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/said_accent"
             android:contentDescription="Back"
-            android:layout_marginEnd="12dp" />
+            android:layout_marginEnd="12dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -35,9 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Manage Requests"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/said_accent" />
+                android:textAppearance="@style/TextAppearance.TheLoop.ScreenTitle" />
 
             <TextView
                 android:layout_width="match_parent"

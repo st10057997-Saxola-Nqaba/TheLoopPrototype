@@ -35,9 +35,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Outreach Outcomes"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                android:textColor="@color/said_accent" />
+                android:textAppearance="@style/TextAppearance.TheLoop.ScreenTitle" />
 
             <TextView
                 android:layout_width="match_parent"
