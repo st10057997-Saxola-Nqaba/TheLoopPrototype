@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -32,7 +32,7 @@
                 android:text="Create User &amp; Pet Profile"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
             android:text="Owner Information"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginBottom="12dp" />
 
         <!-- First Name -->
@@ -66,8 +66,8 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             app:boxBackgroundMode="outline"
-            app:boxStrokeColor="#4CAF50"
-            app:hintTextColor="#4CAF50">
+            app:boxStrokeColor="@color/said_primary"
+            app:hintTextColor="@color/said_primary">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etFirstName"
@@ -140,7 +140,7 @@
             android:text="Pet Information"
             android:textSize="16sp"
             android:textStyle="bold"
-            android:textColor="#1A237E"
+            android:textColor="@color/said_accent"
             android:layout_marginBottom="12dp" />
 
         <!-- Pet Name -->
@@ -199,11 +199,11 @@
             android:id="@+id/btnSaveProfile"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Save and View Profile"
+            android:text="Save"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
-            android:backgroundTint="#4CAF50"
+            android:backgroundTint="@color/said_primary"
             android:layout_marginTop="8dp"
             style="@style/Widget.Material3.Button" />
 

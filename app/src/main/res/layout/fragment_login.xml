@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="24dp">
@@ -25,7 +25,7 @@
         android:text="SAID Mobile Outreach"
         android:textSize="24sp"
         android:textStyle="bold"
-        android:textColor="#1A237E"
+        android:textColor="@color/said_accent"
         android:gravity="center"
         android:layout_marginBottom="4dp"/>
 
@@ -42,7 +42,7 @@
     <View
         android:layout_width="60dp"
         android:layout_height="3dp"
-        android:background="#4CAF50"
+        android:background="@color/said_primary"
         android:layout_marginBottom="32dp"/>
 
     <!-- Login as Pet Owner -->
@@ -67,7 +67,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="@color/said_primary"
         android:layout_marginBottom="12dp"
         style="@style/Widget.Material3.Button.OutlinedButton"/>
 
@@ -80,7 +80,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#1A237E"
+        android:backgroundTint="@color/said_accent"
         style="@style/Widget.Material3.Button.TextButton"/>
 
     <!-- Version Info -->

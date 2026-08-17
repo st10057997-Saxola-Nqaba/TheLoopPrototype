@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -15,18 +15,15 @@
         android:gravity="center_vertical"
         android:layout_marginBottom="12dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnBackFromSchedules"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="← Back"
-            android:textSize="14sp"
-            android:textColor="#1A237E"
-            android:backgroundTint="#E0E0E0"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:layout_marginEnd="12dp"
-            style="@style/Widget.Material3.Button.OutlinedButton" />
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/said_accent"
+            android:contentDescription="Back"
+            android:layout_marginEnd="12dp" />
 
         <LinearLayout
             android:layout_width="0dp"
@@ -40,7 +37,7 @@
                 android:text="Scheduling &amp; Notifications"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -89,7 +86,7 @@
                     android:text="0"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#2196F3"/>
+                    android:textColor="@color/said_primary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -160,7 +157,7 @@
         android:textSize="14sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="@color/said_primary"
         android:layout_marginBottom="12dp"
         style="@style/Widget.Material3.Button" />
 
@@ -171,7 +168,7 @@
         android:text="Schedules List"
         android:textSize="16sp"
         android:textStyle="bold"
-        android:textColor="#1A237E"
+        android:textColor="@color/said_accent"
         android:layout_marginBottom="8dp" />
 
     <!-- RecyclerView for Schedules -->

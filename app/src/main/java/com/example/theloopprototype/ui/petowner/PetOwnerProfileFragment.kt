@@ -30,10 +30,6 @@ class PetOwnerProfileFragment : Fragment() {
     }
 
     private fun setupClickListeners() {
-        binding.btnBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-
         binding.btnEditProfile.setOnClickListener {
             // Navigate to edit profile
         }

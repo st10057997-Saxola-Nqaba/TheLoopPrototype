@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:padding="16dp">
 
     <LinearLayout
@@ -19,18 +19,15 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="12dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBackFromVisitDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="← Back"
-                android:textSize="14sp"
-                android:textColor="#1A237E"
-                android:backgroundTint="#E0E0E0"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:layout_marginEnd="12dp"
-                style="@style/Widget.Material3.Button.OutlinedButton" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/said_accent"
+                android:contentDescription="Back"
+                android:layout_marginEnd="12dp" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -44,7 +41,7 @@
                     android:text="Visit Entry Details"
                     android:textSize="22sp"
                     android:textStyle="bold"
-                    android:textColor="#1A237E" />
+                    android:textColor="@color/said_accent" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -107,7 +104,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Visit ID]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Owner -->
@@ -125,7 +122,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Owner Name]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
 
@@ -144,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Outcome]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Flags -->
@@ -180,7 +177,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Officer Name]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Timestamp -->
@@ -198,7 +195,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Date &amp; Time]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E"
+                    android:textColor="@color/said_accent"
                     android:layout_marginBottom="12dp" />
 
                 <!-- Notes -->
@@ -216,7 +213,7 @@
                     android:layout_height="wrap_content"
                     android:text="[Notes]"
                     android:textSize="16sp"
-                    android:textColor="#1A237E" />
+                    android:textColor="@color/said_accent" />
 
             </LinearLayout>
 

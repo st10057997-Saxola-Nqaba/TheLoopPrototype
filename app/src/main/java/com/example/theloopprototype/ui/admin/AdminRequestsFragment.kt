@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
@@ -31,11 +32,11 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         val containerList = view.findViewById<LinearLayout>(R.id.containerRequestsList)
         val btnViewMap = view.findViewById<Button>(R.id.btnViewMap)
         val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateSchedule)
-        val btnBackToDashboard = view.findViewById<Button>(R.id.btnBackToDashboard)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         val btnViewExpiredMap = view.findViewById<Button>(R.id.btnViewExpiredMap)
 
         refreshRequestsList(containerList)
-        refreshStats(view);
+        refreshStats(view)
 
         // Navigate to full-screen Pending Cluster/Map Screen
         btnViewMap.setOnClickListener {
@@ -52,7 +53,7 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
             showCreateScheduleDialog()
         }
 
-        btnBackToDashboard.setOnClickListener {
+        btnBack.setOnClickListener {
             findNavController().popBackStack()
         }
     }
@@ -62,10 +63,7 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
         view?.let {
             refreshRequestsList(it.findViewById(R.id.containerRequestsList))
             refreshStats(it)
-
         }
-
-
     }
 
     private fun refreshStats(view: View){
@@ -228,16 +226,12 @@ class AdminRequestsFragment : Fragment(R.layout.fragment_admin_requests) {
                     status = ScheduleStatus.CONFIRMED
                 )
 
-                // Fixed: using .add() on the now-mutable scheduledRequestLists list
                 DummyRequests.scheduledRequestLists.add(newList)
 
-
-                val movedCount = DummyRequests.linkPendingRequestsToSchedule(effectiveArea,newId)
-
+                val movedCount = DummyRequests.linkPendingRequestsToSchedule(effectiveArea, newId)
 
                 Toast.makeText(context, "Schedule list created $movedCount pending request in $effectiveArea moved to scheduled", Toast.LENGTH_SHORT).show()
 
-                // Navigate directly to the Admin Schedules fragment upon saving
                 findNavController().navigate(R.id.adminSchedulesFragment)
             } else {
                 Toast.makeText(context, "Please provide at least an Area or Group", Toast.LENGTH_SHORT).show()

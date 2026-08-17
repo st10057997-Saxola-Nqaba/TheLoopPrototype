@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="@color/said_background"
     android:orientation="vertical"
     android:padding="16dp">
 
@@ -27,7 +27,7 @@
                 android:text="Scheduled Requests"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                android:textColor="#1A237E" />
+                android:textColor="@color/said_accent" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -138,7 +138,7 @@
                     android:text="0"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#2196F3"/>
+                    android:textColor="@color/said_primary"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,7 +178,7 @@
                     android:text="0"
                     android:textSize="20sp"
                     android:textStyle="bold"
-                    android:textColor="#4CAF50"/>
+                    android:textColor="@color/said_primary"/>
 
                 <TextView
                     android:layout_width="wrap_content"

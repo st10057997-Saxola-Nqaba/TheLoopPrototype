@@ -3,7 +3,6 @@ package com.example.theloopprototype.ui.admin
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.Toast
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -15,11 +14,6 @@ class AdminDashboardFragment : Fragment(R.layout.fragment_admin_dashboard) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        view.findViewById<Button>(R.id.btnAdminLogout).setOnClickListener {
-            Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.loginFragment)
-        }
 
         // Navigate to the Pending & Expired Requests view
         view.findViewById<Button>(R.id.btnManageRequests).setOnClickListener {
@@ -61,9 +55,4 @@ class AdminDashboardFragment : Fragment(R.layout.fragment_admin_dashboard) {
         view.findViewById<TextView>(R.id.tvFulfilledRequests).text = fulfilled.toString()
 
     }
-
-
-
-
-
 }

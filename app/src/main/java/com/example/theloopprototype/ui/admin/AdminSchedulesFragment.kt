@@ -2,8 +2,8 @@ package com.example.theloopprototype.ui.admin
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.Toast
 import android.widget.TextView
@@ -35,9 +35,9 @@ class AdminSchedulesFragment : Fragment(R.layout.fragment_admin_schedules) {
         scheduleLists.addAll(DummyRequests.scheduledRequestLists)
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSchedulesList)
-        val btnBack = view.findViewById<Button>(R.id.btnBackFromSchedules)
-        val btnBroadcast = view.findViewById<Button>(R.id.btnBroadcastNotification)
-        val btnCreateSchedule = view.findViewById<Button>(R.id.btnCreateRequestList)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
+        val btnBroadcast = view.findViewById<android.widget.Button>(R.id.btnBroadcastNotification)
+        val btnCreateSchedule = view.findViewById<android.widget.Button>(R.id.btnCreateRequestList)
 
         btnBack.setOnClickListener {
             findNavController().popBackStack()
