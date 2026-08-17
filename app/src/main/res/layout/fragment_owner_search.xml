@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Code Attribution -->
+<!-- This method was taken from Stack Overflow -->
+<!-- https://stackoverflow.com/questions/54896159/how-to-use-textinputlayout-in-android -->
+<!-- Abhishek -->
+<!-- https://stackoverflow.com/users/5326436/abhishek -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
