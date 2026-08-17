@@ -53,6 +53,19 @@ class PetOwnerHomeFragment : Fragment() {
         setupClickListeners()
     }
 
+
+    // Code Attribution
+//
+// Fix: Home screen now refreshes pet and request counts on resume.
+// Moved stat-refresh logic from onViewCreated() to onResume() to ensure
+// data updates when the user returns to the fragment.
+//
+// References:
+// - Android Developers. (n.d.). Fragment lifecycle.
+//   https://developer.android.com/guide/fragments/lifecycle
+// - Alcérreca, J. (2019). The Android Lifecycle cheat sheet - part III: Fragments.
+//   https://medium.com/androiddevelopers/the-android-lifecycle-cheat-sheet-part-iii-fragments-afc87d4f37fd
+
     override fun onResume() {
         super.onResume()
         //refreshes every time we come back to home

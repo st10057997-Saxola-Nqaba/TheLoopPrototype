@@ -62,6 +62,10 @@ class AddPetFragment : Fragment() {
         }
     }
 
+    //Code attribution
+    //fix for pet not savind due to Val/Mutablelist misunderstanding
+    //kotlin documentation(n.d.) Collections overview
+    //https://kotlinlang.org/docs/collections-overview.html
     private fun savePet() {
         val name = binding.etPetName.text.toString().trim()
         val animalType = binding.spinnerAnimalType.text.toString()
