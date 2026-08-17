@@ -249,7 +249,8 @@ The production application will eventually:
 * <img width="333" height="746" alt="AHT map view" src="https://github.com/user-attachments/assets/389feb8f-aa55-4654-86a8-38a4cf33e6a8" />
 
 * Owner and pet search
-* <img width="333" height="746" alt="owner and pet search" src="https://github.com/user-attachments/assets/acbe0a30-3571-41db-a4f2-3fa74b0d3adc" />
+* <img width="333" height="746" alt="Screenshot 2026-08-17 at 23 32 43" src="https://github.com/user-attachments/assets/509b9fb3-d287-4fdd-bcc9-29d4cf8a9da2" />
+
 
 * Owner details
 * <img width="333" height="746" alt="owner details" src="https://github.com/user-attachments/assets/4831ebfb-a7b7-46e5-9168-6e9be4b56a59" />
