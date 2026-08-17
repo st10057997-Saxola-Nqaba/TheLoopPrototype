@@ -215,38 +215,88 @@ The production application will eventually:
 
 ## 1. Pet Owner Screens
 
-* Pet Owner dashboard/home
-* Pet management
-* Adding a pet
-* Service request submission
-* Request history
+* Login screen
+* <img width="333" height="703" alt="login screen" src="https://github.com/user-attachments/assets/f4934a3f-9119-4e71-8c29-565be82dee23" />
+
+* Pet owner home
+* <img width="333" height="746" alt="pet owner home " src="https://github.com/user-attachments/assets/97bef6b9-dd2d-4958-8de5-8c09d2e18b88" />
+
+  
+* Add pet form
+* <img width="333" height="746" alt="add pet form" src="https://github.com/user-attachments/assets/315b3cd9-bcbe-4ad9-8e48-910a4c7229d4" />
+
+* view pet details
+* <img width="333" height="746" alt="view pet details" src="https://github.com/user-attachments/assets/e1f686b5-69cd-4fc6-b977-1d8a99ed3450" />
+
+* Request a visit
+* <img width="333" height="746" alt="request a visit" src="https://github.com/user-attachments/assets/a02952ea-4cb5-4d19-b69d-4785d14a89b7" />
+
+* my requests
+* <img width="333" height="746" alt="my requests" src="https://github.com/user-attachments/assets/1299b9b6-953b-4052-80b2-b92a3e929bcf" />
+
 * Request details
-* Visit history
-* Profile management
+* <img width="333" height="746" alt="request details" src="https://github.com/user-attachments/assets/a1d47f36-74bf-417b-9680-4dccba577b46" />
+
+* pet owner profile
+* <img width="333" height="746" alt="pet owner profile" src="https://github.com/user-attachments/assets/5e5e5b1c-276b-4c2f-a242-ae77d6452cac" />
 
 ## 2. Animal Health Technician (AHT) Screens
 
 * AHT dashboard
-* Schedules
-* Scheduled request lists
-* Request details
-* Visit logging
-* Search
-* Pet/owner information
-* Profile
-* Other AHT-specific screens
+* <img width="333" height="746" alt="AHT home" src="https://github.com/user-attachments/assets/6c0b6c00-73ff-4a1a-a6be-f17f8594e06d" />
+
+* AHT map view
+* <img width="333" height="746" alt="AHT map view" src="https://github.com/user-attachments/assets/389feb8f-aa55-4654-86a8-38a4cf33e6a8" />
+
+* Owner and pet search
+* <img width="333" height="746" alt="owner and pet search" src="https://github.com/user-attachments/assets/acbe0a30-3571-41db-a4f2-3fa74b0d3adc" />
+
+* Owner details
+* <img width="333" height="746" alt="owner details" src="https://github.com/user-attachments/assets/4831ebfb-a7b7-46e5-9168-6e9be4b56a59" />
+
+* update owner and pet
+* <img width="333" height="746" alt="update owner and pet" src="https://github.com/user-attachments/assets/21b5d292-b15d-4e26-b141-b091fb172e51" />
+
+* view scheduled requests
+* <img width="333" height="746" alt="view scheduled request" src="https://github.com/user-attachments/assets/04fc59dd-59a8-4890-afaa-d10fd5168191" />
+
+* Create visit entry
+* <img width="333" height="746" alt="create visit entry" src="https://github.com/user-attachments/assets/2755c00d-a561-4dad-84be-11af190103a5" />
+
+  
 
 ## 3. Administrator Screens
 
-* Administrator dashboard
+* Administrator console
+* <img width="333" height="746" alt="admin console" src="https://github.com/user-attachments/assets/0593190a-de10-44cb-80d1-3bce68deb72b" />
+
 * Request management
-* Map-based request visualization
-* Outreach scheduling
-* Area/group management
-* Notifications
+* <img width="333" height="746" alt="manage requests" src="https://github.com/user-attachments/assets/71efaa0d-bf4b-49a4-93da-5f1ff3ba1828" />
+
+* Expired map view
+* <img width="333" height="746" alt="expired map view" src="https://github.com/user-attachments/assets/8a07ba62-93a9-4835-bf62-0431cb48653a" />
+
+* Map picker
+* <img width="333" height="746" alt="map picker" src="https://github.com/user-attachments/assets/636be824-074b-4d26-a45b-4329ca2c7bac" />
+
+* Scheduling & Notifications
+* <img width="333" height="746" alt="scheduling   Notifications" src="https://github.com/user-attachments/assets/696c9141-ccb3-4f7e-8eb9-bd9a383f12ed" />
+
 * Outreach outcome statistics
-* Profile management
-* Other administrator-specific screens
+* <img width="333" height="746" alt="outreach outcomes" src="https://github.com/user-attachments/assets/5114112e-5525-4eda-babe-56ec43121993" />
+
+* visit entry details
+* <img width="333" height="746" alt="visit entry details" src="https://github.com/user-attachments/assets/c6b650bd-98dc-4f2a-8d21-5289101842b7" />
+
+* admin profile
+* <img width="333" height="746" alt="admin profile" src="https://github.com/user-attachments/assets/45ad336e-da5c-40f6-a324-e6f98f3293e1" />
+
+* Edit admin profile
+* <img width="333" height="746" alt="edit admin profile" src="https://github.com/user-attachments/assets/ac1ef7c1-53f6-42a5-92f2-732bd4b8c256" />
+
+
+
+  
 
 ---
 
