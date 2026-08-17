@@ -2,7 +2,7 @@ package com.example.theloopprototype.ui.admin
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,7 +16,7 @@ class AdminVisitEntryDetailFragment : Fragment(R.layout.fragment_admin_visit_ent
 
         val visitId = arguments?.getString("visitId") ?: "v1"
 
-        view.findViewById<Button>(R.id.btnBackFromVisitDetail).setOnClickListener {
+        view.findViewById<ImageButton>(R.id.btnBack).setOnClickListener {
             findNavController().popBackStack()
         }
 

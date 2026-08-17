@@ -19,18 +19,15 @@
             android:gravity="center_vertical"
             android:layout_marginBottom="12dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBackFromVisitDetail"
-                android:layout_width="wrap_content"
-                android:layout_height="40dp"
-                android:text="← Back"
-                android:textSize="14sp"
-                android:textColor="@color/said_accent"
-                android:backgroundTint="#E0E0E0"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:layout_marginEnd="12dp"
-                style="@style/Widget.Material3.Button.OutlinedButton" />
+            <ImageButton
+                android:id="@+id/btnBack"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_arrow_back"
+                app:tint="@color/said_accent"
+                android:contentDescription="Back"
+                android:layout_marginEnd="12dp" />
 
             <LinearLayout
                 android:layout_width="0dp"

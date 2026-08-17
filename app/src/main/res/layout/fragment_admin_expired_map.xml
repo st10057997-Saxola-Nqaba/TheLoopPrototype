@@ -75,9 +75,9 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnBackFromExpiredMap"
             android:layout_width="match_parent"
-            android:layout_height="48dp"
+            android:layout_height="56dp"
             android:text="Back to Requests List"
-            android:textSize="14sp"
+            android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"
             android:backgroundTint="@color/said_accent"

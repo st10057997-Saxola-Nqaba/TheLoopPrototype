@@ -15,9 +15,11 @@
             android:id="@+id/btnBack"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@android:drawable/ic_menu_close_clear_cancel"
-            android:background="@null"
-            android:contentDescription="Back"/>
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/said_accent"
+            android:contentDescription="Back"
+            android:layout_marginBottom="8dp"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -116,7 +118,7 @@
             android:id="@+id/btnSubmitRequest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Submit Request"
+            android:text="Submit"
             android:backgroundTint="@color/said_primary"
             android:textColor="@color/said_white"
             android:layout_marginTop="8dp"/>

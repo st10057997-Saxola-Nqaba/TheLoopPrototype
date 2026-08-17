@@ -119,7 +119,7 @@
             android:id="@+id/btnSaveVisit"
             android:layout_width="match_parent"
             android:layout_height="56dp"
-            android:text="Save Visit Entry"
+            android:text="Save"
             android:textSize="16sp"
             android:textStyle="bold"
             android:textColor="#FFFFFF"

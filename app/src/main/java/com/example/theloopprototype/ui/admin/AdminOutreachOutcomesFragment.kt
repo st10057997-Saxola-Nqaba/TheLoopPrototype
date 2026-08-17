@@ -3,7 +3,7 @@ package com.example.theloopprototype.ui.admin
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -17,7 +17,7 @@ class AdminOutreachOutcomesFragment : Fragment(R.layout.fragment_admin_outreach_
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val btnBack = view.findViewById<Button>(R.id.btnBackFromOutcomes)
+        val btnBack = view.findViewById<ImageButton>(R.id.btnBack)
         val container = view.findViewById<LinearLayout>(R.id.containerOutcomesList)
 
         btnBack.setOnClickListener {

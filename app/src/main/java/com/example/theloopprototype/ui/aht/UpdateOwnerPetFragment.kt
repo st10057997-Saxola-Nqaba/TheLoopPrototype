@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.theloopprototype.R
 import com.example.theloopprototype.data.DummyPets
 import com.example.theloopprototype.data.DummyUsers
+import com.google.android.material.appbar.MaterialToolbar
 
 class UpdateOwnerPetFragment : Fragment(R.layout.fragment_update_owner_pet) {
 
@@ -17,6 +18,9 @@ class UpdateOwnerPetFragment : Fragment(R.layout.fragment_update_owner_pet) {
         super.onViewCreated(view, savedInstanceState)
 
 
+        view.findViewById<MaterialToolbar>(R.id.btnBack)?.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
 
         val ownerId = arguments?.getString("ownerId") ?: return
         val ownerIndex = DummyUsers.users.indexOfFirst { it.id == ownerId }
@@ -68,20 +72,5 @@ class UpdateOwnerPetFragment : Fragment(R.layout.fragment_update_owner_pet) {
             }
             findNavController().navigate(R.id.action_updateOwnerPetFragment_to_ownerDetailFragment, bundle)
         }
-        // Added this method to work with fragment_update_owner_pet
-        //val tvOwnerName = view.findViewById<TextView>(R.id.tvOwnerName)
-        //val tvPetName = view.findViewById<TextView>(R.id.tvPetName)
-
-       // owner?.let {
-       //     tvOwnerName.text = "${it.firstName} ${it.lastName}"
-        //    etPhone.setText(it.cellphoneNumber)
-        //    etAddress.setText(it.physicalAddress)
-       // }
-
-       // pet?.let {
-         //   tvPetName.text = it.name
-           // etWeight.setText(it.weightKg.toString())
-         //   etHeight.setText(it.heightCm.toString())
-       // }
     }
 }

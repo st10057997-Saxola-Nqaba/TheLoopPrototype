@@ -3,9 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    app:cardElevation="4dp"
-    app:cardCornerRadius="12dp">
+    android:layout_marginBottom="12dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="2dp"
+    app:cardBackgroundColor="@color/said_white">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -13,7 +16,7 @@
         android:orientation="vertical"
         android:padding="16dp">
 
-        <!-- Header Row: Pet Name + Status -->
+        <!-- Header Row: Pet Name + Status Badge -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -26,8 +29,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="[Pet Name]"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/said_navy_text"/>
 
             <TextView
                 android:id="@+id/tvStatus"
@@ -48,8 +52,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Severity: LOW"
-            android:textSize="12sp"
-            android:layout_marginTop="4dp"/>
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/said_primary"
+            android:layout_marginTop="6dp"/>
 
         <!-- Description -->
         <TextView
@@ -59,7 +65,7 @@
             android:text="[Description]"
             android:textSize="14sp"
             android:textColor="#666666"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="6dp"
             android:maxLines="2"
             android:ellipsize="end"/>
 
