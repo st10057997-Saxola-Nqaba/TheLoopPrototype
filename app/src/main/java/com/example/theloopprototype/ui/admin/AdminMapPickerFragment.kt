@@ -121,6 +121,11 @@ class AdminMapPickerFragment : Fragment(R.layout.fragment_admin_map_picker), OnM
         }
     }
 
+    // Code Attribution
+    // This method was taken from – Google Maps SDK for Android (official documentation)
+    // Link – https://developers.google.com/android/reference/com/google/android/gms/maps/MapView
+    // Authors Name and Surname – Google
+
     override fun onResume() {
         super.onResume()
         mapView?.onResume()
