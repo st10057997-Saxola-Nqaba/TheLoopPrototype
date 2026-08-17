@@ -253,11 +253,3 @@ The production application will eventually:
 ## Repository Purpose
 
 This repository contains the **Phase 1 Android UI and navigation prototype** for **The Loop (SAID Mobile Outreach App)**. It validates UX flows and functional requirements before database, backend, and CI/CD development begins.
-
----
-
-## Contact
-
-For questions or feedback regarding this prototype, please reach out to the development team.
-
-## Last updated: Phase 1 Prototype
