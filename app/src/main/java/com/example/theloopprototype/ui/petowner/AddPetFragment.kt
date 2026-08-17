@@ -1,3 +1,8 @@
+// Code Attribution
+// This method was taken from Stack Overflow
+// https://stackoverflow.com/questions/54896159/how-to-use-textinputlayout-in-android
+// Abhishek
+// https://stackoverflow.com/users/5326436/abhishek
 package com.example.theloopprototype.ui.petowner
 
 import android.os.Bundle

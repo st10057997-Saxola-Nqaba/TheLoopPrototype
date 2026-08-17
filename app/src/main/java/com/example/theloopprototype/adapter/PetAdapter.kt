@@ -1,3 +1,9 @@
+// Code Attribution
+// This method was taken from Stack Overflow
+// https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example
+// Suragch
+// https://stackoverflow.com/users/3681880/suragch
+
 package com.example.theloopprototype.adapter
 
 import android.view.LayoutInflater

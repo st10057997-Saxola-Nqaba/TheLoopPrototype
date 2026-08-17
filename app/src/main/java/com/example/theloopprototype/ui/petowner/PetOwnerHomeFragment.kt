@@ -1,3 +1,8 @@
+// Code Attribution
+// This method was taken from Stack Overflow
+// https://stackoverflow.com/questions/41409805/how-to-pass-data-from-one-fragment-to-another-in-android
+// Ankit Sinha
+// https://stackoverflow.com/users/2223529/ankit-sinha
 package com.example.theloopprototype.ui.petowner
 
 import android.os.Bundle

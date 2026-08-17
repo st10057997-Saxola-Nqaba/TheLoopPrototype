@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Code Attribution -->
+<!-- This method was taken from Stack Overflow -->
+<!-- https://stackoverflow.com/questions/40584424/simple-android-recyclerview-example -->
+<!-- Suragch -->
+<!-- https://stackoverflow.com/users/3681880/suragch -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
